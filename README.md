@@ -7,12 +7,12 @@
 <summary>Table of content</summary>
    
 # Table of content
-   * [Company Profile](#company-profile)
-   * [Project Description](#project-description)
+   * [Company Profile](#company-profile-)
+   * [Project Description](#project-description-)
    * [Project Problem Statement](#project-problem-statement)
    * [Proposed Solution](#proposed-solution)
-   * [Key Features](#key-features)
-   * [Technologies](#technologies)
+   * [Key Features](#key-features-)
+   * [Technologies](#technologies-)
    * [Alternative Technology Solution](#alternative-technology-solution)
 </details>
 
