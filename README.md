@@ -31,7 +31,7 @@ Through this project, we aim to upgrade the current [website](https://www.bcit.c
 <br/><br/>
 **Technologies:** <br/>
 | Database | Framework(s) | Language(s) | Version Control | Environment | UX-UI |
-| :---         |     :---:      |     :---:      |     :---:      |     :---:      |          ---: |
+| :---         |     :---:      |     :---:      |     :---:      |     :---:      |    ---:    |
 | MySQL / MariaDB   | AngularJS     | Node.js    | Git | Plesk | Bootstrap / CSS
 
 
