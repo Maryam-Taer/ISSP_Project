@@ -1,5 +1,5 @@
 # ISSP Project <br/>
-**Team:** The Academics
+**Team:** The Academics <br/>
 **Client Organization:** BCIT School of Computing and Academic Studies <br/>
 **Duration:** September 18, 2020 - December 11, 2020 [4 months] <br/><br/>
 
