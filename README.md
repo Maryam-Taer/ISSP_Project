@@ -22,10 +22,17 @@ Through this project, we aim to upgrade the current [website](https://www.bcit.c
     7. Interface to make notes/comments/feedback on each project
     8. Accounts/Credentials to Login for faculty members & staff 
 
-    **Out of scope:**
+    Out of scope:
     1. Automated Google Sheet generation
     2. Integration of Login with BCIT credentials
     3. Sponsor Contact Catalogue/Ranking
     4. Auto Invoice Generation
+
+<br/><br/>
+**Technologies:** <br/>
+| Database | Framework(s) | Language(s) | Version Control | Environment | UX-UI |
+| :---         |     :---:      |     :---:      |     :---:      |     :---:      |          ---: |
+| MySQL / MariaDB   | AngularJS     | Node.js    | Git | Plesk | Bootstrap / CSS
+
 
 
