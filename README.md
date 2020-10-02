@@ -1,9 +1,7 @@
-# ISSP Project <br/>
+# ISSP Project <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/BCIT_logo.svg/1200px-BCIT_logo.svg.png" alt="BCIT Logo" width="50" height="50" /> <br/> 
 **Team:** The Academics <br/>
 **Client Organization:** BCIT School of Computing and Academic Studies <br/>
 **Duration:** September 18, 2020 - December 11, 2020 [4 months] <br/><br/>
-
-![BCIT Logo](https://www.woori.ca/assets/img/partners/bcit.png)
 
 <details>
 <summary>Table of content</summary>
@@ -17,7 +15,7 @@
    * [Technologies](#technologies-)
    * [Alternative Technology Solution](#alternative-technology-solution)
 </details>
-<br/><br/>
+<br/>
 
 ### **Company Profile:** <br/>
 BCIT is the largest Computing and IT education provider in Western Canada with over 30 applied computing programs. Whether you're just starting your
@@ -51,12 +49,12 @@ To improve the functionality of the submission process, we decided to integrate 
     3. Sponsor Contact Catalogue/Ranking
     4. Auto Invoice Generation
 
-<br/><br/>
+<br/>
 ### **Technologies:** <br/>
 | Database | Framework(s) | Language(s) | Version Control | Environment | UX-UI |
 | :---         |     :---:      |     :---:      |     :---:      |     :---:      |    ---:    |
 | MySQL / MariaDB   | AngularJS     | Node.js    | Git | Plesk | Bootstrap / CSS
 
-<br/><br/>
+<br/>
 ### **Alternative Technology Solution:**<br/>
 We are using node.js and MySQL as the database in this project; however, another alternative could be Python and MySQL/MariaDB as the database. We can also consider using some cloud databases, such as firebase, AWS, and Azure. As our sponsor mentioned, no existing competitors or other universities offered a solution to develop and improve the current website.<br/><br/>
