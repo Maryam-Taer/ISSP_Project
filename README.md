@@ -13,19 +13,19 @@ Through this project, we aim to upgrade the current [website](https://www.bcit.c
 
 ### **Key features:** <br/>
 
-  Project submission Form
-  Integration with MySQL database
-  Accounts/Credentials to Login for faculty members & staff
-  Datatable to fetch and view projects from MySQL
-  Auto Documents generation (PDF, Word)
-  Interface(s) to Edit/Categorization projects
-  Interface to make notes/comments/feedback on each project
-  Accounts/Credentials to Login for faculty members & staff 
+    1. Project submission Form
+    2. Integration with MySQL database
+    3. Accounts/Credentials to Login for faculty members & staff
+    4. Datatable to fetch and view projects from MySQL
+    5. Auto Documents generation (PDF, Word)
+    6. Interface(s) to Edit/Categorization projects
+    7. Interface to make notes/comments/feedback on each project
+    8. Accounts/Credentials to Login for faculty members & staff 
 
-  Out of scope:
-  Automated Google Sheet generation
-  Integration of Login with BCIT credentials
-  Sponsor Contact Catalogue/Ranking
-  Auto Invoice Generation
+    **Out of scope:**
+    1. Automated Google Sheet generation
+    2. Integration of Login with BCIT credentials
+    3. Sponsor Contact Catalogue/Ranking
+    4. Auto Invoice Generation
 
 
