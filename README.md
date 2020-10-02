@@ -7,14 +7,14 @@
 <summary>Table of content</summary>
    
 ## Table of content
-   * [Company Profile](#company_profile)
-   * [Project Description](#project_description)
-   * [Project Problem Statement](#project_problem_statement)
-   * [Proposed Solution](#proposed_solution)
-   * [Key Features](#key_features)
+   * [Company Profile](#company-profile)
+   * [Project Description](#project-description)
+   * [Project Problem Statement](#project-problem-statement)
+   * [Proposed Solution](#proposed-solution)
+   * [Key Features](#key-features)
    * [Technologies](#technologies)
-   * [Alternative Technology Solution](#alternative_technology_solution)
-<details>
+   * [Alternative Technology Solution](#alternative-technology-solution)
+</details>
 
 ### **Company Profile:** <br/>
 BCIT is the largest Computing and IT education provider in Western Canada with over 30 applied computing programs. Whether you're just starting your
