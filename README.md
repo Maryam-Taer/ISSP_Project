@@ -3,6 +3,8 @@
 **Client Organization:** BCIT School of Computing and Academic Studies <br/>
 **Duration:** September 18, 2020 - December 11, 2020 [4 months] <br/><br/>
 
+![BCIT Logo](https://www.woori.ca/assets/img/partners/bcit.png)
+
 <details>
 <summary>Table of content</summary>
    
@@ -15,6 +17,7 @@
    * [Technologies](#technologies-)
    * [Alternative Technology Solution](#alternative-technology-solution)
 </details>
+<br/><br/>
 
 ### **Company Profile:** <br/>
 BCIT is the largest Computing and IT education provider in Western Canada with over 30 applied computing programs. Whether you're just starting your
@@ -24,7 +27,7 @@ Vancouver or Burnaby campuses. With 700 courses every year start with just one c
 ### **Project Description:** <br/>
 Through this project, we aim to upgrade the current [website](https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/issp-project-submission-form/) that enables us every year to organize the Industry Sponsor Student Projects (ISSP). <br/><br/>
 
-<br/><br/>
+
 ### **Project Problem Statement:**<br/>
 The current post processing of ISSP submissions requires the client’s manual input with external services, such as google sheet. It is a tedious, time-consuming and inefficient error-prone process. <br/><br/>
 
@@ -57,11 +60,3 @@ To improve the functionality of the submission process, we decided to integrate 
 <br/><br/>
 ### **Alternative Technology Solution:**<br/>
 We are using node.js and MySQL as the database in this project; however, another alternative could be Python and MySQL/MariaDB as the database. We can also consider using some cloud databases, such as firebase, AWS, and Azure. As our sponsor mentioned, no existing competitors or other universities offered a solution to develop and improve the current website.<br/><br/>
-
-
-
-
-
-
-
-
