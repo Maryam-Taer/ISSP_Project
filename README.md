@@ -1,4 +1,5 @@
-# ISSP Project <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/BCIT_logo.svg/1200px-BCIT_logo.svg.png" alt="BCIT Logo" width="50" height="50" /> <br/> 
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/BCIT_logo.svg/1200px-BCIT_logo.svg.png" alt="BCIT Logo" width="50" height="50" /> <br/>
+# ISSP Project <br/> 
 **Team:** The Academics <br/>
 **Client Organization:** BCIT School of Computing and Academic Studies <br/>
 **Duration:** September 18, 2020 - December 11, 2020 [4 months] <br/><br/>
