@@ -53,7 +53,7 @@ To improve the functionality of the submission process, we decided to integrate 
 <br/><br/>
 ### **Technologies:** <br/>
 | Database | Framework(s) | Language(s) | Version Control | Environment | UX-UI |
-| :---         |     :---:      |     :---:      |     :---:      |     :---:      |    ---:    |
+|  :---:   |     :---:    |     :---:   |      :---:      |     :---:   | :---: |
 | MySQL / MariaDB   | AngularJS     | Node.js    | Git | Plesk | Bootstrap / CSS
 
 <br/><br/>
