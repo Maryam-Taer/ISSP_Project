@@ -6,7 +6,7 @@
 <details>
 <summary>Table of content</summary>
    
-## Table of content
+# Table of content
    * [Company Profile](#company-profile)
    * [Project Description](#project-description)
    * [Project Problem Statement](#project-problem-statement)
