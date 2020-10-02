@@ -49,12 +49,12 @@ To improve the functionality of the submission process, we decided to integrate 
     3. Sponsor Contact Catalogue/Ranking
     4. Auto Invoice Generation
 
-<br/>
+<br/><br/>
 ### **Technologies:** <br/>
 | Database | Framework(s) | Language(s) | Version Control | Environment | UX-UI |
 | :---         |     :---:      |     :---:      |     :---:      |     :---:      |    ---:    |
 | MySQL / MariaDB   | AngularJS     | Node.js    | Git | Plesk | Bootstrap / CSS
 
-<br/>
+<br/><br/>
 ### **Alternative Technology Solution:**<br/>
 We are using node.js and MySQL as the database in this project; however, another alternative could be Python and MySQL/MariaDB as the database. We can also consider using some cloud databases, such as firebase, AWS, and Azure. As our sponsor mentioned, no existing competitors or other universities offered a solution to develop and improve the current website.<br/><br/>
