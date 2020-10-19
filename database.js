@@ -1,9 +1,10 @@
 var mysql = require('mysql');
+var dbConfig = require("./config/dbConfig")
 var connection = mysql.createConnection({
-    host: 'localhost', // Replace with your host name
-    user: 'root',      // Replace with your database username
-    password: 'root',      // Replace with your database password
-    database: 'issp' // // Replace with your database Name
+    host: dbConfig.host,
+    user: dbConfig.user,
+    password: dbConfig.password,
+    database: dbConfig.database
 });
 
 connection.connect(function (err) {
