@@ -1,8 +1,8 @@
 const Submission = require("../models/submissionModel");
 const DATE_FORMATER = require('date-format');
 
-exports.index = function (request, response) {
-    response.render('submission')
+exports.index = (req, res) => {
+    res.render('submission')
 };
 
 
@@ -56,6 +56,19 @@ exports.create = (req, res) => {
                 message:
                     err.message || "Some error occurred while creating the Submission."
             });
-        else res.send(data);
+        // Display in raw data
+        // else res.send(data);
+        else res.render('submission')
     });
 }
+
+exports.getAll = (req, res) => {
+    Submission.getAll((err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving the Submissions."
+            });
+        else res.render('submissionList', { title: 'submission List', submissionData: data });
+    });
+};

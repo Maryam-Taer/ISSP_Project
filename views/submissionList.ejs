@@ -1,0 +1,68 @@
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Date Created</th>
+        <th>Company name</th>
+        <th>Street Address</th>
+        <th>Address Line 2</th>
+        <th>City</th>
+        <th>State / Province</th>
+        <th>ZIP / Postal Code</th>
+        <th>Website</th>
+        <th>non-profit organization</th>
+        <th>Company/Business profile</th>
+        <th>Salutation</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Position</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Project Area</th>
+        <th>Project description</th>
+        <th>Project duration/timing</th>
+        <th>No preference on the duration</th>
+        <th>Description of the current arrangement</th>
+        <th>Programming languages</th>
+        <th>Hardware & software requirements</th>
+        <th>Continuation of a previous project</th>
+        <th>How did you hear about ISSP</th>
+        <th>Sponsor commitments</th>
+    </tr>
+
+    <% if(submissionData.length!=0) {var i=0; submissionData.forEach(function(data){ %>
+    <tr>
+        <td><%=data.id; %></td>
+        <td><%=data.created_time %></td>
+        <td><%=data.company_name %></td>
+        <td><%=data.street_address %></td>
+        <td><%=data.address_line_2 %></td>
+        <td><%=data.city %></td>
+        <td><%=data.province %></td>
+        <td><%=data.postal_code %></td>
+        <td><%=data.website %></td>
+        <td><%=data.non_profit_organization %></td>
+        <td><%=data.company_business_profile %></td>
+        <td><%=data.prefix %></td>
+        <td><%=data.first %></td>
+        <td><%=data.last %></td>
+        <td><%=data.position %></td>
+        <td><%=data.phone %></td>
+        <td><%=data.email %></td>
+        <td><%=data.project_area %></td>
+        <td><%=data.project_description %></td>
+        <td><%=data.project_duration %></td>
+        <td><%=data.project_duration_no_preference %></td>
+        <td><%=data.current_arrangement %></td>
+        <td><%=data.programming_language %></td>
+        <td><%=data.hardware_software_requirements %></td>
+        <td><%=data.continuation_project %></td>
+        <td><%=data.hear_about_ISSP %></td>
+        <td><%=data.sponsor_commitments %></td>
+    </tr>
+    <%  i++; }) %>
+    <% } else{ %>
+    <tr>
+        <td colspan="7">No Data Found</td>
+    </tr>
+    <% } %>
+</table>

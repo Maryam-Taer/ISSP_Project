@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to BCIT" });
+  res.json({ message: "Available path /submission , /submissionList" });
 });
 
 require('./routes/router')(app);

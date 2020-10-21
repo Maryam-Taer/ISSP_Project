@@ -46,6 +46,19 @@ Submission.create = (newSubmission, result) => {
     });
 };
 
+Submission.getAll = result => {
+    sql.query("SELECT * FROM issp", (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+
+        console.log("submissions: ", res);
+        result(null, res);
+    });
+};
+
 
 module.exports = Submission;
 
