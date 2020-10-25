@@ -7,4 +7,6 @@ module.exports = app => {
   app.post("/submission/create", submissionController.create);
   // Fetch all the data
   app.get("/submissionList", submissionController.getAll)
+  // Delete a project
+  app.post("/submission/delete", submissionController.delete)
 };

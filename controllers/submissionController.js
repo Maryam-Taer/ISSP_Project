@@ -72,3 +72,19 @@ exports.getAll = (req, res) => {
         else res.render('submissionList', { title: 'submission List', submissionData: data });
     });
 };
+
+exports.delete = (req, res) => {
+    Submission.delete(req.body.id, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found Submission with id ${req.body.id}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Could not delete Submission with id " + req.body.id
+                });
+            }
+        } else res.send({ message: `Submission was deleted successfully!` });
+    });
+};
