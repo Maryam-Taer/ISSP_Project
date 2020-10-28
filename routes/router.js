@@ -9,4 +9,8 @@ module.exports = app => {
   app.get("/submissionList", submissionController.getAll)
   // Delete a project
   app.post("/submission/delete", submissionController.delete)
+  // Display an eidt form
+  app.get("/submission/edit", submissionController.edit);
+  // Edit a project
+  app.post('/submission/update', submissionController.update);
 };

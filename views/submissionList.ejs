@@ -43,12 +43,14 @@
                 <th>Continuation of a previous project</th>
                 <th>How did you hear about ISSP</th>
                 <th>Sponsor commitments</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <% if(submissionData.length!=0) {var i=0; submissionData.forEach(function(data){ %>
             <tr>
-                <td><%=data.id %></td>
+                <td><%=data.id; %></td>
                 <td><%=data.created_time %></td>
                 <td><%=data.company_name %></td>
                 <td><%=data.street_address %></td>
@@ -76,13 +78,18 @@
                 <td><%=data.hear_about_ISSP %></td>
                 <td><%=data.sponsor_commitments %></td>
                 <td>
+                    <a href="/submission/edit?id=<%= data.id %>" class="btn btn-outline-info">Edit</a>
+                </td>
+                <td>
                     <form action="/submission/delete" method="POST">
                         <input name="id" type="hidden" value=<%=data.id %> />
                         <button class="btn btn-danger" type="submit">Delete</button>
                     </form>
                 </td>
             </tr>
-            <%  i++; }) %> <% } else{ %> <tr>
+            <%  i++; }) %>
+            <% } else{ %>
+            <tr>
                 <td colspan="7">No Data Found</td>
             </tr>
             <% } %>
