@@ -15,6 +15,31 @@
     <h4>id:<%= data.id %> </h4>
     <input type="hidden" name="id" value="<%= data.id %>">
     <h4>Date Created: <%= data.created_time %> </h4>
+
+    <h2>Category</h2>
+    <b>Category:</b><br>
+    <%
+    var options = [ "CIT", "CST", "Not Assigned"];
+    for ( var i = 0; i < options.length; i++ ) 
+    { var checked=( data.category == options[i] )? "checked" : ""
+      ; %>
+    <input type="radio" name="category" value="<%=options[ i ] %>" <%=checked %>><%=options[i] %><br><%
+    }
+    %>
+
+    <b>Year:</b>
+    <input type="text" name="year" value="<%= data.year ? data.year : '' %>"> <br>
+    <b>Term:</b>
+    <%
+    var options = [ "Winter", "Spring/Summer", "Fall", "Not Assigned" ];
+    for ( var i = 0; i < options.length; i++ ) 
+    { var checked=( data.term == options[i] )? "checked" : ""
+      ; %>
+    <input type="radio" name="term" value="<%=options[ i ] %>" <%=checked %>><label><%=options[i] %></label>
+    <%
+    }
+    %>
+
     <h2>Company</h2>
     <b>Company Name: </b>
     <input type="text" name="company_name" value="<%= data.company_name ? data.company_name : '' %>"> <br>
@@ -118,7 +143,8 @@
     <br>
     <b>Hear about ISSP</b><br>
     <%
-    var options = [ "BCIT's website", "BCIT email message", "BCIT internal announcements", "Ad on LinkedIn", "Ad on T-Net", "Company I work for", "BC Technology Industry", "BC Innovation Council", "Other"];
+    var other = (data.hear_about_ISSP) ? data.hear_about_ISSP : "Other";
+    var options = [ "BCIT's website", "BCIT email message", "BCIT internal announcements", "Ad on LinkedIn", "Ad on T-Net", "Company I work for", "BC Technology Industry", "BC Innovation Council", other];
     for ( var i = 0; i < options.length; i++ ) 
     { var checked=( data.hear_about_ISSP == options[i] )? "checked" : ""
       ; %>
@@ -135,7 +161,7 @@
     <br>
     <input type="submit" class="btn btn-success" value="Submit" />
   </form>
-
 </body>
+
 
 </html>

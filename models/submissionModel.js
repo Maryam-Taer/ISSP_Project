@@ -5,6 +5,9 @@ var sql = require("../database")
 const Submission = function (submission) {
     this.company_name = submission.company_name;
     this.created_time = submission.created_time;
+    this.category = submission.category;
+    this.year = submission.year;
+    this.term = submission.term;
     this.street_address = submission.street_address;
     this.address_line_2 = submission.address_line_2;
     this.city = submission.city;
@@ -106,8 +109,8 @@ Submission.updateById = (id, submission, result) => {
     var project_duration_no_preference_trans = (submission.project_duration_no_preference) || "unchecked";
 
     sql.query(
-        "UPDATE issp SET company_name = ?, street_address = ?, address_line_2 = ?, city = ?, province = ?, postal_code = ?, phone = ?, website = ?, non_profit_organization = ?, company_business_profile = ?, prefix = ?, first = ?, last = ?, position = ?, personal_phone = ?, email = ?, project_area = ?, project_description = ?, project_duration = ?, project_duration_no_preference = ?, current_arrangement = ?, programming_language = ?, hardware_software_requirements = ?, continuation_project = ?, hear_about_ISSP = ?, sponsor_commitments = ? WHERE id = ?",
-        [submission.company_name, submission.street_address, submission.address_line_2, submission.city, submission.province, submission.postal_code, submission.phone, submission.website, non_profit_organization_trans, submission.company_business_profile, submission.prefix, submission.first, submission.last, submission.position, submission.personal_phone, submission.email, project_area_trans, submission.project_description, submission.project_duration, project_duration_no_preference_trans, submission.current_arrangement, submission.programming_language, submission.hardware_software_requirements, submission.continuation_project, submission.hear_about_ISSP, submission.sponsor_commitments, id],
+        "UPDATE issp SET company_name = ?, category = ?, year = ?, term = ?,street_address = ?, address_line_2 = ?, city = ?, province = ?, postal_code = ?, phone = ?, website = ?, non_profit_organization = ?, company_business_profile = ?, prefix = ?, first = ?, last = ?, position = ?, personal_phone = ?, email = ?, project_area = ?, project_description = ?, project_duration = ?, project_duration_no_preference = ?, current_arrangement = ?, programming_language = ?, hardware_software_requirements = ?, continuation_project = ?, hear_about_ISSP = ?, sponsor_commitments = ? WHERE id = ?",
+        [submission.company_name, submission.category, submission.year, submission.term, submission.street_address, submission.address_line_2, submission.city, submission.province, submission.postal_code, submission.phone, submission.website, non_profit_organization_trans, submission.company_business_profile, submission.prefix, submission.first, submission.last, submission.position, submission.personal_phone, submission.email, project_area_trans, submission.project_description, submission.project_duration, project_duration_no_preference_trans, submission.current_arrangement, submission.programming_language, submission.hardware_software_requirements, submission.continuation_project, submission.hear_about_ISSP, submission.sponsor_commitments, id],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);

@@ -18,6 +18,9 @@
             <tr>
                 <th>ID</th>
                 <th>Date Created</th>
+                <th>Category</th>
+                <th>Year</th>
+                <th>Term</th>
                 <th>Company name</th>
                 <th>Street Address</th>
                 <th>Address Line 2</th>
@@ -50,8 +53,11 @@
         <tbody>
             <% if(submissionData.length!=0) {var i=0; submissionData.forEach(function(data){ %>
             <tr>
-                <td><%=data.id; %></td>
+                <td><%=data.id %></td>
                 <td><%=data.created_time %></td>
+                <td><%=data.category %></td>
+                <td><%=data.year %></td>
+                <td><%=data.term %></td>
                 <td><%=data.company_name %></td>
                 <td><%=data.street_address %></td>
                 <td><%=data.address_line_2 %></td>
@@ -81,7 +87,8 @@
                     <a href="/submission/edit?id=<%= data.id %>" class="btn btn-outline-info">Edit</a>
                 </td>
                 <td>
-                    <form action="/submission/delete" method="POST">
+                    <form action="/submission/delete" method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete?');">
                         <input name="id" type="hidden" value=<%=data.id %> />
                         <button class="btn btn-danger" type="submit">Delete</button>
                     </form>

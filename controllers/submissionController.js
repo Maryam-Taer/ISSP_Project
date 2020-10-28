@@ -15,11 +15,14 @@ exports.create = (req, res) => {
         });
     }
     var project_area_trans = (req.body.project_area) ? req.body.project_area.toString() : "empty";
-    // console.log(project_area_trans)
+    var hear_about_ISSP = (req.body.hear_about_ISSP == "Other") ? req.body.hear_about_ISSP_other : req.body.hear_about_ISSP;
 
     // Create a submission
     const submission = new Submission({
         company_name: req.body.company_name,
+        category: "Not Assigned",
+        year: "Not Assigned",
+        term: "Not Assigned",
         created_time: DATE_FORMATER(new Date(), "yyyy-mm-dd HH:MM:ss"),
         street_address: req.body.street_address,
         address_line_2: req.body.address_line_2,
@@ -44,7 +47,7 @@ exports.create = (req, res) => {
         programming_language: req.body.programming_language,
         hardware_software_requirements: req.body.hardware_software_requirements,
         continuation_project: req.body.continuation_project,
-        hear_about_ISSP: req.body.hear_about_ISSP,
+        hear_about_ISSP: hear_about_ISSP,
         sponsor_commitments: req.body.sponsor_commitments
     });
 
@@ -85,7 +88,14 @@ exports.delete = (req, res) => {
                     message: "Could not delete Submission with id " + req.body.id
                 });
             }
-        } else res.send({ message: `Submission was deleted successfully!` });
+        } else Submission.getAll((err, data) => {
+            if (err)
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while retrieving the Submissions."
+                });
+            else res.redirect('/submissionList')
+        });
     });
 };
 
@@ -135,7 +145,7 @@ exports.update = (req, res) => {
                         message:
                             err.message || "Some error occurred while retrieving the Submissions."
                     });
-                else res.render('submissionList', { title: 'submission List', submissionData: data });
+                else res.redirect('/submissionList')
             });
         }
     );
