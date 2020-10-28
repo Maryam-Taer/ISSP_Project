@@ -49,9 +49,7 @@
     <input type="checkbox" name="non_profit_organization" value="on" <%=checked %>> <br>
     <b>Company/Business profile:</b>
     <br>
-    <textarea name="company_business_profile" rows="10" cols="50">
-    <%= data.company_business_profile %>
-    </textarea>
+    <textarea name="company_business_profile" rows="10" cols="50"><%= data.company_business_profile %></textarea>
     <h2>Contact Person</h2>
     <b>Salutation: </b>
     <select name="prefix">
@@ -91,29 +89,20 @@
     }
     %>
     <b>Project Description:</b><br>
-    <textarea name="project_description" rows="10" cols="50">
-    <%= data.project_description %>
-  </textarea> <br>
+    <textarea name="project_description" rows="10" cols="50"><%= data.project_description %></textarea> <br>
     <b>Project Duration/Timing</b> <br>
-    <textarea name="project_duration" rows="10" cols="50">
-    <%= data.project_duration %>
-  </textarea>
+    <textarea name="project_duration" rows="10" cols="50"><%= data.project_duration %></textarea>
     <br>
     <b>No preference on the duration or timing on the project: </b>
     <% var checked=( data.project_duration_no_preference == "on")? "checked" : "" %>
     <input type="checkbox" name="project_duration_no_preference" value="on" <%=checked %>> <br>
     <b>Description of the current arrangement: </b> <br>
-    <textarea name="current_arrangement" rows="10" cols="50">
-    <%= data.current_arrangement %>
-  </textarea> <br>
+    <textarea name="current_arrangement" rows="10" cols="50"><%= data.current_arrangement %></textarea> <br>
     <b>Programming language or languages would be used: </b><br>
-    <textarea name="programming_language" rows="10" cols="50">
-    <%= data.programming_language %>
-  </textarea> <br>
+    <textarea name="programming_language" rows="10" cols="50"><%= data.programming_language %></textarea> <br>
     <b>Hardware & Software Requirements:</b><br>
-    <textarea name="hardware_software_requirements" rows="10" cols="50">
-    <%= data.hardware_software_requirements %>
-  </textarea>
+    <textarea name="hardware_software_requirements" rows="10"
+      cols="50"><%= data.hardware_software_requirements %></textarea>
     <br>
     <b>Continuation of a previous student project: </b>
     <%
