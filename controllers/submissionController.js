@@ -61,7 +61,7 @@ exports.create = (req, res) => {
             });
         // Display in raw data
         // else res.send(data);
-        else res.render('submission')
+        else res.redirect('/submission')
     });
 }
 
@@ -88,14 +88,7 @@ exports.delete = (req, res) => {
                     message: "Could not delete Submission with id " + req.body.id
                 });
             }
-        } else Submission.getAll((err, data) => {
-            if (err)
-                res.status(500).send({
-                    message:
-                        err.message || "Some error occurred while retrieving the Submissions."
-                });
-            else res.redirect('/submissionList')
-        });
+        } else res.redirect('/submissionList')
     });
 };
 
@@ -139,16 +132,7 @@ exports.update = (req, res) => {
                         message: "Error updating Submission with id " + req.body.id
                     });
                 }
-            } else Submission.getAll((err, data) => {
-                if (err)
-                    res.status(500).send({
-                        message:
-                            err.message || "Some error occurred while retrieving the Submissions."
-                    });
-                else res.redirect('/submissionList')
-            });
+            } else res.redirect('/submissionList')
         }
     );
 };
-
-
