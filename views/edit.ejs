@@ -5,162 +5,308 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
 
-  <h1>Project Detail</h1>
-
   <form action="/submission/update" method="POST">
-    <h4>id:<%= data.id %> </h4>
-    <input type="hidden" name="id" value="<%= data.id %>">
-    <h4>Date Created: <%= data.created_time %> </h4>
 
-    <h2>Category</h2>
-    <b>Category:</b><br>
-    <%
+    <h1>Project Detail</h1>
+    <b>id:<%= data.id %> </b>
+    <input type="hidden" name="id" value="<%= data.id %>">
+    <br>
+    <b>Date Created: <%= data.created_time %> </b>
+    <br>
+    <b>Category:</b>
+    <div class="form-check">
+      <%
     var options = [ "CIT", "CST", "Not Assigned"];
     for ( var i = 0; i < options.length; i++ ) 
     { var checked=( data.category == options[i] )? "checked" : ""
       ; %>
-    <input type="radio" name="category" value="<%=options[ i ] %>" <%=checked %>><%=options[i] %><br><%
+      <input type="radio" class="form-check-input" name="category" value="<%=options[ i ] %>"
+        <%=checked %>><%=options[i] %><br><%
     }
     %>
-
-    <b>Year:</b>
-    <input type="text" name="year" value="<%= data.year ? data.year : '' %>"> <br>
-    <b>Term:</b>
-    <%
+    </div>
+    <br>
+    <div class="form-inline">
+      <div class="form-group">
+        <b>Year:</b>
+        <input type="text" name="year" class="form-control" value="<%= data.year ? data.year : '' %>"> <br>
+      </div>
+    </div>
+    <br>
+    <div class="form-inline">
+      <div class="form-check">
+        <b>Term:</b>
+        <%
     var options = [ "Winter", "Spring/Summer", "Fall", "Not Assigned" ];
     for ( var i = 0; i < options.length; i++ ) 
     { var checked=( data.term == options[i] )? "checked" : ""
       ; %>
-    <input type="radio" name="term" value="<%=options[ i ] %>" <%=checked %>><label><%=options[i] %></label>
-    <%
+        <input type="radio" name="term" class="form-check-input" value="<%=options[ i ] %>"
+          <%=checked %>><label><%=options[i]%></label>
+        <%
     }
     %>
-
+      </div>
+    </div>
+    <br>
+    <br>
     <h2>Company</h2>
-    <b>Company Name: </b>
-    <input type="text" name="company_name" value="<%= data.company_name ? data.company_name : '' %>"> <br>
-    <b>Street:</b>
-    <input type="text" name="street_address" value="<%= data.street_address ? data.street_address : '' %>"> <br>
-    <b>Address Line 2:</b>
-    <input type="text" name="address_line_2" value="<%= data.address_line_2 ? data.address_line_2 : '' %>"> <br>
-    <b>City:</b>
-    <input type="text" name="city" value="<%= data.city ? data.city : '' %>"> <br>
-    <b>Province:</b>
-    <select name="province">
-      <%
+    <div class="form-inline">
+      <div class="form-group">
+        <b>Company Name: </b>
+        <input type="text" name="company_name" class="form-control"
+          value="<%= data.company_name ? data.company_name : '' %>">
+      </div>
+    </div>
+    <br>
+    <div class="form-inline">
+      <div class="form-group">
+        <b>Street:</b>
+        <input type="text" name="street_address" class="form-control"
+          value="<%= data.street_address ? data.street_address : '' %>">
+      </div>
+    </div>
+    <br>
+    <div class="form-inline">
+      <div class="form-group">
+        <b>Address Line 2:</b>
+        <input type="text" name="address_line_2" class="form-control"
+          value="<%= data.address_line_2 ? data.address_line_2 : '' %>">
+      </div>
+    </div>
+    <br>
+    <div class="form-inline">
+      <div class="form-group">
+        <b>City:</b>
+        <input type="text" name="city" class="form-control" value="<%= data.city ? data.city : '' %>">
+      </div>
+    </div>
+    <br>
+    <div class="form-inline">
+      <div class="form-group">
+        <b>Province:</b>
+        <select name="province" class="form-control">
+          <%
     var province_lable = [ "British Columbia", "Alberta", "Manitoba" ];
     var options = ["BC", "AB", "MA"]
     for ( var i = 0; i < options.length; i++ ) 
     { var selected=( data.province == options[i] )? "selected" : ""
       ; %>
-      <option value="<%=options[ i ] %>" <%=selected %>><%=province_lable[i] %></option><%
+          <option value="<%=options[ i ] %>" <%=selected %>><%=province_lable[i] %></option><%
     }
     %>
-    </select>
+        </select>
+      </div>
+    </div>
     <br>
-    <b>Postal Code:</b>
-    <input type="text" name="postal_code" value="<%= data.postal_code ? data.postal_code : '' %>"> <br>
-    <b>Phone:</b>
-    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone" value="<%= data.phone ? data.phone : '' %>">
+    <div class="form-inline">
+      <div class="form-group">
+        <b>Postal Code:</b>
+        <input type="text" name="postal_code" class="form-control"
+          value="<%= data.postal_code ? data.postal_code : '' %>">
+      </div>
+    </div>
     <br>
-    <b>Website: </b>
-    <input type="text" name="website" value="<%= data.website ? data.website : '' %>"> <br>
-    <b>Non Profit Organization: </b>
-    <% var checked=( data.non_profit_organization == "on")? "checked" : "" %>
-    <input type="checkbox" name="non_profit_organization" value="on" <%=checked %>> <br>
-    <b>Company/Business profile:</b>
+    <div class="form-inline">
+      <div class="form-group">
+        <b>Phone:</b>
+        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone" class="form-control"
+          value="<%= data.phone ? data.phone : '' %>">
+      </div>
+    </div>
     <br>
-    <textarea name="company_business_profile" rows="10" cols="50"><%= data.company_business_profile %></textarea>
+    <div class="form-inline">
+      <div class="form-group">
+        <b>Website: </b>
+        <input type="text" name="website" class="form-control" value="<%= data.website ? data.website : '' %>">
+      </div>
+    </div>
+    <br>
+    <div class="form-inline">
+      <div class="form-check">
+        <b>Non Profit Organization: </b>
+        <% var checked=( data.non_profit_organization == "on")? "checked" : "" %>
+        <input type="checkbox" name="non_profit_organization" class="form-check-input" value="on" <%=checked %>>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <b>Company/Business profile:</b><br>
+      <textarea name="company_business_profile" class="form-control" style="width:40%"
+        rows="10"><%= data.company_business_profile %></textarea>
+    </div>
+    <br>
     <h2>Contact Person</h2>
-    <b>Salutation: </b>
-    <select name="prefix">
-      <%
+
+    <div class="form-inline">
+      <div class="form-group">
+        <b>Salutation: </b>
+        <select name="prefix" class="form-control">
+          <%
     var prefix_lable = [ "Mr.", "Mrs.", "Ms." ];
     var options = ["mr", "mrs", "ms"]
     for ( var i = 0; i < options.length; i++ ) 
     { var selected=( data.prefix == options[i] )? "selected" : ""
       ; %>
-      <option value="<%=options[ i ] %>" <%=selected %>><%=prefix_lable[i] %></option><%
+          <option value="<%=options[ i ] %>" <%=selected %>><%=prefix_lable[i] %></option><%
     }
     %>
-    </select><br>
+        </select>
+      </div>
+    </div>
+    <br>
 
-    <b>First Name: </b>
-    <input type="text" name="first" value="<%= data.first ? data.first : '' %>"> <br>
-    <b>Last Name: </b>
-    <input type="text" name="last" value="<%= data.last ? data.last : '' %>"> <br>
-    <b>Position Name: </b>
-    <input type="text" name="position" value="<%= data.position ? data.position : '' %>"><br>
-    <b>Phone: </b>
-    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="personal_phone"
-      value="<%= data.personal_phone ? data.personal_phone : '' %>"> <br>
-    <b>Email: </b>
-    <input type="text" name="email" value="<%= data.email ? data.email : '' %>">
-
-
+    <div class="form-inline">
+      <div class="form-group">
+        <b>First Name: </b>
+        <input type="text" name="first" class="form-control" value="<%= data.first ? data.first : '' %>">
+      </div>
+    </div>
+    <br>
+    <div class="form-inline">
+      <div class="form-group">
+        <b>Last Name: </b>
+        <input type="text" name="last" class="form-control" value="<%= data.last ? data.last : '' %>">
+      </div>
+    </div>
+    <br>
+    <div class="form-inline">
+      <div class="form-group">
+        <b>Position Name: </b>
+        <input type="text" name="position" class="form-control" value="<%= data.position ? data.position : '' %>">
+      </div>
+    </div>
+    <br>
+    <div class="form-inline">
+      <div class="form-group">
+        <b>Phone: </b>
+        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="personal_phone" class="form-control"
+          value="<%= data.personal_phone ? data.personal_phone : '' %>">
+      </div>
+    </div>
+    <br>
+    <div class="form-inline">
+      <div class="form-group">
+        <b>Email: </b>
+        <input type="text" name="email" class="form-control" value="<%= data.email ? data.email : '' %>">
+      </div>
+    </div>
+    <br>
+    <br>
     <h2>Project</h2>
-    <b>Project area</b><br>
-    <%
+
+
+    <b>Project area</b>
+    <div class="form-check">
+      <%
     var project_list = data.project_area.split(',');
     var options = [ "DevOps", "Networking", "Web Development","Mobile Development","Scripting/IT","Games","AR/VR", "Machine Learning/Algorithms/Research","Other"];
     for ( var i = 0; i < options.length; i++ ) 
     { var checked=( project_list[i] == options[i] )? "checked" : ""
       ; %>
-    <input type="checkbox" name="project_area" value="<%=options[ i ] %>" <%=checked %>><%=options[i] %><br><%
+      <input type="checkbox" name="project_area" class="form-check-input" value="<%=options[ i ] %>"
+        <%=checked %>><%=options[i] %><br><%
     }
     %>
-    <b>Project Description:</b><br>
-    <textarea name="project_description" rows="10" cols="50"><%= data.project_description %></textarea> <br>
-    <b>Project Duration/Timing</b> <br>
-    <textarea name="project_duration" rows="10" cols="50"><%= data.project_duration %></textarea>
+    </div>
     <br>
-    <b>No preference on the duration or timing on the project: </b>
-    <% var checked=( data.project_duration_no_preference == "on")? "checked" : "" %>
-    <input type="checkbox" name="project_duration_no_preference" value="on" <%=checked %>> <br>
-    <b>Description of the current arrangement: </b> <br>
-    <textarea name="current_arrangement" rows="10" cols="50"><%= data.current_arrangement %></textarea> <br>
-    <b>Programming language or languages would be used: </b><br>
-    <textarea name="programming_language" rows="10" cols="50"><%= data.programming_language %></textarea> <br>
-    <b>Hardware & Software Requirements:</b><br>
-    <textarea name="hardware_software_requirements" rows="10"
-      cols="50"><%= data.hardware_software_requirements %></textarea>
+    <div class="form-group">
+      <b>Project Description:</b><br>
+      <textarea name="project_description" rows="10" class="form-control"
+        style="width:40%"><%= data.project_description %></textarea>
+    </div>
     <br>
-    <b>Continuation of a previous student project: </b>
-    <%
+    <div class="form-group">
+      <b>Project Duration/Timing</b> <br>
+      <textarea name="project_duration" rows="10" class="form-control"
+        style="width:40%"><%= data.project_duration %></textarea>
+    </div>
+    <br>
+    <div class="form-inline">
+      <div class="form-check">
+        <b>No preference on the duration or timing on the project: </b>
+        <% var checked=( data.project_duration_no_preference == "on")? "checked" : "" %>
+        <input type="checkbox" name="project_duration_no_preference" class="form-check-input" value="on" <%=checked %>>
+
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <b>Description of the current arrangement: </b> <br>
+      <textarea name="current_arrangement" rows="10" class="form-control"
+        style="width:40%"><%= data.current_arrangement %></textarea>
+    </div>
+    <br>
+    <div class="form-group">
+      <b>Programming language or languages would be used: </b><br>
+      <textarea name="programming_language" rows="10" class="form-control"
+        style="width:40%"><%= data.programming_language %></textarea>
+    </div>
+    <br>
+    <div class="form-group">
+      <b>Hardware & Software Requirements:</b><br>
+      <textarea name="hardware_software_requirements" rows="10" class="form-control"
+        style="width:40%"><%= data.hardware_software_requirements %></textarea>
+    </div>
+    <br>
+    <div class="form-inline">
+      <div class="form-check">
+        <b>Continuation of a previous student project: </b>
+        <%
     var options = [ "yes", "no"];
     for ( var i = 0; i < options.length; i++ ) 
     { var checked=( data.continuation_project == options[i] )? "checked" : ""
       ; %>
-    <input type="radio" name="continuation_project" value="<%=options[ i ] %>"
-      <%=checked %>><label><%=options[i] %></label>
-    <%
+        <input type="radio" name="continuation_project" value="<%=options[ i ] %>"
+          <%=checked %>><label><%=options[i] %></label>
+        <%
     }
     %>
+      </div>
+    </div>
     <br>
+
     <b>Hear about ISSP</b><br>
-    <%
+    <div class="form-check">
+      <%
     var other = (data.hear_about_ISSP) ? data.hear_about_ISSP : "Other";
     var options = [ "BCIT's website", "BCIT email message", "BCIT internal announcements", "Ad on LinkedIn", "Ad on T-Net", "Company I work for", "BC Technology Industry", "BC Innovation Council", other];
     for ( var i = 0; i < options.length; i++ ) 
     { var checked=( data.hear_about_ISSP == options[i] )? "checked" : ""
       ; %>
-    <input type="radio" name="hear_about_ISSP" value="<%=options[ i ] %>"
-      <%=checked %>><label><%=options[i] %></label><br>
-    <%
+      <input type="radio" name="hear_about_ISSP" class="form-check-input" value="<%=options[ i ] %>"
+        <%=checked %>><label><%=options[i] %></label><br>
+      <%
     }
     %>
-    <b>Sponsor Commitments: </b>
-    <% var checked=( data.sponsor_commitments == "on")? "checked" : "" %>
-    <input type="checkbox" name="sponsor_commitments" value="on" <%=checked %>>
+    </div>
+    <div class="form-inline">
+      <div class="form-check">
+        <b>Sponsor Commitments: </b>
+        <% var checked=( data.sponsor_commitments == "on")? "checked" : "" %>
+        <input type="checkbox" name="sponsor_commitments" class="form-check-input" value="on" <%=checked %>>
+      </div>
+    </div>
     <br>
-    <br>
-    <br>
+
     <input type="submit" class="btn btn-success" value="Submit" />
   </form>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </body>
 
 
