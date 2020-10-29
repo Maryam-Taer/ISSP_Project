@@ -13,100 +13,105 @@
 <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
 <body>
-    <table id="table_id" class="table table-striped table-bordered" style="width:100%" data-page-length='50'>
+    <table id="example" class="table table-striped table-bordered" style="width: 100%" data-page-length='50'>
         <thead>
             <tr>
+                <th></th>
                 <th>ID</th>
                 <th>Date Created</th>
-                <th>Category</th>
-                <th>Year</th>
-                <th>Term</th>
                 <th>Company name</th>
-                <th>Street Address</th>
-                <th>Address Line 2</th>
-                <th>City</th>
-                <th>State / Province</th>
-                <th>ZIP / Postal Code</th>
-                <th>Website</th>
-                <th>non-profit organization</th>
-                <th>Company/Business profile</th>
-                <th>Salutation</th>
-                <th>First</th>
-                <th>Last</th>
-                <th>Position</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Project Area</th>
                 <th>Project description</th>
-                <th>Project duration/timing</th>
-                <th>No preference on the duration</th>
-                <th>Description of the current arrangement</th>
-                <th>Programming languages</th>
-                <th>Hardware & software requirements</th>
-                <th>Continuation of a previous project</th>
-                <th>How did you hear about ISSP</th>
-                <th>Sponsor commitments</th>
+                <th>Current Arrangement</th>
                 <th></th>
                 <th></th>
             </tr>
         </thead>
-        <tbody>
-            <% if(submissionData.length!=0) {var i=0; submissionData.forEach(function(data){ %>
-            <tr>
-                <td><%=data.id %></td>
-                <td><%=data.created_time %></td>
-                <td><%=data.category %></td>
-                <td><%=data.year %></td>
-                <td><%=data.term %></td>
-                <td><%=data.company_name %></td>
-                <td><%=data.street_address %></td>
-                <td><%=data.address_line_2 %></td>
-                <td><%=data.city %></td>
-                <td><%=data.province %></td>
-                <td><%=data.postal_code %></td>
-                <td><%=data.website %></td>
-                <td><%=data.non_profit_organization %></td>
-                <td><%=data.company_business_profile %></td>
-                <td><%=data.prefix %></td>
-                <td><%=data.first %></td>
-                <td><%=data.last %></td>
-                <td><%=data.position %></td>
-                <td><%=data.phone %></td>
-                <td><%=data.email %></td>
-                <td><%=data.project_area %></td>
-                <td><%=data.project_description %></td>
-                <td><%=data.project_duration %></td>
-                <td><%=data.project_duration_no_preference %></td>
-                <td><%=data.current_arrangement %></td>
-                <td><%=data.programming_language %></td>
-                <td><%=data.hardware_software_requirements %></td>
-                <td><%=data.continuation_project %></td>
-                <td><%=data.hear_about_ISSP %></td>
-                <td><%=data.sponsor_commitments %></td>
-                <td>
-                    <a href="/submission/edit?id=<%= data.id %>" class="btn btn-outline-info">Edit</a>
-                </td>
-                <td>
-                    <form action="/submission/delete" method="POST"
-                        onsubmit="return confirm('Are you sure you want to delete?');">
-                        <input name="id" type="hidden" value=<%=data.id %> />
-                        <button class="btn btn-danger" type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            <%  i++; }) %>
-            <% } else{ %>
-            <tr>
-                <td colspan="7">No Data Found</td>
-            </tr>
-            <% } %>
-        </tbody>
     </table>
 </body>
 <script>
+    var submissions_data = <%- JSON.stringify(submissionData) %>
+    
     $(document).ready(function () {
         $('#table_id').DataTable();
     });
+
+    function format ( d ) {
+        var pre = ''
+        if (d.prefix != null){
+            pre = d.prefix
+        }
+        return 'Contact: '+ pre + ' ' + d.first + ' '+ d.last +'<br>'+
+            'Contact Phone: '+d.phone+'<br>'+
+            'The child row can contain any data you wish, including links, images, inner tables etc.';
+    }
+
+    $(document).ready(function() {
+        var dt = $('#example').DataTable( {
+            "processing": true,
+            "data": submissions_data,
+            "columns": [
+                {
+                    "class":          "details-control",
+                    "orderable":      false,
+                    "data":           null,
+                    "defaultContent": ""
+                },
+                { "data": "id" },
+                { "data": "created_time" },
+                { "data": "company_name" },
+                { "data": "project_description" },
+                { "data": "current_arrangement" },
+                {"render": function ( data, type, row, meta ) {
+                    return '<a href="/submission/edit?id='+row.id+ '" class="btn btn-outline-info">Edit</a>';
+                }},
+                {"render": function ( data, type, row, meta ) {
+                    return '<form action="/submission/delete" method="POST" >' + 
+                        '<input name="id" type="hidden" value="'+row.id+ '" />' +
+                        '<button class="btn btn-danger" type="submit">Delete</button>' +
+                    '</form>';
+                }},
+            ],
+            "order": [[1, 'asc']]
+        } );
+    
+        // Array to track the ids of the details displayed rows
+        var detailRows = [];
+    
+        $('#example tbody').on( 'click', 'tr td.details-control', function () {
+            var tr = $(this).closest('tr');
+            var row = dt.row( tr );
+            var idx = $.inArray( tr.attr('id'), detailRows );
+    
+            if ( row.child.isShown() ) {
+                tr.removeClass( 'details' );
+                row.child.hide();
+    
+                // Remove from the 'open' array
+                detailRows.splice( idx, 1 );
+            }
+            else {
+                tr.addClass( 'details' );
+                row.child( format( row.data() ) ).show();
+    
+                // Add to the 'open' array
+                if ( idx === -1 ) {
+                    detailRows.push( tr.attr('id') );
+                }
+            }
+        } );
+
+        // On each draw, loop over the `detailRows` array and show any child rows
+        dt.on( 'draw', function () {
+            $.each( detailRows, function ( i, id ) {
+                $('#'+id+' td.details-control').trigger( 'click' );
+            } );
+        } );
+
+        $('#example tbody').on('submit', 'tr td form', function () {
+            return confirm('Are you sure you want to delete?')
+        } );
+        
+    } );
 </script>
 
 </html>
