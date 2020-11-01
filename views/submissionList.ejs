@@ -12,9 +12,11 @@
 td.details-control {
     background: url('./details_open.png') no-repeat center center;
     cursor: pointer;
+    width: 20px;
 }
 tr.shown td.details-control {
     background: url('./details_close.png') no-repeat center center;
+    width: 20px;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -22,6 +24,8 @@ tr.shown td.details-control {
 <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
 
 <body>
+    <p class="lead mb-3">Welcome <%= username %></p>
+    <div>
     <table id="example" class="table table-striped table-bordered" style="width: 100%" data-page-length='10'>
         <thead>
             <tr>
@@ -37,6 +41,7 @@ tr.shown td.details-control {
             </tr>
         </thead>
     </table>
+    </div>
 </body>
 <script>
     var submissions_data = <%- JSON.stringify(submissionData) %>

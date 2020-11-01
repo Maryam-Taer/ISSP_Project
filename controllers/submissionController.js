@@ -1,6 +1,7 @@
 const Submission = require("../models/submissionModel");
 const DATE_FORMATER = require('date-format');
 
+
 exports.index = (req, res) => {
     res.render('submission')
 };
@@ -72,7 +73,7 @@ exports.getAll = (req, res) => {
                 message:
                     err.message || "Some error occurred while retrieving the Submissions."
             });
-        else res.render('submissionList', { title: 'submission List', submissionData: data });
+        else res.render('submissionList', { title: 'submission List', submissionData: data , username: req.user.username});
     });
 };
 
