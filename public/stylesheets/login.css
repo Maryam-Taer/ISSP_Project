@@ -19,7 +19,6 @@ body {
   color: black;
   display: block;
   width: 100%;
-  max-width: 400px;
   height: 38px;
   margin: 0;
   padding: 8px;
@@ -52,7 +51,7 @@ footer{
 }
 
 .bcit-login{
-  vertical-align: middle;
+    vertical-align: middle;
     display: inline-block;
     margin: 0;
     padding: 10px 20px;

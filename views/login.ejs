@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BCIT ISSP Submission Login</title>
-
     <link rel="stylesheet" href="./stylesheets/login.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -20,7 +19,7 @@
             <div class="card-body align-middle">
                 <h2>ISSP Submission Management Login</h2>
                 <div>
-                    <%- include('partials/messages.ejs') %>
+                    <%- include('./partials/messages.ejs') %>
                     <form method="POST" action="/login">
                         <div class="form-group">
                             <input class="form-control-plaintext cus-input" type="text" name="username" placeholder=" Username">
@@ -32,57 +31,12 @@
                             <input class="btn bcit-login" type="submit" value="Login" style="width: 100%">
                         </div>
                     </form>
-                </div>
-                <div>
-                    <a type="button" id="MybtnPreventHTML" data-target="#MymodalPreventHTML" data-toggle="modal" data-backdrop="static" data-keyboard="false">Register</a>
-                    <!-- .modal -->
-                    <div class="modal fade" id="MymodalPreventHTML">
-                        <div class="modal-dialog">
-                            <div class="modal-content cus-modal">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Register Account</h4>
-                                    <button type="button" class="close" data-dismiss="modal" style="color: white">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                    <section>
-                                        <form method="POST" action="/register">
-                                            <div class="form-group">
-                                                <input class="form-control-plaintext cus-modal-in" type="text" name="username" placeholder=" Username" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <input class="form-control-plaintext cus-modal-in" type="text" name="email" placeholder=" Email" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <input class="form-control-plaintext cus-modal-in" id='psw' type="password" name="password" placeholder=" Password" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <input class="form-control-plaintext cus-modal-in" id='psw2' type="password2" name="password2" placeholder=" Confirm your Password" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <input class="btn btn-secondary" id="regbtn" type="submit" value="Submit" style="width: 100%" disabled>
-                                            </div>
-                                            <div id="message">
-                                                <h5>Password must contain the following:</h5>
-                                                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                                                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                                                <p id="number" class="invalid">A <b>number</b></p>
-                                                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-                                            </div>
-                                        </form>
-                                    </section>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 100%">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <a type="button" id="reg_btn" href="/register">Register</a>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script src="js/strong_psw.js"></script>
 <script>
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();

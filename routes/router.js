@@ -18,4 +18,8 @@ module.exports = app => {
   app.get("/login", forwardAuthenticated, authController.login);
   // Login User
   app.post("/login", authController.loginuser);
+  // Logout User
+  app.get("/logout", authController.logoutuser);
+  // Register Page
+  app.get("/register", forwardAuthenticated, authController.register);
 };
