@@ -1,6 +1,10 @@
 var LocalStrategy = require('passport-local').Strategy;
 var mysql = require('mysql');
 var dbConfig = require("./dbConfig")
+var bcrypt = require('bcrypt');
+
+const saltRounds = 10;
+
 var connection = mysql.createConnection({
     host: dbConfig.host,
     user: dbConfig.user,
@@ -50,6 +54,7 @@ module.exports = function(passport) {
             return done(null, false, req.flash('error_msg', 'passwords do not match'));
         }
 
+        //encrypt
 		// find a user whose username is the same as the forms username
 		// we are checking to see if the user trying to login already exists
         connection.query("select * from accounts where username = '"+username+"'",function(err,rows){
@@ -61,18 +66,16 @@ module.exports = function(passport) {
 
 				// if there is no user with that username
                 // create the user
-                var newUserMysql = new Object();
-				
-				newUserMysql.username    = username;
-                newUserMysql.password = password; // use the generateHash function in our user model
-			
-				var insertQuery = "INSERT INTO accounts ( username, password ) values ('" + username +"','"+ password +"')";
+
+                bcrypt.hash(password1, saltRounds, function (err,   hash) {
+                    var insertQuery = "INSERT INTO accounts ( username, password ) values ('" + username +"','"+ hash +"')";
 					console.log(insertQuery);
-				connection.query(insertQuery,function(err,rows){
-				newUserMysql.id = rows.insertId;
-				
-				return done(null, newUserMysql, req.flash('success_msg', 'Register Completed, Please Log in'));
+				    connection.query(insertQuery,function(err,rows){
+
+				return done(null, req.flash('success_msg', 'Register Completed, Please Log in'));
 				});	
+                })
+
             }	
 		});
     }));
@@ -95,12 +98,13 @@ module.exports = function(passport) {
 			if (err)
                 return done(err);
 			 if (!rows.length) {
-                return done(null, false); // req.flash is the way to set flashdata using connect-flash
+                return done(null, false); 
             } 
-			
-			// if the user is found but the password is wrong
-            if (!( rows[0].password == password))
-                return done(null, false); // create the loginMessage and save it to session as flashdata
+			bcrypt.compare(password, rows[0].password, function (err, result) {
+                // if the user is found but the password is wrong
+                if (result == false){
+                    return done(null, false);
+            }})
 			
             // all is well, return successful user
             return done(null, rows[0]);			

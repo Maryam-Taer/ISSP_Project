@@ -9,11 +9,11 @@ module.exports = app => {
   // Fetch all the data
   app.get("/submissionList", ensureAuthenticated, submissionController.getAll)
   // Delete a project
-  app.post("/submission/delete", submissionController.delete)
+  app.post("/submission/delete", ensureAuthenticated, submissionController.delete)
   // Display an eidt form
-  app.get("/submission/edit", submissionController.edit);
+  app.get("/submission/edit", ensureAuthenticated, submissionController.edit);
   // Edit a project
-  app.post("/submission/update", submissionController.update);
+  app.post("/submission/update", ensureAuthenticated, submissionController.update);
   // Login Page
   app.get("/login", forwardAuthenticated, authController.login);
   // Login User
