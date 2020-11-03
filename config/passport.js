@@ -43,6 +43,12 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, username, password, done) {
+        // Validate if password and password confirmation matches
+        let password1 = req.body.password;
+        let password2 = req.body.password2;
+        if (password1 !== password2){
+            return done(null, false, req.flash('error_msg', 'passwords do not match'));
+        }
 
 		// find a user whose username is the same as the forms username
 		// we are checking to see if the user trying to login already exists
@@ -50,7 +56,7 @@ module.exports = function(passport) {
 			if (err)
                 return done(err);
 			 if (rows.length) {
-                return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
+                return done(null, false, req.flash('error_msg', 'username is already taken'));
             } else {
 
 				// if there is no user with that username
@@ -65,7 +71,7 @@ module.exports = function(passport) {
 				connection.query(insertQuery,function(err,rows){
 				newUserMysql.id = rows.insertId;
 				
-				return done(null, newUserMysql);
+				return done(null, newUserMysql, req.flash('success_msg', 'Register Completed, Please Log in'));
 				});	
             }	
 		});

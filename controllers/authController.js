@@ -22,3 +22,12 @@ exports.logoutuser = (req, res) => {
 exports.register = (req, res, next) => {
     res.render('register')
 };
+
+exports.registeruser = (req, res, next) => {
+    passport.authenticate('local-signup', {
+        successRedirect: '/login',
+        failureRedirect: '/register',
+        failureFlash: true,
+        session: false // prevent auto-login
+      })(req, res, next);
+};
