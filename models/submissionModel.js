@@ -33,6 +33,9 @@ const Submission = function (submission) {
     this.continuation_project = submission.continuation_project;
     this.hear_about_ISSP = submission.hear_about_ISSP;
     this.sponsor_commitments = submission.sponsor_commitments;
+    this.feedback = submission.feedback;
+    this.feedback_time = submission.feedback_time;
+    this.feedback_user = submission.feedback_user;
 };
 
 
@@ -57,7 +60,7 @@ Submission.getAll = result => {
             return;
         }
 
-        console.log("submissions: ", res);
+        // console.log("submissions: ", res);
         result(null, res);
     });
 };
@@ -77,7 +80,7 @@ Submission.delete = (id, result) => {
             return;
         }
 
-        console.log("deleted submission with id: ", id);
+        // console.log("deleted submission with id: ", id);
         result(null, res);
     });
 };
@@ -92,7 +95,7 @@ Submission.findById = (id, result) => {
         }
 
         if (res.length) {
-            console.log("found submission: ", res[0]);
+            // console.log("found submission: ", res[0]);
             result(null, res[0]);
             return;
         }
@@ -125,6 +128,34 @@ Submission.updateById = (id, submission, result) => {
             }
 
             console.log("updated submission: ", { id: id, ...submission });
+            result(null, { id: id, ...submission });
+        }
+    );
+};
+
+Submission.updateFeedback = (id, submission, result) => {
+    var today = new Date();
+    var date = "," + today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var feedback = ",&&" + submission.feedback
+    var username = "," + submission.feedback_user
+    
+    sql.query(
+        "UPDATE issp SET feedback = CONCAT(feedback, ?), feedback_time = CONCAT(feedback_time, ?), feedback_user = CONCAT(feedback_user, ?) WHERE id = ?",
+        [feedback, date, username, id],
+        (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(null, err);
+                return;
+            }
+
+            if (res.affectedRows == 0) {
+                // not found Submission with the id
+                result({ kind: "not_found" }, null);
+                return;
+            }
+
+            // console.log("submitted feedback: ", { id: id, ...submission });
             result(null, { id: id, ...submission });
         }
     );

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Feedback</title>
+	<link rel="stylesheet" href="/stylesheets/feedback.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	
+	<form class="form" action="/submission/submitFeedback" method="POST">
+		<div class="detailBox">
+			<div class="titleBox">
+				<label>Comment Box</label>
+			</div>
+			<div class="commentBox">
+				<p class="taskDescription">ID: <%= feedbackData.id %></p>
+				<input type="hidden" name="id" value="<%= feedbackData.id %>">
+				<input type="hidden" name="feedback_user" value="<%= userData %>">
+				<p>Date Created: <%= feedbackData.created_time %></p>
+				<p>Company: <%= feedbackData.company_name %></p>
+			</div>	
+			<div class="actionBox">
+					<ul class="commentList">
+						<% if (feedbackData.feedback != "No Comment") { %>
+							<% var feedbackList = feedbackData.feedback.split(",&&") %>
+							<% var feedbackTimeList = feedbackData.feedback_time.split(",") %>
+							<% var feedbackUserList = feedbackData.feedback_user.split(",") %>
+							<% if (feedbackList[0] == "No Comment") { %>
+								<% feedbackList.shift() %>
+								<% feedbackTimeList.shift() %>
+								<% feedbackUserList.shift() %>
+								<% } %>
+								<% for(var i=0; i < feedbackList.length ; i++) { %>
+									<li>
+										<div class="commenterImage">
+											<img src="http://placekitten.com/50/50" />
+										</div>
+										<div class="commentText">
+											<p><%= feedbackUserList[i]%></p>
+											<p><%= feedbackList[i]%></p> <span class="date sub-text"> on <%= feedbackTimeList[i] %></span>
+										</div>
+									</li>
+								<% } %>
+						<% } else { %>
+							<li>
+								<div class="commentText">
+									<p>No Comment</p>
+								</div>
+							</li>
+						<% } %>
+					</ul>
+			</div>
+			<div class="form-group">
+				<textarea name="feedback" rows="8" class="form-control">Your comments</textarea>
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btn btn-success mr-4" value="Submit" />
+				<button type="button" class="btn btn-danger" onclick="location.href='/submissionList'">Cancel</button>
+			</div>
+		</div>
+	</form>
+</body>
+
+</html>
+

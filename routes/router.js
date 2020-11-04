@@ -10,10 +10,14 @@ module.exports = app => {
   app.get("/submissionList", ensureAuthenticated, submissionController.getAll)
   // Delete a project
   app.post("/submission/delete", ensureAuthenticated, submissionController.delete)
-  // Display an eidt form
+  // Eidt Page
   app.get("/submission/edit", ensureAuthenticated, submissionController.edit);
   // Edit a project
   app.post("/submission/update", ensureAuthenticated, submissionController.update);
+  // Feedback Page
+  app.get("/submission/feedback",ensureAuthenticated, submissionController.feedback);
+  // Submit Feedback
+  app.post("/submission/submitFeedback",ensureAuthenticated, submissionController.submitFeedback);
   // Login Page
   app.get("/login", forwardAuthenticated, authController.login);
   // Login User
@@ -24,4 +28,5 @@ module.exports = app => {
   app.get("/register", forwardAuthenticated, authController.register);
   // Login User
   app.post("/register", authController.registeruser);
+
 };

@@ -48,7 +48,7 @@
     { var checked=( data.term == options[i] )? "checked" : ""
       ; %>
         <input type="radio" name="term" class="form-check-input" value="<%=options[ i ] %>"
-          <%=checked %>><label><%=options[i]%></label>
+          <%=checked %>><label class="mr-1"><%=options[i]%></label>
         <%
     }
     %>
@@ -132,7 +132,7 @@
       <div class="form-check">
         <b>Non Profit Organization: </b>
         <% var checked=( data.non_profit_organization == "on")? "checked" : "" %>
-        <input type="checkbox" name="non_profit_organization" class="form-check-input" value="on" <%=checked %>>
+        <input type="checkbox" name="non_profit_organization" class="form-check-input ml-1" value="on" <%=checked %>>
       </div>
     </div>
     <br>
@@ -232,7 +232,7 @@
       <div class="form-check">
         <b>No preference on the duration or timing on the project: </b>
         <% var checked=( data.project_duration_no_preference == "on")? "checked" : "" %>
-        <input type="checkbox" name="project_duration_no_preference" class="form-check-input" value="on" <%=checked %>>
+        <input type="checkbox" name="project_duration_no_preference" class="form-check-input ml-1" value="on" <%=checked %>>
 
       </div>
     </div>
@@ -263,8 +263,8 @@
     for ( var i = 0; i < options.length; i++ ) 
     { var checked=( data.continuation_project == options[i] )? "checked" : ""
       ; %>
-        <input type="radio" name="continuation_project" value="<%=options[ i ] %>"
-          <%=checked %>><label><%=options[i] %></label>
+        <input type="radio" name="continuation_project" class="form-check-input" value="<%=options[ i ] %>"
+          <%=checked %>><label class="mr-1"><%=options[i] %></label>
         <%
     }
     %>
@@ -290,12 +290,15 @@
       <div class="form-check">
         <b>Sponsor Commitments: </b>
         <% var checked=( data.sponsor_commitments == "on")? "checked" : "" %>
-        <input type="checkbox" name="sponsor_commitments" class="form-check-input" value="on" <%=checked %>>
+        <input type="checkbox" name="sponsor_commitments" class="form-check-input ml-1" value="on" <%=checked %>>
       </div>
     </div>
     <br>
-
-    <input type="submit" class="btn btn-success" value="Submit" />
+    <div class="form-group">
+      <input type="submit" class="btn btn-success mr-4" value="Submit" />
+      <button type="button" class="btn btn-danger" onclick="location.href='/submissionList'">Cancel</button>
+    </div>
+   
   </form>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

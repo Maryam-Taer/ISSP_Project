@@ -46,12 +46,28 @@ connection.connect(function (err) {
                             hardware_software_requirements varchar(255) not null,
                             continuation_project varchar(25),
                             hear_about_ISSP varchar(255),
-                            sponsor_commitments varchar(25)
+                            sponsor_commitments varchar(25),
+                            feedback text,
+                            feedback_time text,
+                            feedback_user text
+                        )`;
+
+    let createAccount = `create table if not exists accounts(
+                                id int primary key auto_increment,
+                                username varchar(255),
+                                password varchar(255)
                         )`;
 
     connection.query(createIssp, function (err, results, fields) {
         if (err) {
             console.log(err.message);
+        }
+        else{
+            connection.query(createAccount, function (err, results, fields) {
+                if (err) {
+                    console.log(err.message);
+                }
+            });
         }
     });
 
