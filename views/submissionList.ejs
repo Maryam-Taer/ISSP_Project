@@ -89,7 +89,7 @@ tr.shown td.details-control {
                     '</form>';
                 }},
                 {"render": function ( data, type, row, meta ) {
-                    return '<form action="/submission/delete" method="POST" >' + 
+                    return '<form class="del" action="/submission/delete" method="POST" >' + 
                         '<input name="id" type="hidden" value="'+row.id+ '" />' +
                         '<button class="btn btn-danger" type="submit">Delete</button>' +
                     '</form>';
@@ -140,7 +140,7 @@ tr.shown td.details-control {
             } );
         } );
 
-        $('#example tbody').on('submit', 'tr td form', function () {
+        $('#example tbody').on('submit', 'tr td form.del', function () {
             return confirm('Are you sure you want to delete?')
         } );
         
