@@ -1,3 +1,4 @@
+const { closeDelimiter } = require("ejs");
 var sql = require("../database")
 
 

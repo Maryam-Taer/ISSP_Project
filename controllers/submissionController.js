@@ -143,8 +143,8 @@ exports.update = (req, res) => {
 
 
 exports.feedback = (req, res) => {
-    var feedback_user = req.query.username
-    Submission.findById(req.query.id, (err, data) => {
+    var username = req.body.username
+    Submission.findById(req.body.id, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
@@ -155,7 +155,7 @@ exports.feedback = (req, res) => {
                     message: "Error retrieving Submission with id " + req.params.id
                 });
             }
-        } else res.render('feedback', { feedbackData: data, userData: feedback_user })
+        } else res.render('feedback', { feedbackData: data, userData: username })
     });
 };
 
@@ -168,9 +168,8 @@ exports.submitFeedback = (req, res) => {
             message: "Content can not be empty!"
         });
     }
-    
     const obj = JSON.parse(JSON.stringify(req.body));
-    console.log(obj)
+    // console.log(obj)
     Submission.updateFeedback(
         req.body.id,
         new Submission(obj),

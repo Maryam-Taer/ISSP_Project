@@ -82,7 +82,11 @@ tr.shown td.details-control {
                     return '<a href="/submission/edit?id='+row.id+ '" class="btn btn-outline-info">Edit</a>';
                 }},
                 {"render": function ( data, type, row, meta ) {
-                    return '<a href="/submission/feedback?id='+row.id+"&username="+"<%- username %>"+ '" class="btn btn-outline-success">Feedback</a>';
+                    return '<form action="/submission/feedback" method="POST" >' + 
+                        '<input name="id" type="hidden" value="'+row.id+ '" />' +
+                        '<input name="username" type="hidden" value="'+"<%- username %>" +'" />' +
+                        '<button class="btn btn-outline-success" type="submit">Feedback</button>' +
+                    '</form>';
                 }},
                 {"render": function ( data, type, row, meta ) {
                     return '<form action="/submission/delete" method="POST" >' + 
