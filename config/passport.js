@@ -100,15 +100,15 @@ module.exports = function(passport) {
 			 if (!rows.length) {
                 return done(null, false); 
             } 
-			bcrypt.compare(password, rows[0].password, function (err, result) {
-                // if the user is found but the password is wrong
+            bcrypt.compare(password, rows[0].password, function (err, result) {
                 if (result == false){
-                    return done(null, false);
-            }})
-			
-            // all is well, return successful user
-            return done(null, rows[0]);			
-		
+                    // if the user is found but the password is wrong
+                    return done(null, false); 
+                } else if(result == true){
+                    // all is well, return successful user	
+                    return done(null, rows[0]);	
+                } 
+            })
 		});
 		
 

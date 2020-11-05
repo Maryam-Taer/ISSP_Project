@@ -26,7 +26,7 @@ module.exports = app => {
   app.get("/logout", authController.logoutuser);
   // Register Page
   app.get("/register", forwardAuthenticated, authController.register);
-  // Login User
+  // Register User
   app.post("/register", authController.registeruser);
 
 };
