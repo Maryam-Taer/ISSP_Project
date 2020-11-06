@@ -36,9 +36,9 @@ exports.submitFeedback = (req, res) => {
 }
 
 // Feedback Page
-exports.feedback = (req, res) => {
+exports.feedback = async (req, res) => {
     var username = req.body.username
-    Submission.findById(req.body.id, (err, submissionData) => {
+    await Submission.findById(req.body.id, (err, submissionData) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({

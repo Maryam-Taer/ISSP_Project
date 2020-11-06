@@ -66,8 +66,8 @@ exports.create = (req, res) => {
     });
 }
 
-exports.getAll = (req, res) => {
-    Submission.getAll((err, data) => {
+exports.getAll = async (req, res) => {
+    await Submission.getAll((err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -94,8 +94,8 @@ exports.delete = (req, res) => {
 };
 
 
-exports.edit = (req, res) => {
-    Submission.findById(req.query.id, (err, data) => {
+exports.edit = async (req, res) => {
+    await Submission.findById(req.query.id, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
@@ -136,22 +136,4 @@ exports.update = (req, res) => {
             } else res.redirect('/submissionList')
         }
     );
-};
-
-
-exports.feedback = (req, res) => {
-    var username = req.body.username
-    Submission.findById(req.body.id, (err, data) => {
-        if (err) {
-            if (err.kind === "not_found") {
-                res.status(404).send({
-                    message: `Not found Submission with id ${req.params.id}.`
-                });
-            } else {
-                res.status(500).send({
-                    message: "Error retrieving Submission with id " + req.params.id
-                });
-            }
-        } else res.render('feedback', { feedbackData: data, userData: username })
-    });
 };
