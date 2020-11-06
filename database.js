@@ -58,9 +58,9 @@ connection.connect(function (err) {
                                 id int primary key auto_increment,
                                 project_id int,
                                 feedback text,
-                                feedback_time text,
+                                feedback_time DATETIME,
                                 feedback_user varchar(255),
-                                FOREIGN KEY (project_id) REFERENCES issp(id)
+                                FOREIGN KEY (project_id) REFERENCES issp(id) ON DELETE CASCADE
                         )`;
 
     connection.query(createIssp, function (err, results, fields) {

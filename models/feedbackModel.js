@@ -1,5 +1,6 @@
 const { closeDelimiter } = require("ejs");
 var sql = require("../database")
+const moment = require('moment');
 
 
 const Feedback = function (feedback) {
@@ -11,9 +12,7 @@ const Feedback = function (feedback) {
 
 
 
-
-Feedback.create = (newFeedback, result) => {
-    
+Feedback.create = (newFeedback, result) => {    
     sql.query("INSERT INTO feedback SET ?", newFeedback, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -27,18 +26,20 @@ Feedback.create = (newFeedback, result) => {
 };
 
 
-Feedback.findAllById = (id, result) => {
-    sql.query(`SELECT * FROM feedback WHERE project_id = ${id}`, (err, res) => {
+Feedback.findAllById = async (id, result) => {
+    await sql.query(`SELECT * FROM feedback WHERE project_id = ${id}`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
             return;
         }
+        for (var i = 0; i < res.length; i++) {
+            res[i].feedback_time = moment(res[i].feedback_time).format("YYYY-MM-DD HH:mm:ss")
+        };
         // console.log(res)
         result(null, res);
     });
 };
-
 
 
 // Submission.updateFeedback = (id, submission, result) => {

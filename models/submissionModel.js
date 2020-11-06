@@ -1,5 +1,6 @@
 const { closeDelimiter } = require("ejs");
 var sql = require("../database")
+const moment = require('moment');
 
 
 // constructor
@@ -59,6 +60,9 @@ Submission.getAll = result => {
             result(null, err);
             return;
         }
+        for (var i = 0; i < res.length; i++) {
+            res[i].created_time = moment(res[i].created_time).format("YYYY-MM-DD HH:mm:ss")
+        };
 
         // console.log("submissions: ", res);
         result(null, res);
@@ -96,6 +100,9 @@ Submission.findById = (id, result) => {
 
         if (res.length) {
             // console.log("found submission: ", res[0]);
+            for (var i = 0; i < res.length; i++) {
+                res[i].created_time = moment(res[i].created_time).format("YYYY-MM-DD HH:mm:ss")
+            };
             result(null, res[0]);
             return;
         }

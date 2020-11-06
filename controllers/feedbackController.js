@@ -1,6 +1,5 @@
 const Submission = require("../models/submissionModel");
 const Feedback = require("../models/feedbackModel");
-const DATE_FORMATER = require('date-format');
 
 
 // Create and Save a new Feedback
@@ -12,15 +11,12 @@ exports.submitFeedback = (req, res) => {
         });
     }
     // Create a submission
-    var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     const feedback = new Feedback({
         feedback: req.body.feedback,
-        feedback_time: date,
+        feedback_time: new Date(),
         feedback_user: req.body.feedback_user,
         project_id: req.body.project_id
     });
-
 
     // Save Submission in the database
     Feedback.create(feedback, (err, data) => {

@@ -1,5 +1,4 @@
 const Submission = require("../models/submissionModel");
-const DATE_FORMATER = require('date-format');
 
 
 exports.index = (req, res) => {
@@ -24,7 +23,8 @@ exports.create = (req, res) => {
         category: "Not Assigned",
         year: "Not Assigned",
         term: "Not Assigned",
-        created_time: DATE_FORMATER(new Date(), "yyyy-mm-dd HH:MM:ss"),
+        // created_time: DATE_FORMATER(new Date(), "yyyy-mm-dd HH:MM:ss"),
+        created_time: new Date(),
         street_address: req.body.street_address,
         address_line_2: req.body.address_line_2,
         city: req.body.city,
@@ -53,8 +53,11 @@ exports.create = (req, res) => {
     });
 
 
+
+
     // Save Submission in the database
     Submission.create(submission, (err, data) => {
+        console.log(submission.created_time)
         if (err)
             res.status(500).send({
                 message:
