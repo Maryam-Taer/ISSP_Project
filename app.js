@@ -43,6 +43,12 @@ app.use(function(req, res, next) {
   next();
 });
 
+// prevent cache data, disallow back-button into restricted content after log-out
+app.use(function(req, res, next) {
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
+
 app.get("/", (req, res) => {
   res.json({ message: "Available path /submission , /submissionList, /login, /register" });
 });
