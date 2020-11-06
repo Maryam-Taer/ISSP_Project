@@ -46,16 +46,21 @@ connection.connect(function (err) {
                             hardware_software_requirements varchar(255) not null,
                             continuation_project varchar(25),
                             hear_about_ISSP varchar(255),
-                            sponsor_commitments varchar(25),
-                            feedback text,
-                            feedback_time text,
-                            feedback_user text
+                            sponsor_commitments varchar(25)
                         )`;
 
     let createAccount = `create table if not exists accounts(
                                 id int primary key auto_increment,
                                 username varchar(255),
                                 password varchar(255)
+                        )`;
+    let createFeedback = `create table if not exists feedback(
+                                id int primary key auto_increment,
+                                project_id int,
+                                feedback text,
+                                feedback_time text,
+                                feedback_user varchar(255),
+                                FOREIGN KEY (project_id) REFERENCES issp(id)
                         )`;
 
     connection.query(createIssp, function (err, results, fields) {
@@ -66,6 +71,12 @@ connection.connect(function (err) {
             connection.query(createAccount, function (err, results, fields) {
                 if (err) {
                     console.log(err.message);
+                } else{
+                    connection.query(createFeedback, function (err, results, fields) {
+                        if (err) {
+                            console.log(err.message);
+                        }
+                    });
                 }
             });
         }

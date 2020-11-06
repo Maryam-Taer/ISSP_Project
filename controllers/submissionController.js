@@ -50,9 +50,6 @@ exports.create = (req, res) => {
         continuation_project: req.body.continuation_project,
         hear_about_ISSP: hear_about_ISSP,
         sponsor_commitments: req.body.sponsor_commitments,
-        feedback: "No Comment",
-        feedback_time: "No Data",
-        feedback_user: "No Data"
     });
 
 
@@ -157,34 +154,4 @@ exports.feedback = (req, res) => {
             }
         } else res.render('feedback', { feedbackData: data, userData: username })
     });
-};
-
-
-
-exports.submitFeedback = (req, res) => {
-    // Validate Request
-    if (!req.body) {
-        res.status(400).send({
-            message: "Content can not be empty!"
-        });
-    }
-    const obj = JSON.parse(JSON.stringify(req.body));
-    // console.log(obj)
-    Submission.updateFeedback(
-        req.body.id,
-        new Submission(obj),
-        (err, data) => {
-            if (err) {
-                if (err.kind === "not_found") {
-                    res.status(404).send({
-                        message: `Not found Submission with id ${req.body.id}.`
-                    });
-                } else {
-                    res.status(500).send({
-                        message: "Error updating Submission with id " + req.body.id
-                    });
-                }
-            } else res.redirect('/submissionList')
-        }
-    );
 };

@@ -34,10 +34,9 @@ const Submission = function (submission) {
     this.continuation_project = submission.continuation_project;
     this.hear_about_ISSP = submission.hear_about_ISSP;
     this.sponsor_commitments = submission.sponsor_commitments;
-    this.feedback = submission.feedback;
-    this.feedback_time = submission.feedback_time;
-    this.feedback_user = submission.feedback_user;
 };
+
+
 
 
 Submission.create = (newSubmission, result) => {
@@ -133,36 +132,6 @@ Submission.updateById = (id, submission, result) => {
         }
     );
 };
-
-Submission.updateFeedback = (id, submission, result) => {
-    var today = new Date();
-    var date = "," + today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    var feedback = ",&&" + submission.feedback
-    var username = "," + submission.feedback_user
-    
-    sql.query(
-        "UPDATE issp SET feedback = CONCAT(feedback, ?), feedback_time = CONCAT(feedback_time, ?), feedback_user = CONCAT(feedback_user, ?) WHERE id = ?",
-        [feedback, date, username, id],
-        (err, res) => {
-            if (err) {
-                console.log("error: ", err);
-                result(null, err);
-                return;
-            }
-
-            if (res.affectedRows == 0) {
-                // not found Submission with the id
-                result({ kind: "not_found" }, null);
-                return;
-            }
-
-            // console.log("submitted feedback: ", { id: id, ...submission });
-            result(null, { id: id, ...submission });
-        }
-    );
-};
-
-
 
 module.exports = Submission;
 

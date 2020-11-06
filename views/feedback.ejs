@@ -21,41 +21,33 @@
 			</div>
 			<div class="commentBox">
 				<p class="taskDescription">ID: <%= feedbackData.id %></p>
-				<input type="hidden" name="id" value="<%= feedbackData.id %>">
+				<input type="hidden" name="project_id" value="<%= feedbackData.id %>">
 				<input type="hidden" name="feedback_user" value="<%= userData %>">
 				<p>Date Created: <%= feedbackData.created_time %></p>
 				<p>Company: <%= feedbackData.company_name %></p>
-			</div>	
+			</div>
 			<div class="actionBox">
-					<ul class="commentList">
-						<% if (feedbackData.feedback != "No Comment") { %>
-							<% var feedbackList = feedbackData.feedback.split(",&&") %>
-							<% var feedbackTimeList = feedbackData.feedback_time.split(",") %>
-							<% var feedbackUserList = feedbackData.feedback_user.split(",") %>
-							<% if (feedbackList[0] == "No Comment") { %>
-								<% feedbackList.shift() %>
-								<% feedbackTimeList.shift() %>
-								<% feedbackUserList.shift() %>
-								<% } %>
-								<% for(var i=0; i < feedbackList.length ; i++) { %>
-									<li>
-										<div class="commenterImage">
-											<img src="http://placekitten.com/50/50" />
-										</div>
-										<div class="commentText">
-											<p><%= feedbackUserList[i]%></p>
-											<p><%= feedbackList[i]%></p> <span class="date sub-text"> on <%= feedbackTimeList[i] %></span>
-										</div>
-									</li>
-								<% } %>
-						<% } else { %>
+				<ul class="commentList">
+					<% if (returnData.length !=0) { %>
+						<% for(var i=0; i < returnData.length ; i++) { %>
 							<li>
+								<div class="commenterImage">
+									<img src="http://placekitten.com/50/50" />
+								</div>
 								<div class="commentText">
-									<p>No Comment</p>
+									<p><%= returnData[i].feedback_user%></p>
+									<p><%= returnData[i].feedback%></p> <span class="date sub-text"> on <%= returnData[i].feedback_time %></span>
 								</div>
 							</li>
-						<% } %>
-					</ul>
+							<% } %>
+					<% } else { %>
+						<li>
+							<div class="commentText">
+								<p>No Comment</p>
+							</div>
+						</li>
+					<% } %>
+				</ul>
 			</div>
 			<div class="form-group">
 				<textarea name="feedback" rows="8" class="form-control" required placeholder="Your comments......"></textarea>
@@ -69,3 +61,4 @@
 </body>
 
 </html>
+
