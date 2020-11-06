@@ -274,9 +274,14 @@
 
     <b>Hear about ISSP</b><br>
     <div class="form-check">
-      <%
-    var other = (data.hear_about_ISSP) ? data.hear_about_ISSP : "Other";
-    var options = [ "BCIT's website", "BCIT email message", "BCIT internal announcements", "Ad on LinkedIn", "Ad on T-Net", "Company I work for", "BC Technology Industry", "BC Innovation Council", other];
+    <%
+    var options = [ "BCIT's website", "BCIT email message", "BCIT internal announcements", "Ad on LinkedIn", "Ad on T-Net", "Company I work for", "BC Technology Industry", "BC Innovation Council"];
+    if (data.hear_about_ISSP == null || options.includes(data.hear_about_ISSP)) {
+      options.push("Other")
+    }
+    else {
+      options.push(data.hear_about_ISSP)
+    }
     for ( var i = 0; i < options.length; i++ ) 
     { var checked=( data.hear_about_ISSP == options[i] )? "checked" : ""
       ; %>
