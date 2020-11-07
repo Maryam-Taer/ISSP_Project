@@ -19,42 +19,6 @@
     <br>
     <b>Date Created: <%= data.created_time %> </b>
     <br>
-    <b>Category:</b>
-    <div class="form-check">
-      <%
-    var options = [ "CIT", "CST", "Both", "None", "Not Assigned"];
-    for ( var i = 0; i < options.length; i++ ) 
-    { var checked=( data.category == options[i] )? "checked" : ""
-      ; %>
-      <input type="radio" class="form-check-input" name="category" value="<%=options[ i ] %>"
-        <%=checked %>><%=options[i] %><br><%
-    }
-    %>
-    </div>
-    <br>
-    <div class="form-inline">
-      <div class="form-group">
-        <b>Year:</b>
-        <input type="text" name="year" class="form-control" value="<%= data.year ? data.year : '' %>"> <br>
-      </div>
-    </div>
-    <br>
-    <div class="form-inline">
-      <div class="form-check">
-        <b>Term:</b>
-        <%
-    var options = [ "Winter", "Spring/Summer", "Fall", "Not Assigned" ];
-    for ( var i = 0; i < options.length; i++ ) 
-    { var checked=( data.term == options[i] )? "checked" : ""
-      ; %>
-        <input type="radio" name="term" class="form-check-input" value="<%=options[ i ] %>"
-          <%=checked %>><label class="mr-1"><%=options[i]%></label>
-        <%
-    }
-    %>
-      </div>
-    </div>
-    <br>
     <br>
     <h2>Company</h2>
     <div class="form-inline">

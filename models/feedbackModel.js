@@ -3,6 +3,7 @@ var sql = require("../database")
 const moment = require('moment');
 
 
+// constructor
 const Feedback = function (feedback) {
     this.feedback = feedback.feedback;
     this.feedback_time = feedback.feedback_time;
@@ -11,7 +12,7 @@ const Feedback = function (feedback) {
 };
 
 
-
+// Create feedback
 Feedback.create = (newFeedback, result) => {    
     sql.query("INSERT INTO feedback SET ?", newFeedback, (err, res) => {
         if (err) {
@@ -25,7 +26,7 @@ Feedback.create = (newFeedback, result) => {
     });
 };
 
-
+// Find all feedback by id
 Feedback.findAllById = async (id, result) => {
     await sql.query(`SELECT * FROM feedback WHERE project_id = ${id}`, (err, res) => {
         if (err) {
@@ -42,33 +43,29 @@ Feedback.findAllById = async (id, result) => {
 };
 
 
-// Submission.updateFeedback = (id, submission, result) => {
-//     var today = new Date();
-//     var date = "," + today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-//     var feedback = ",&&" + submission.feedback
-//     var username = "," + submission.feedback_user
-    
-//     sql.query(
-//         "UPDATE issp SET feedback = CONCAT(feedback, ?), feedback_time = CONCAT(feedback_time, ?), feedback_user = CONCAT(feedback_user, ?) WHERE id = ?",
-//         [feedback, date, username, id],
-//         (err, res) => {
-//             if (err) {
-//                 console.log("error: ", err);
-//                 result(null, err);
-//                 return;
-//             }
+// Update category
+Feedback.category = async (id, submission, result) => {
+    await sql.query(
+        "UPDATE issp SET category = ?, year = ?, term = ? WHERE id = ?",
+        [submission.category, submission.year, submission.term, id],
+        (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(null, err);
+                return;
+            }
 
-//             if (res.affectedRows == 0) {
-//                 // not found Submission with the id
-//                 result({ kind: "not_found" }, null);
-//                 return;
-//             }
+            if (res.affectedRows == 0) {
+                // not found Submission with the id
+                result({ kind: "not_found" }, null);
+                return;
+            }
 
-//             // console.log("submitted feedback: ", { id: id, ...submission });
-//             result(null, { id: id, ...submission });
-//         }
-//     );
-// };
+            console.log("updated submission: ", { id: id, ...submission });
+            result(null, { id: id, ...submission });
+        }
+    );
+};
 
 
 
