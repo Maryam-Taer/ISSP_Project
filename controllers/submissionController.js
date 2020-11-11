@@ -2,7 +2,7 @@ const Submission = require("../models/submissionModel");
 
 
 exports.index = (req, res) => {
-    res.render('submission')
+    res.render('submission');
 };
 
 
@@ -23,7 +23,6 @@ exports.create = (req, res) => {
         category: "Not Assigned",
         year: "Not Assigned",
         term: "Not Assigned",
-        // created_time: DATE_FORMATER(new Date(), "yyyy-mm-dd HH:MM:ss"),
         created_time: new Date(),
         street_address: req.body.street_address,
         address_line_2: req.body.address_line_2,
@@ -57,7 +56,7 @@ exports.create = (req, res) => {
 
     // Save Submission in the database
     Submission.create(submission, (err, data) => {
-        console.log(submission.created_time)
+        // console.log(submission.created_time)
         if (err)
             res.status(500).send({
                 message:
@@ -65,9 +64,9 @@ exports.create = (req, res) => {
             });
         // Display in raw data
         // else res.send(data);
-        else res.redirect('/submission')
+        else res.redirect('/submission');
     });
-}
+};
 
 exports.getAll = async (req, res) => {
     await Submission.getAll((err, data) => {
@@ -84,7 +83,7 @@ exports.delete = (req, res) => {
     if (req.user.role != 'admin'){
         res.status(404).send({
             message: `Your role cannot perform this action!.`
-        })
+        });
     } else {
         Submission.delete(req.body.id, (err, data) => {
             if (err) {
@@ -97,7 +96,7 @@ exports.delete = (req, res) => {
                         message: "Could not delete Submission with id " + req.body.id
                     });
                 }
-            } else res.redirect('/submissionList')
+            } else res.redirect('/submissionList');
         });
     }
 };
@@ -107,7 +106,7 @@ exports.edit = async (req, res) => {
     if (req.user.role != 'admin'){
         res.status(404).send({
             message: `Your role cannot perform this action!.`
-        })
+        });
     } else {
         await Submission.findById(req.query.id, (err, data) => {
             if (err) {
@@ -120,7 +119,7 @@ exports.edit = async (req, res) => {
                         message: "Error retrieving Submission with id " + req.params.id
                     });
                 }
-            } else res.render('edit', { data: data })
+            } else res.render('edit', { data: data });
         });
     }
 };
@@ -137,7 +136,7 @@ exports.update = (req, res) => {
     if (req.user.role != 'admin'){
         res.status(404).send({
             message: `Your role cannot perform this action!.`
-        })
+        });
     } else {
         Submission.updateById(
             req.body.id,
@@ -153,7 +152,7 @@ exports.update = (req, res) => {
                             message: "Error updating Submission with id " + req.body.id
                         });
                     }
-                } else res.redirect('/submissionList')
+                } else res.redirect('/submissionList');
             }
         );
     }

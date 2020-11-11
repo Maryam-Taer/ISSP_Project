@@ -1,5 +1,5 @@
 const { closeDelimiter } = require("ejs");
-var sql = require("../database")
+var sql = require("../database");
 const moment = require('moment');
 
 
@@ -8,7 +8,7 @@ const Feedback = function (feedback) {
     this.feedback = feedback.feedback;
     this.feedback_time = feedback.feedback_time;
     this.feedback_user = feedback.feedback_user;
-    this.project_id = feedback.project_id
+    this.project_id = feedback.project_id;
 };
 
 

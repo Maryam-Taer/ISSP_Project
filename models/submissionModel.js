@@ -1,5 +1,5 @@
 const { closeDelimiter } = require("ejs");
-var sql = require("../database")
+var sql = require("../database");
 const moment = require('moment');
 
 

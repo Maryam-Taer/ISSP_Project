@@ -20,7 +20,7 @@ exports.logoutuser = (req, res) => {
 };
 
 exports.register = (req, res, next) => {
-    res.render('register')
+    res.render('register');
 };
 
 exports.registeruser = (req, res, next) => {

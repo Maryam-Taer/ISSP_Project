@@ -9,9 +9,10 @@
         <li class="nav-item active">
           <a class="nav-link" href="/submissionList">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features1</a>
-        </li>
+        <form action="/profile" method="POST">
+          <input name="username" type="hidden" value="<%= username %>"/>
+          <button class="btn btn-outline-success" type="submit">User Profile</button>
+        </form>
         <li class="nav-item">
           <a class="nav-link" href="#">Features2</a>
         </li>

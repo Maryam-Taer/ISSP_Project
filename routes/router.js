@@ -1,6 +1,7 @@
 var submissionController = require("../controllers/submissionController");
 var authController = require("../controllers/authController");
 var feedbackController = require("../controllers/feedbackController");
+var userController = require("../controllers/userController");
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 module.exports = app => {
@@ -8,9 +9,9 @@ module.exports = app => {
   // Create a new Submission
   app.post("/submission/create", submissionController.create);
   // Fetch all the data
-  app.get("/submissionList", ensureAuthenticated, submissionController.getAll)
+  app.get("/submissionList", ensureAuthenticated, submissionController.getAll);
   // Delete a project
-  app.post("/submission/delete", ensureAuthenticated, submissionController.delete)
+  app.post("/submission/delete", ensureAuthenticated, submissionController.delete);
   // Eidt Page
   app.get("/submission/edit", ensureAuthenticated, submissionController.edit);
   // Edit a project
@@ -31,5 +32,9 @@ module.exports = app => {
   app.get("/register", forwardAuthenticated, authController.register);
   // Register User
   app.post("/register", authController.registeruser);
+  // User Profile Page
+  app.post("/profile",ensureAuthenticated, userController.profile);
+  // Edit User
+  app.post("/edituser",ensureAuthenticated, userController.edituser);
 
 };

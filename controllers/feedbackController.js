@@ -27,13 +27,13 @@ exports.submitFeedback = (req, res) => {
             });
         // Display in raw data
         // else res.send(data);
-        else res.redirect('/submissionList')
+        else res.redirect('/submissionList');
     });
-}
+};
 
 // Feedback Page
 exports.feedback = async (req, res) => {
-    var username = req.body.username
+    var username = req.body.username;
     await Submission.findById(req.body.id, (err, submissionData) => {
         if (err) {
             if (err.kind === "not_found") {
@@ -51,8 +51,9 @@ exports.feedback = async (req, res) => {
                 message:
                     err.message || "Some error occurred while retrieving the Submissions."
             });
-        }
-        else {res.render('feedback', { returnData: data , feedbackData: submissionData, userData: username })};
+            }
+            else {res.render('feedback', { returnData: data , feedbackData: submissionData, userData: username });
+            }
         });
     });
     
@@ -80,7 +81,7 @@ exports.updateCategory = (req, res) => {
                         message: "Error updating Submission with id " + req.body.id
                     });
                 }
-            } else res.redirect('/submissionList')
+            } else res.redirect('/submissionList');
         }
     );
 };
