@@ -57,18 +57,16 @@ module.exports = function(passport) {
         //encrypt
 		// find a user whose username is the same as the forms username
 		// we are checking to see if the user trying to login already exists
-        connection.query("select * from accounts where username = '"+username+"'",function(err,rows){
+        connection.query("select * from accounts where username = '"+username.toLowerCase()+"'",function(err,rows){
 			if (err)
                 return done(err);
 			 if (rows.length) {
                 return done(null, false, req.flash('error_msg', 'username is already taken'));
             } else {
-
 				// if there is no user with that username
                 // create the user
-
                 bcrypt.hash(password1, saltRounds, function (err,   hash) {
-                    var insertQuery = "INSERT INTO accounts ( username, password ) values ('" + username +"','"+ hash +"')";
+                    var insertQuery = "INSERT INTO accounts ( username, password, role ) values ('" + username.toLowerCase() +"','"+ hash + "', 'reviewer')";
 					console.log(insertQuery);
 				    connection.query(insertQuery,function(err,rows){
 
@@ -94,7 +92,7 @@ module.exports = function(passport) {
     },
     function(req, username, password, done) { // callback with username and password from our form
 
-         connection.query("SELECT * FROM accounts WHERE username = '" + username + "'",function(err,rows){
+         connection.query("SELECT * FROM accounts WHERE username = '" + username.toLowerCase() + "'",function(err,rows){
 			if (err)
                 return done(err);
 			 if (!rows.length) {
