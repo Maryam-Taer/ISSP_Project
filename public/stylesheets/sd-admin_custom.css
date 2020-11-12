@@ -3,3 +3,16 @@
     height: auto;
     float: left;
   }
+
+.sidebar {
+  background: #686868;
+}
+
+.nav-item a{
+  font-weight: 600 !important;
+}
+
+.sidebar-heading{
+  font-weight: 900 !important;
+  color: #003C71 !important;
+}
