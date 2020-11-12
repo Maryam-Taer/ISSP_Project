@@ -30,7 +30,7 @@ exports.create = (req, res) => {
             if (err)
                 res.status(500).send({
                     message:
-                        err.message || "Some error occurred while creating the User."
+                        (err.message || err)|| "Some error occurred while creating the User."
                 });
             // Display in raw data
             // else res.send(data);

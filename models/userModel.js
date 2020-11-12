@@ -10,17 +10,27 @@ const User = function (user) {
 };
 
 User.create = (newUser, result) => {
-    sql.query("INSERT INTO accounts SET ?", newUser, (err, res) => {
-        if (err) {
-            console.log("error: ", err);
+    sql.query("select * from accounts where username = ?", + newUser.username.toLowerCase(), (err,rows) => {
+        if (err)
             result(err, null);
+         if (rows.length) {
+            result("username is already taken");
             return;
+        } else {
+            sql.query("INSERT INTO accounts SET ?", newUser, (err, res) => {
+                if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                    return;
+                }
+                console.log("created user: ", { id: res.insertId, ...newUser });
+                result(null, { id: res.insertId, ...newUser });
+            });
+        
         }
-
-        console.log("created user: ", { id: res.insertId, ...newUser });
-        result(null, { id: res.insertId, ...newUser });
     });
 };
+
 
 
 User.findByUsername = (username, result) => {
