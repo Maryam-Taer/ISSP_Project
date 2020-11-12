@@ -119,7 +119,7 @@ exports.edit = async (req, res) => {
                         message: "Error retrieving Submission with id " + req.params.id
                     });
                 }
-            } else res.render('edit', { data: data });
+            } else res.render('edit', { data: data , username: req.user.username});
         });
     }
 };

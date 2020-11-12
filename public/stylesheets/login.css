@@ -1,12 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Indie+Flower|Monoton|Orbitron|Permanent+Marker|Raleway|Teko");
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
 
-body {
-  background-image: url("../images/mountain.jpg");
-  background-size: cover;
-  /* padding-top:4.2rem; */
-}
-
 .cus-login{
   max-width: 480px;
   background-color: white;;
@@ -38,16 +32,6 @@ body {
 .cus-modal-in{
   background-color: #364052;
   color: white;
-}
-
-footer{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  color: white;
-  text-align: center;
-
 }
 
 .bcit-login{
