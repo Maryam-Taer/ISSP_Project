@@ -1,7 +1,5 @@
 var sql = require("../database");
-var bcrypt = require('bcrypt');
 
-const saltRounds = 10;
 
 const User = function (user) {
     this.username = user.username;
@@ -13,9 +11,9 @@ User.create = (newUser, result) => {
     sql.query("select * from accounts where username = ?", + newUser.username.toLowerCase(), (err,rows) => {
         if (err)
             result(err, null);
-         if (rows.length) {
-            result("username is already taken");
-            return;
+        if (rows.length) {
+                result("username is already taken");
+                return;
         } else {
             sql.query("INSERT INTO accounts SET ?", newUser, (err, res) => {
                 if (err) {
