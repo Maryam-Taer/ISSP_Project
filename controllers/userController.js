@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 exports.register = (req, res) => {
-    res.render('register',{role:req.body.role, username:req.body.username  });
+    res.render('register',{role:req.user.role, username:req.user.username  });
 };
 
 // Create and Save a new User
@@ -44,7 +44,6 @@ exports.create = (req, res) => {
 
 exports.profile = async (req,res) => {
     var username = JSON.stringify(req.body.username);
-    var role = req.body.role;
     await User.findByUsername(username, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
@@ -56,7 +55,7 @@ exports.profile = async (req,res) => {
                     message: "Error retrieving Account with username " + username
                 });
             }
-        } else res.render('userEdit', { data: data, role: role, username:req.body.username  });
+        } else res.render('userEdit', { data: data, role: req.user.role, username:req.user.username  });
     });
 };
 
@@ -75,14 +74,10 @@ exports.edituser = (req, res) => {
             message: "Content can not be empty!"
         });
     }
-    const user = new User({
-        username: req.body.username,
-        password: bcrypt.hashSync(req.body.password, saltRounds),
-        role: role,
-    });
+
     User.updateByUsername(
         req.body.username,
-        hash,
+        bcrypt.hashSync(req.body.password, saltRounds),
         req.body.role,
         (err, data) => {
             if (err) {
