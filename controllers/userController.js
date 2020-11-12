@@ -5,6 +5,7 @@ const saltRounds = 10;
 
 exports.profile = async (req,res) => {
     var username = JSON.stringify(req.body.username);
+    var role = req.body.role;
     await User.findByUsername(username, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
@@ -16,7 +17,7 @@ exports.profile = async (req,res) => {
                     message: "Error retrieving Account with username " + username
                 });
             }
-        } else res.render('userEdit', { data: data });
+        } else res.render('userEdit', { data: data, role: role, username:req.body.username  });
     });
 };
 
@@ -49,13 +50,36 @@ exports.edituser = (req, res) => {
     );
 };
 
-exports.getAll = async (req, res) => {
+exports.getAllUsers = async (req, res) => {
     await User.getAll((err, data) => {
         if (err)
             res.status(500).send({
                 message:
                     err.message || "Some error occurred while retrieving the Submissions."
             });
-        else res.render('submissionList', { title: 'submission List', submissionData: data , username: req.user.username, role: req.user.role});
+        else res.render('admin', { userData: data, username:req.body.username, role:req.body.role });
     });
+};
+
+
+exports.delete = (req, res) => {
+    if (req.user.role != 'admin'){
+        res.status(404).send({
+            message: `Your role cannot perform this action!.`
+        });
+    } else {
+        User.delete(req.body.id, (err, data) => {
+            if (err) {
+                if (err.kind === "not_found") {
+                    res.status(404).send({
+                        message: `Not found User with id ${req.body.id}.`
+                    });
+                } else {
+                    res.status(500).send({
+                        message: "Could not delete User with id " + req.body.id
+                    });
+                }
+            } else res.redirect('/submissionList');
+        });
+    }
 };

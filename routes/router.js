@@ -36,5 +36,10 @@ module.exports = app => {
   app.post("/profile",ensureAuthenticated, userController.profile);
   // Edit User
   app.post("/edituser",ensureAuthenticated, userController.edituser);
-
+  // Admin Page
+  app.post("/admin", ensureAuthenticated, userController.getAllUsers);
+  // Delete User
+  app.post("/user/delete", ensureAuthenticated, userController.delete);
+  // User Eidt Page
+  app.post("/profile", ensureAuthenticated, userController.profile);
 };

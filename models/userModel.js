@@ -53,11 +53,6 @@ User.updateByUsername = (username, hash, role, result) => {
 };
 
 
-
-
-
-
-
 User.getAll = result => {
     sql.query("SELECT * FROM accounts", (err, res) => {
         if (err) {
@@ -65,10 +60,32 @@ User.getAll = result => {
             result(null, err);
             return;
         }
-        // console.log("submissions: ", res);
+        // console.log("Users: ", res);
         result(null, res);
     });
 };
+
+
+
+User.delete = (id, result) => {
+    sql.query("DELETE FROM accounts WHERE id = ?", id, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+
+        if (res.affectedRows == 0) {
+            // not found Submission with the id
+            result({ kind: "not_found" }, null);
+            return;
+        }
+
+        // console.log("deleted submission with id: ", id);
+        result(null, res);
+    });
+};
+
 
 
 module.exports = User;
