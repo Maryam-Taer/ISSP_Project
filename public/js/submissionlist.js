@@ -48,7 +48,6 @@ $(document).ready(function() {
             "render": function ( data, type, row, meta ) {
                 return '<form action="/submission/feedback" method="POST" >' + 
                     '<input name="id" type="hidden" value="'+row.id+ '" />' +
-                    '<input name="username" type="hidden" value="'+"<%- username %>" +'" />' +
                     '<button class="btn btn-outline-success" type="submit">Feedback</button>' +
                 '</form>';
             }},

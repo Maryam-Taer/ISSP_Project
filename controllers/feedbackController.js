@@ -14,7 +14,7 @@ exports.submitFeedback = (req, res) => {
     const feedback = new Feedback({
         feedback: req.body.feedback,
         feedback_time: new Date(),
-        feedback_user: req.body.feedback_user,
+        feedback_user: req.user.username,
         project_id: req.body.project_id
     });
 
@@ -33,7 +33,6 @@ exports.submitFeedback = (req, res) => {
 
 // Feedback Page
 exports.feedback = async (req, res) => {
-    var username = req.body.username;
     await Submission.findById(req.body.id, (err, submissionData) => {
         if (err) {
             if (err.kind === "not_found") {
@@ -52,7 +51,7 @@ exports.feedback = async (req, res) => {
                     err.message || "Some error occurred while retrieving the Submissions."
             });
             }
-            else {res.render('feedback', { returnData: data , feedbackData: submissionData, userData: username });
+            else {res.render('feedback', { returnData: data , feedbackData: submissionData, username: req.user.username });
             }
         });
     });
