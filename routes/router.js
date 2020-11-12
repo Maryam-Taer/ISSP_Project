@@ -28,18 +28,22 @@ module.exports = app => {
   app.post("/login", authController.loginuser);
   // Logout User
   app.get("/logout", authController.logoutuser);
-  // Register Page
-  app.get("/register", forwardAuthenticated, authController.register);
-  // Register User
-  app.post("/register", authController.registeruser);
+  // // Register Page
+  // app.get("/register", forwardAuthenticated, authController.register);
+  // // Register User
+  // app.post("/register", authController.registeruser);
   // User Profile Page
   app.post("/profile",ensureAuthenticated, userController.profile);
   // Edit User
-  app.post("/edituser",ensureAuthenticated, userController.edituser);
+  app.post("/edit/user",ensureAuthenticated, userController.edituser);
   // Admin Page
   app.post("/admin", ensureAuthenticated, userController.getAllUsers);
   // Delete User
   app.post("/user/delete", ensureAuthenticated, userController.delete);
   // User Eidt Page
   app.post("/profile", ensureAuthenticated, userController.profile);
+  // Add User Page
+  app.post("/register", ensureAuthenticated, userController.register);
+  // Add User
+  app.post("/user/add", ensureAuthenticated, userController.create);
 };

@@ -2,6 +2,45 @@ const User = require("../models/userModel");
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+exports.register = (req, res) => {
+    res.render('register',{role:req.body.role, username:req.body.username  });
+};
+
+// Create and Save a new User
+exports.create = (req, res) => {
+    // Validate request
+    if (!req.body) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+    }
+    // Create a user
+    // TODO: need to check if user exist 
+    var password1 = req.body.password;
+    var password2 = req.body.password2;
+    if (password1 == password2){
+        var role = (req.body.role) ? req.body.role : "reviewer";
+        const user = new User({
+            username: req.body.username,
+            password: bcrypt.hashSync(req.body.password, saltRounds),
+            role: role,
+        });
+        // Save User in the database
+        User.create(user, (err, data) => {
+            if (err)
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while creating the User."
+                });
+            // Display in raw data
+            // else res.send(data);
+            else res.redirect('/submissionList');
+        });
+    } else{
+        res.send("verfiy password and confirm password do not match");
+    }
+};
+
 
 exports.profile = async (req,res) => {
     var username = JSON.stringify(req.body.username);
@@ -22,6 +61,8 @@ exports.profile = async (req,res) => {
 };
 
 
+
+// TODO: Need to check if password match 
 exports.edituser = (req, res) => {
     // Validate Request
     if (!req.body) {
@@ -29,7 +70,11 @@ exports.edituser = (req, res) => {
             message: "Content can not be empty!"
         });
     }
-    const hash = bcrypt.hashSync(req.body.password, saltRounds);
+    const user = new User({
+        username: req.body.username,
+        password: bcrypt.hashSync(req.body.password, saltRounds),
+        role: role,
+    });
     User.updateByUsername(
         req.body.username,
         hash,

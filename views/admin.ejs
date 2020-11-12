@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ISSP Submission List</title>
+    <title>ISSP Admin</title>
     <link rel="stylesheet" href="/stylesheets/submissionlist.css">
     <!-- Custom styles for this template -->
     <link href="/stylesheets/sb-admin-2.min.css" rel="stylesheet">
@@ -21,6 +21,11 @@
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
+                        <form action="/register" method="POST" class="mb-4">
+                            <input name="username" type="hidden" value="<%= username %>"/>
+                            <input name="role" type="hidden" value="<%= role %>"/>
+                            <button class="btn btn-outline-success" type="submit">Add User</button>
+                        </form>
 
                         <table id="table_id_admin" class="table table-striped table-bordered" data-page-length='10'>
                             <thead>
