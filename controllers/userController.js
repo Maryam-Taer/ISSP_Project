@@ -61,6 +61,11 @@ exports.profile = async (req,res) => {
 };
 
 
+exports.selfprofile = (req,res) => {
+    res.render('profile', { role: req.user.role, username: req.user.username  });
+};
+
+
 
 // TODO: Need to check if password match 
 exports.edituser = (req, res) => {

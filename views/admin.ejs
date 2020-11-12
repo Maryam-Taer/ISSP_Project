@@ -42,7 +42,7 @@
                                     <td><%=data.username %></td>
                                     <td><%=data.role %></td>
                                     <td>
-                                        <form action="/profile" method="POST">
+                                        <form action="/user/edit" method="POST">
                                             <input name="username" type="hidden" value="<%= data.username %>"/>
                                             <input name="role" type="hidden" value="<%= role %>"/>
                                             <button class="btn btn-outline-success" type="submit">Edit</button>

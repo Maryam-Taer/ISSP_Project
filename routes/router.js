@@ -32,8 +32,9 @@ module.exports = app => {
   // app.get("/register", forwardAuthenticated, authController.register);
   // // Register User
   // app.post("/register", authController.registeruser);
+
   // User Profile Page
-  app.post("/profile",ensureAuthenticated, userController.profile);
+  app.get("/profile",ensureAuthenticated, userController.selfprofile);
   // Edit User
   app.post("/edit/user",ensureAuthenticated, userController.edituser);
   // Admin Page
@@ -41,7 +42,7 @@ module.exports = app => {
   // Delete User
   app.post("/user/delete", ensureAuthenticated, userController.delete);
   // User Eidt Page
-  app.post("/profile", ensureAuthenticated, userController.profile);
+  app.post("/user/edit", ensureAuthenticated, userController.profile);
   // Add User Page
   app.post("/register", ensureAuthenticated, userController.register);
   // Add User

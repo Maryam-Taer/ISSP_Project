@@ -6,7 +6,8 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        
+        <img src="./BCIT_logo.png" class="mx-auto d-block img-fluid logo" alt="BCIT Logo">
     </a>
 
     <!-- Divider -->
@@ -14,7 +15,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/submissionList">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -37,10 +38,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Components:</h6>
-            <form action="/profile" method="POST" id="profile">
-                <input name="role" type="hidden" value="<%= role %>"/>
-                <input name="username" type="hidden" value="<%= username %>"/>
-                <a class="collapse-item" href="javascript:{}" onclick="document.getElementById('profile').submit();">Profile</a>
+            <form action="/profile" method="get" id="profile">
+                <a class="collapse-item" href="/profile" >Profile</a>
             </form>
             <form action="/admin" method="POST" id="admin">
                 <input name="role" type="hidden" value="<%= role %>"/>
@@ -79,13 +78,13 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
             aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
             <span>Pages</span>
         </a>
-        <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
+        <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Login Screens:</h6>
