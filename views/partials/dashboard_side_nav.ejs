@@ -40,9 +40,11 @@
             <form action="/profile" method="get" id="profile">
                 <a class="collapse-item" href="/profile" >Profile</a>
             </form>
+            <% if (role == "admin") { %>
             <form action="/admin" method="POST" id="admin">
                 <a class="collapse-item" href="javascript:{}" onclick="document.getElementById('admin').submit();">Admin</a>
             </form>
+            <% } %>
             </div>
         </div>
     </li>
