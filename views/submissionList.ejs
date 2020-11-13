@@ -8,6 +8,7 @@
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/submissionlist.css">
     <link rel="stylesheet" href="/stylesheets/sd-admin_custom.css">
+    <link rel="stylesheet" href="/stylesheets/buttons.dataTables.css">
 </head>
 <body id="page-top">
     <!-- Page Wrapper -->
@@ -96,16 +97,17 @@ $(document).ready(function() {
         });}
     });
     var dt = $('#example').DataTable( {
+        dom: 'Bfrtip',
         buttons: [
-            {
-                extend: 'pdf',
-                text: 'Save current page',
-                exportOptions: {
-                    modifier: {
-                        page: 'current'
-                    }
-                }
+        {
+            extend: 'pdf',
+            orientation: 'landscape',
+            text: 'Export PDF',
+            exportOptions: {
+                columns: [ 0, 1, 2, 3, 4, 5,],
             }
+
+        }
         ],
         "orderCellsTop": true,
         "ordering": true,
@@ -195,4 +197,9 @@ $(document).ready(function() {
     
 } );
 </script>
+<script src=/js/dataTables.buttons.js></script>
+<script src=/js/buttons.html5.min.js></script>
+<script src=/js/jszip.min.js></script>
+<script src=/js/pdfmake.min.js></script>
+<script src=/js/vfs_fonts.js></script>
 </html>
