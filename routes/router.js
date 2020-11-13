@@ -28,10 +28,10 @@ module.exports = app => {
   app.post("/login", authController.loginuser);
   // Logout User
   app.get("/logout", authController.logoutuser);
-  // // Register Page
-  // app.get("/register", forwardAuthenticated, authController.register);
-  // // Register User
-  // app.post("/register", authController.registeruser);
+  // Register Page
+  app.get("/register_backup", forwardAuthenticated, authController.register);
+  // Register User
+  app.post("/register_backup", authController.registeruser);
 
   // User Profile Page
   app.get("/profile",ensureAuthenticated, userController.selfprofile);
