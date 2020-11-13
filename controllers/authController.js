@@ -2,7 +2,7 @@ var sql = require("../database")
 const passport = require('passport');
 
 exports.login = (req, res) => {
-    res.render('login')
+    res.render('login');
 };
 
 exports.loginuser = (req, res, next) => {
