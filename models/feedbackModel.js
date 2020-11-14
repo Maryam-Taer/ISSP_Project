@@ -35,7 +35,7 @@ Feedback.findAllById = async (id, result) => {
             return;
         }
         for (var i = 0; i < res.length; i++) {
-            res[i].feedback_time = moment(res[i].feedback_time).format("YYYY-MM-DD HH:mm:ss")
+            res[i].feedback_time = moment(res[i].feedback_time).format("YYYY-MM-DD HH:mm:ss");
         }
         // console.log(res)
         result(null, res);
