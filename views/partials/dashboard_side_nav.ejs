@@ -37,11 +37,11 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Components:</h6>
-            <form action="/profile" method="get" id="profile">
+            <form action="/profile" method="GET" id="profile">
                 <a class="collapse-item" href="/profile" >Profile</a>
             </form>
             <% if (role == "admin") { %>
-            <form action="/admin" method="POST" id="admin">
+            <form action="/admin" method="GET" id="admin">
                 <a class="collapse-item" href="javascript:{}" onclick="document.getElementById('admin').submit();">Admin</a>
             </form>
             <% } %>

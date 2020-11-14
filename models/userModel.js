@@ -60,14 +60,12 @@ User.updateByUsername = (username, hash, role, result) => {
                 result(null, err);
                 return;
             }
-
             if (res.affectedRows == 0) {
                 // not found Account with the username
                 result({ kind: "not_found" }, null);
                 return;
             }
-
-            console.log("updated user: ", { username: username, role: role});
+            // console.log("updated user: ", { username: username, role: role});
             result(null, { username: username});
         }
     );

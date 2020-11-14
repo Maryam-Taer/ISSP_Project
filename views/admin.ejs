@@ -21,6 +21,7 @@
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
+                        <%- include('partials/messages.ejs') %>
                         <form action="/register" method="GET" class="mb-4">
                             <button class="btn btn-outline-success" type="submit">Add User</button>
                         </form>
@@ -40,7 +41,7 @@
                                     <td><%=data.username %></td>
                                     <td><%=data.role %></td>
                                     <td>
-                                        <form action="/user/edit" method="POST">
+                                        <form action="/userProfile" method="GET">
                                             <input name="username" type="hidden" value="<%= data.username %>"/>
                                             <button class="btn btn-outline-success" type="submit">Edit</button>
                                         </form>
