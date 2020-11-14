@@ -7,18 +7,16 @@ exports.register = (req, res) => {
 };
 
 // Create and Save a new User
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     // Validate request
     if (!req.body) {
-        res.status(400).send({
-            message: "Content can not be empty!"
-        });
+        req.flash('error_msg', 'Content can not be empty!');
+        res.redirect("/register");
     }
-    // Create a user
-    // TODO: need to check if user exist 
+    // Create a user and Validate if password and password confirmation matches
     var password1 = req.body.password;
     var password2 = req.body.password2;
-    if (password1 == password2){
+    if (password1 == password2) {
         var role = (req.body.role) ? req.body.role : "reviewer";
         const user = new User({
             username: req.body.username,
@@ -26,18 +24,17 @@ exports.create = (req, res) => {
             role: role,
         });
         // Save User in the database
-        User.create(user, (err, data) => {
-            if (err)
-                res.status(500).send({
-                    message:
-                        (err.message || err)|| "Some error occurred while creating the User."
-                });
-            // Display in raw data
-            // else res.send(data);
-            else res.redirect('/submissionList');
+        await User.create(user, (err, data) => {
+            if (err) {
+                req.flash('error_msg', (err.message || err) || "Some error occurred while creating the User.");
+                res.redirect("/register");
+            }
+            else {
+                res.redirect('/submissionList');}
         });
-    } else{
-        res.send("verfiy password and confirm password do not match");
+    } else {
+        req.flash('error_msg', 'Passwords do not match; Please re-type them');
+        res.redirect("/register");
     }
 };
 

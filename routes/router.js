@@ -44,7 +44,7 @@ module.exports = app => {
   // User Eidt Page
   app.post("/user/edit", ensureAuthenticated, userController.profile);
   // Add User Page
-  app.post("/register", ensureAuthenticated, userController.register);
+  app.get("/register", ensureAuthenticated, userController.register);
   // Add User
   app.post("/user/add", ensureAuthenticated, userController.create);
 };

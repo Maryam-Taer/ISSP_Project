@@ -1,6 +1,6 @@
 var LocalStrategy = require('passport-local').Strategy;
 var mysql = require('mysql');
-var dbConfig = require("./dbConfig")
+var dbConfig = require("./dbConfig");
 var bcrypt = require('bcrypt');
 
 const saltRounds = 10;
@@ -72,7 +72,7 @@ module.exports = function(passport) {
 
 				return done(null, req.flash('success_msg', 'Register Completed, Please Log in'));
 				});	
-                })
+                });
 
             }	
 		});
@@ -106,7 +106,7 @@ module.exports = function(passport) {
                     // all is well, return successful user	
                     return done(null, rows[0]);	
                 } 
-            })
+            });
 		});
 		
 

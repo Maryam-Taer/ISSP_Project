@@ -12,7 +12,7 @@ User.create = (newUser, result) => {
         if (err)
             result(err, null);
         if (rows.length) {
-                result("username is already taken");
+                result("username is already taken", null);
                 return;
         } else {
             sql.query("INSERT INTO accounts SET ?", newUser, (err, res) => {
