@@ -99,7 +99,7 @@ exports.getAllUsers = async (req, res) => {
                 message:
                     err.message || "Some error occurred while retrieving the Submissions."
             });
-        else res.render('admin', { userData: data, username:req.body.username, role:req.body.role });
+        else res.render('admin', { userData: data, username:req.user.username, role:req.user.role });
     });
 };
 
