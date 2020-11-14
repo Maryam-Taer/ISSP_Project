@@ -1,5 +1,6 @@
 const Submission = require("../models/submissionModel");
 const Feedback = require("../models/feedbackModel");
+var async = require('async');
 
 
 // Create and Save a new Feedback
@@ -27,36 +28,49 @@ exports.submitFeedback = (req, res) => {
             });
         // Display in raw data
         // else res.send(data);
-        else res.redirect('/submissionList');
+        else {
+            res.redirect('/submissionList');
+        }
     });
 };
 
-// Feedback Page
-exports.feedback = async (req, res) => {
-    await Submission.findById(req.body.id, (err, submissionData) => {
-        if (err) {
-            if (err.kind === "not_found") {
-                res.status(404).send({
-                    message: `Not found Submission with id ${req.params.id}.`
-                });
-            } else {
-                res.status(500).send({
-                    message: "Error retrieving Submission with id " + req.params.id
-                });
-            }
-        } Feedback.findAllById(req.body.id, (err, data) => {
-            if (err){
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving the Submissions."
-            });
-            }
-            else {res.render('feedback', { returnData: data , feedbackData: submissionData, username: req.user.username });
-            }
+exports.feedback = (req, res) => {
+    async.series({
+        find_submission: function (callback) {
+            Submission.findById(req.body.id, (err, submissionData) => {
+                if (err) {
+                    if (err.kind === "not_found") {
+                        res.status(404).send({
+                            message: `Not found Submission with id ${req.params.id}.`
+                        });
+                    } else {
+                        res.status(500).send({
+                            message: "Error retrieving Submission with id " + req.params.id
+                        });
+                    }
+                } else {
+                    callback(err, submissionData);
+                }
         });
+        },
+        find_feedback: function (callback) {
+            Feedback.findAllById(req.body.id, (err, data) => {
+                if (err) {
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while retrieving the Submissions."
+                });
+                }
+                else {
+                    callback(err, data);
+                }
+            });
+        }
+    }, function(err, results) {
+        res.render('feedback', { role: req.user.role, username: req.user.username, returnData: results.find_feedback , feedbackData: results.find_submission });
     });
-    
 };
+
 
 exports.updateCategory = (req, res) => {
     // Validate Request
@@ -80,7 +94,9 @@ exports.updateCategory = (req, res) => {
                         message: "Error updating Submission with id " + req.body.id
                     });
                 }
-            } else res.redirect('/submissionList');
+            } else {
+                res.redirect('/submissionList');
+            }
         }
     );
 };

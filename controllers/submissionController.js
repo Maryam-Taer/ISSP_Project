@@ -64,7 +64,9 @@ exports.create = (req, res) => {
             });
         // Display in raw data
         // else res.send(data);
-        else res.redirect('/submission');
+        else {
+            res.redirect('/submission');
+        }
     });
 };
 
@@ -75,7 +77,9 @@ exports.getAll = async (req, res) => {
                 message:
                     err.message || "Some error occurred while retrieving the Submissions."
             });
-        else res.render('submissionList', { title: 'submission List', submissionData: data , username: req.user.username, role: req.user.role});
+        else {
+            res.render('submissionList', { title: 'submission List', submissionData: data , username: req.user.username, role: req.user.role});
+        }
     });
 };
 
@@ -96,7 +100,9 @@ exports.delete = (req, res) => {
                         message: "Could not delete Submission with id " + req.body.id
                     });
                 }
-            } else res.redirect('/submissionList');
+            } else {
+                res.redirect('/submissionList');
+            }
         });
     }
 };
@@ -119,7 +125,9 @@ exports.edit = async (req, res) => {
                         message: "Error retrieving Submission with id " + req.params.id
                     });
                 }
-            } else res.render('edit', { data: data , username: req.user.username});
+            } else {
+                res.render('edit', { data: data , username: req.user.username});
+            }
         });
     }
 };
@@ -152,7 +160,9 @@ exports.update = (req, res) => {
                             message: "Error updating Submission with id " + req.body.id
                         });
                     }
-                } else res.redirect('/submissionList');
+                } else {
+                    res.redirect('/submissionList');
+                }
             }
         );
     }

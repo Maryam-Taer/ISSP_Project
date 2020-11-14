@@ -1,9 +1,10 @@
 const User = require("../models/userModel");
 var bcrypt = require('bcrypt');
+var async = require('async');
 const saltRounds = 10;
 
 exports.register = (req, res) => {
-    res.render('register',{role:req.user.role, username:req.user.username  });
+    res.render('register',{ role:req.user.role, username:req.user.username });
 };
 
 // Create and Save a new User
@@ -65,7 +66,7 @@ exports.selfprofile = (req,res) => {
 
 // TODO: Need to check if password match 
 exports.edituser = (req, res) => {
-    // Validate Request
+    // Validate request
     if (!req.body) {
         res.status(400).send({
             message: "Content can not be empty!"
@@ -99,7 +100,9 @@ exports.getAllUsers = async (req, res) => {
                 message:
                     err.message || "Some error occurred while retrieving the Submissions."
             });
-        else res.render('admin', { userData: data, username:req.body.username, role:req.body.role });
+        else {
+            res.render('admin', { userData: data, username:req.user.username, role:req.user.role });
+        }
     });
 };
 
@@ -121,7 +124,9 @@ exports.delete = (req, res) => {
                         message: "Could not delete User with id " + req.body.id
                     });
                 }
-            } else res.redirect('/submissionList');
+            } else {
+                res.redirect('/submissionList');
+            }
         });
     }
 };
