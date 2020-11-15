@@ -1,10 +1,11 @@
 const Submission = require("../models/submissionModel");
-
+var issp = require("../config/issp_system");
+// When the server starts, update the deadline if it has expired.
+// issp.check()
 
 exports.index = (req, res) => {
     res.render('submission');
 };
-
 
 // Create and Save a new Submission
 exports.create = (req, res) => {
@@ -16,6 +17,12 @@ exports.create = (req, res) => {
     }
     var project_area_trans = (req.body.project_area) ? req.body.project_area.toString() : "empty";
     var hear_about_ISSP = (req.body.hear_about_ISSP == "Other") ? req.body.hear_about_ISSP_other : req.body.hear_about_ISSP;
+    var submission_time = new Date();
+    // Check and update the deadline if it has expired.
+    issp.check()
+
+    // Get the submission tag to assign term and year for project
+    var submission_tag = issp.get_submission_tag()
 
     // Create a submission
     const submission = new Submission({
@@ -23,7 +30,7 @@ exports.create = (req, res) => {
         category: "Not Assigned",
         year: "Not Assigned",
         term: "Not Assigned",
-        created_time: new Date(),
+        created_time: submission_time,
         street_address: req.body.street_address,
         address_line_2: req.body.address_line_2,
         city: req.body.city,
@@ -49,6 +56,8 @@ exports.create = (req, res) => {
         continuation_project: req.body.continuation_project,
         hear_about_ISSP: hear_about_ISSP,
         sponsor_commitments: req.body.sponsor_commitments,
+        assigned_year: submission_tag[0],
+        assigned_term: submission_tag[1]
     });
 
 

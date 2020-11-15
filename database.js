@@ -46,7 +46,9 @@ connection.connect(function (err) {
                             hardware_software_requirements varchar(255) not null,
                             continuation_project varchar(25),
                             hear_about_ISSP varchar(255),
-                            sponsor_commitments varchar(25)
+                            sponsor_commitments varchar(25),
+                            assigned_year varchar(25),
+                            assigned_term varchar(25)
                         )`;
 
     let createAccount = `create table if not exists accounts(

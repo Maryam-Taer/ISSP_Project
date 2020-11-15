@@ -35,6 +35,8 @@ const Submission = function (submission) {
     this.continuation_project = submission.continuation_project;
     this.hear_about_ISSP = submission.hear_about_ISSP;
     this.sponsor_commitments = submission.sponsor_commitments;
+    this.assigned_year = submission.assigned_year;
+    this.assigned_term = submission.assigned_term;
 };
 
 
