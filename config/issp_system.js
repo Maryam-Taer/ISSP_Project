@@ -84,4 +84,17 @@ module.exports = {
     get_submission_tag: ()=>{
         return [issp_system.submission_to_year,issp_system.submission_to_term]
     },
+    update_deadline: (year, month, day)=>{
+        issp_system.next_deadline = {
+            "year": year,
+            "month": month,
+            "day": day
+        }
+        fs.readFile("./config/issp_system.json",function(err,content){
+            if(err) throw err;
+            fs.writeFile("./config/issp_system.json",JSON.stringify(issp_system),function(err){
+              if(err) throw err;
+            })
+          })
+    }
 }
