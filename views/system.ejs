@@ -27,13 +27,17 @@
                                     <%- include('partials/messages.ejs') %>
                                     <form method="POST" action="/system/update">
                                         <div class="form-group">
-                                            <input class="form-control cus-input" type="input" name="username" value="" readonly>
+                                            <label for="deadline">Next Deadline:</label>
+                                            <input class="form-control" type="date" value="" id="deadline" name="deadline">
                                         </div>
                                         <div class="form-group">
-                                            <input class="form-control-plaintext cus-input" id='psw' type="password" name="password" placeholder="New Password" value="" required>
+                                            <label for="tag_year">Current Submissions assign to:</label>
+                                            <select  class="form-control" id ="tag_year" name="submission_year">
+                                            </select>
                                         </div>
                                         <div class="form-group">
-                                            <input class="form-control-plaintext cus-input" id='psw2' type="password" name="password2" placeholder="Confirm new Password" value="" required>
+                                            <select  class="form-control" id ="tag_term" name="submission_term">
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <input class="btn bcit-login" id="regbtn" type="submit" value="Update" style="width: 100%">
@@ -65,7 +69,49 @@
 
 </body>
 <script>
-    var deadline = <%- deadline %>
-    var tag = <%- tag %>
+    var submission_tag = <%- JSON.stringify(tag) %>
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+        return [year, month, day].join('-');
+    }
+
+    // format the date received
+    var deadline_formatted = formatDate(
+        <%- JSON.stringify(deadline.month) %> + " " + 
+        <%- JSON.stringify(deadline.day) %> + " " + 
+        <%- JSON.stringify(deadline.year) %>
+        )
+    // set deadline on input field to data stored.
+    document.getElementById("deadline").value = deadline_formatted;
+    
+
+    // dynamically generate option for submission year and set default value to data stored
+    var temp_year = new Date().getFullYear();
+    var year_list = [temp_year.toString(), (temp_year + 1).toString()]
+    var select = document.getElementById('tag_year');
+    var html = '';
+    for (var i = 0; i < year_list.length; i++) {
+        html += '<option value="' + year_list[i] + '">' + year_list[i] + '</option>'
+    }
+    select.innerHTML = html;
+    select.value = submission_tag[0]
+
+    // dynamically generate option for submission term and set default value to data stored
+    var term_list = ["winter", "summer", "fall"]
+    var select2 = document.getElementById('tag_term');
+    var html2 = '';
+    for (var i = 0; i < term_list.length; i++) {
+        html2 += '<option value="' + term_list[i] + '">' + term_list[i] + '</option>'
+    }
+    select2.innerHTML = html2;
+    select2.value = submission_tag[1]
+
 </script>
 </html>

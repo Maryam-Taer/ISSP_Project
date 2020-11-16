@@ -39,7 +39,7 @@ module.exports = {
                     issp_system.submission_to_term = "summer"
                     issp_system.submission_to_year = temp_year.toString()
                 }
-            // when the expired submission deadline is for summer term (Default deadline Mar 23 passed)
+                // when the expired submission deadline is for summer term (Default deadline Mar 23 passed)
             } else if (issp_system.submission_to_term == "summer") {
                 // Update new deadline to be This Year's fall term default deadline
                 issp_system.next_deadline = {
@@ -50,7 +50,7 @@ module.exports = {
                 // Update Tags to assign future submissions to This Year's fall
                 issp_system.submission_to_term = "fall"
                 issp_system.submission_to_year = temp_year.toString()
-            // when the expired submission deadline is for fall term (Default deadline Aug 01 passed)
+                // when the expired submission deadline is for fall term (Default deadline Aug 01 passed)
             } else if (issp_system.submission_to_term == "fall") {
                 // Update new deadline to be This Year's winter term default deadline
                 issp_system.next_deadline = {
@@ -63,58 +63,64 @@ module.exports = {
                 issp_system.submission_to_year = (parseInt(issp_system.next_deadline.year) + 1).toString()
             }
             // Update deadline variable for while loop
-            deadline = Date.parse(issp_system.next_deadline.day + " " + issp_system.next_deadline.month + " " + issp_system.next_deadline.year); 
+            deadline = Date.parse(issp_system.next_deadline.day + " " + issp_system.next_deadline.month + " " + issp_system.next_deadline.year);
             // add a count of while loop to check if the deadline updated
             loop_count += 1;
         }; // END While Loop
 
         // if deadline updated, write the updated changes to a JSON file
-        if (loop_count > 0){
-            fs.readFile("./config/issp_system.json",function(err,content){
-                if(err){
+        if (loop_count > 0) {
+            fs.readFile("./config/issp_system.json", function (err, content) {
+                if (err) {
                     res.status(500).send({
-                    message: `Error reading system file.`
-                });
-                }else{
-                    fs.writeFile("./config/issp_system.json",JSON.stringify(issp_system),function(err){
-                        if(err){
-                          res.status(500).send({
-                              message: `Error writing to system file.`
-                          });
+                        message: `Error reading system file.`
+                    });
+                } else {
+                    fs.writeFile("./config/issp_system.json", JSON.stringify(issp_system), function (err) {
+                        if (err) {
+                            res.status(500).send({
+                                message: `Error writing to system file.`
+                            });
                         };
-                      })
+                    })
                 }
-              })
+            })
         }
     },// END check function
-    get_deadline: ()=>{
+    get_deadline: () => {
         return issp_system.next_deadline
     },
-    get_submission_tag: ()=>{
-        return [issp_system.submission_to_year,issp_system.submission_to_term]
+    get_submission_tag: () => {
+        return [issp_system.submission_to_year, issp_system.submission_to_term]
     },
-    update_stat: (year, month, day, submission_year, submission_term)=>{
-        issp_system.next_deadline = {
+    update_stat: (year, month, day, submission_year, submission_term, req, res) => {
+        temp_deadline = {
             "year": year,
             "month": month,
             "day": day
         }
-        issp_system.submission_to_year = submission_year
-        issp_system.submission_to_term = submission_term
-        fs.readFile("./config/issp_system.json",function(err,content){
-            if(err){
-                res.status(500).send({
-                    message: `Error reading system file.`
-                });
-            }else{
-            fs.writeFile("./config/issp_system.json",JSON.stringify(issp_system),function(err){
-              if(err){
-                res.status(500).send({
-                    message: `Error writing to system file.`
-                });
-              };
+        if ((JSON.stringify(issp_system.next_deadline) == JSON.stringify(temp_deadline)) && (issp_system.submission_to_year == submission_year) && (issp_system.submission_to_term == submission_term)) {
+            req.flash('error_msg', 'Nothing has changed!');
+        } else {
+            issp_system.next_deadline = temp_deadline
+            issp_system.submission_to_year = submission_year
+            issp_system.submission_to_term = submission_term
+            fs.readFile("./config/issp_system.json", function (err, content) {
+                if (err) {
+                    res.status(500).send({
+                        message: `Error reading system file.`
+                    });
+                } else {
+                    fs.writeFile("./config/issp_system.json", JSON.stringify(issp_system), function (err) {
+                        if (err) {
+                            res.status(500).send({
+                                message: `Error writing to system file.`
+                            });
+                        };
+                    })
+                }
             })
-            }
-        })
+            req.flash('success_msg', 'Updated system Successfully!');
+        }
     }
 }
