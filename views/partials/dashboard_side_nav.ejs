@@ -38,16 +38,23 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">User Management:</h6>
             <form action="/profile" method="GET" id="profile">
-                <a class="collapse-item" href="/profile" >Profile</a>
+                <a class="collapse-item" href="/profile" >My Profile</a>
             </form>
             <% if (role == "admin") { %>
-            <form action="/admin" method="GET" id="admin">
-                <a class="collapse-item" href="javascript:{}" onclick="document.getElementById('admin').submit();">Admin</a>
-            </form>
+                <a class="collapse-item" href="/admin" >Account Management</a>
             <% } %>
             </div>
         </div>
     </li>
+
+    <!-- Nav Item - System Settings -->
+    <% if (role == "admin") { %>
+    <li class="nav-item">
+        <a class="nav-link" href="/system">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Submission System Settings</span></a>
+    </li>
+    <% } %>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">

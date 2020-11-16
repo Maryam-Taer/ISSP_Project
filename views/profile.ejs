@@ -28,23 +28,26 @@
                                     <%- include('partials/messages.ejs') %>
                                     <form method="POST" action="/user/edit">
                                         <div class="form-group">
+                                            <label for="username">Username:</label>
                                             <input class="form-control cus-input" type="input" name="username" value="<%= username %>" readonly>
                                         </div>
-                                        
-                                        <% if (role == "admin") { %>
-                                            <div class="form-group">
-                                                <input class="form-control cus-input" type="input" name="role" value="<%= role %>">
-                                            </div>
-                                        <% } else { %>
-                                            <div class="form-group">
-                                                <input class="form-control cus-input" type="input" name="role" value="<%= role %>" readonly>
-                                            </div>
-                                         <% } %>
                                         <div class="form-group">
-                                            <input class="form-control-plaintext cus-input" id='psw' type="password" name="password" placeholder=" Password" required>
+                                            <label for="role">Role:</label>
+                                            <% if (role == "admin") { %>
+                                            <select class="form-control cus-input" name="role" value="<%= role %>">
+                                                <option value="admin">admin</option>
+                                                <option value="reviewer">reviewer</option>
+                                            </select>
+                                            <% } else { %>
+                                            <input class="form-control cus-input" type="input" name="role" value="<%= role %>" readonly>
+                                            <% } %>
+                                        </div>
+                                        <p>Change Password:</p>
+                                        <div class="form-group">
+                                            <input class="form-control-plaintext cus-input" id='psw' type="password" name="password" placeholder=" New Password" required>
                                         </div>
                                         <div class="form-group">
-                                            <input class="form-control-plaintext cus-input" id='psw2' type="password" name="password2" placeholder=" Confirm your Password" required>
+                                            <input class="form-control-plaintext cus-input" id='psw2' type="password" name="password2" placeholder=" Confirm your New Password" required>
                                         </div>
                                         <div class="form-group">
                                             <input class="btn bcit-login" id="regbtn" type="submit" value="Submit" style="width: 100%">
