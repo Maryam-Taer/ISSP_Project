@@ -14,7 +14,7 @@ exports.loginuser = (req, res, next) => {-
 };
 
 exports.logoutuser = (req, res) => {
-    req.logOut()
+    req.logOut();
     req.flash('success_msg', 'Logged out successfully');
     res.redirect('/login'); 
 };

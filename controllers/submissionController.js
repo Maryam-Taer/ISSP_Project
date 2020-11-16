@@ -17,17 +17,15 @@ exports.create = (req, res) => {
     var hear_about_ISSP = (req.body.hear_about_ISSP == "Other") ? req.body.hear_about_ISSP_other : req.body.hear_about_ISSP;
     var submission_time = new Date();
     // Check and update the deadline if it has expired.
-    issp.check()
+    issp.check();
 
     // Get the submission tag to assign term and year for project
-    var submission_tag = issp.get_submission_tag()
+    var submission_tag = issp.get_submission_tag();
 
     // Create a submission
     const submission = new Submission({
         company_name: req.body.company_name,
         category: "Not Assigned",
-        year: "Not Assigned",
-        term: "Not Assigned",
         created_time: submission_time,
         street_address: req.body.street_address,
         address_line_2: req.body.address_line_2,
@@ -133,7 +131,7 @@ exports.edit = async (req, res) => {
                     });
                 }
             } else {
-                res.render('edit', { data: data , username: req.user.username});
+                res.render('edit', { data: data , username: req.user.username, role: req.user.role});
             }
         });
     }

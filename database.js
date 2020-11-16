@@ -18,8 +18,6 @@ connection.connect(function (err) {
     let createIssp = `create table if not exists issp(
                             id int primary key auto_increment,
                             category varchar(255),
-                            year varchar(255),
-                            term varchar(255),
                             company_name varchar(255) not null,
                             created_time DATETIME not null,
                             street_address varchar(255) not null,

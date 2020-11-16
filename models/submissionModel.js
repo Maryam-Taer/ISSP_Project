@@ -8,8 +8,6 @@ const Submission = function (submission) {
     this.company_name = submission.company_name;
     this.created_time = submission.created_time;
     this.category = submission.category;
-    this.year = submission.year;
-    this.term = submission.term;
     this.street_address = submission.street_address;
     this.address_line_2 = submission.address_line_2;
     this.city = submission.city;
@@ -63,8 +61,8 @@ Submission.getAll = result => {
             return;
         }
         for (var i = 0; i < res.length; i++) {
-            res[i].created_time = moment(res[i].created_time).format("YYYY-MM-DD HH:mm:ss")
-        };
+            res[i].created_time = moment(res[i].created_time).format("YYYY-MM-DD HH:mm:ss");
+        }
 
         // console.log("submissions: ", res);
         result(null, res);
@@ -103,8 +101,8 @@ Submission.findById = (id, result) => {
         if (res.length) {
             // console.log("found submission: ", res[0]);
             for (var i = 0; i < res.length; i++) {
-                res[i].created_time = moment(res[i].created_time).format("YYYY-MM-DD HH:mm:ss")
-            };
+                res[i].created_time = moment(res[i].created_time).format("YYYY-MM-DD HH:mm:ss");
+            }
             result(null, res[0]);
             return;
         }

@@ -49,19 +49,19 @@
 								<div class="form-inline mt-2">
 									<div class="form-group">
 										<b>Year:</b>
-										<input type="text" name="year" class="form-control"
-											value="<%= feedbackData.year ? feedbackData.year : '' %>"> <br>
+										<input type="text" name="assigned_year" class="form-control"
+											value="<%= feedbackData.assigned_year ? feedbackData.assigned_year : '' %>"> <br>
 									</div>
 								</div>
 								<div class="form-inline mt-2">
 									<div class="form-check">
 										<b>Term:</b>
 										<%
-									  var options = [ "Winter", "Spring/Summer", "Fall", "Not Assigned" ];
+									  var options = [ "winter", "summer", "fall", "Not Assigned" ];
 									  for ( var i = 0; i < options.length; i++ ) 
-									  { var checked=( feedbackData.term == options[i] )? "checked" : ""
+									  { var checked=( feedbackData.assigned_term == options[i] )? "checked" : ""
 										; %>
-										<input type="radio" name="term" class="form-check-input"
+										<input type="radio" name="assigned_term" class="form-check-input"
 											value="<%=options[ i ] %>" <%=checked %>><label
 											class="mr-1"><%=options[i]%></label>
 										<%

@@ -46,8 +46,8 @@ Feedback.findAllById = async (id, result) => {
 // Update category
 Feedback.category = async (id, submission, result) => {
     await sql.query(
-        "UPDATE issp SET category = ?, year = ?, term = ? WHERE id = ?",
-        [submission.category, submission.year, submission.term, id],
+        "UPDATE issp SET category = ?, assigned_year = ?, assigned_term = ? WHERE id = ?",
+        [submission.category, submission.assigned_year, submission.assigned_term, id],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
