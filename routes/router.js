@@ -2,6 +2,7 @@ var submissionController = require("../controllers/submissionController");
 var authController = require("../controllers/authController");
 var feedbackController = require("../controllers/feedbackController");
 var userController = require("../controllers/userController");
+var systemController = require("../controllers/systemController");
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 module.exports = app => {
@@ -47,4 +48,8 @@ module.exports = app => {
   app.get("/register", ensureAuthenticated, userController.register);
   // Add User
   app.post("/user/add", ensureAuthenticated, userController.create);
+  // System Page
+  app.get("/system", ensureAuthenticated, systemController.get_stats);
+  // Update System Variable
+  app.post("/system/update", ensureAuthenticated, systemController.set_stats);
 };

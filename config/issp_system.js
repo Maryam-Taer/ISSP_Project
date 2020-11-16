@@ -71,10 +71,19 @@ module.exports = {
         // if deadline updated, write the updated changes to a JSON file
         if (loop_count > 0){
             fs.readFile("./config/issp_system.json",function(err,content){
-                if(err) throw err;
-                fs.writeFile("./config/issp_system.json",JSON.stringify(issp_system),function(err){
-                  if(err) throw err;
-                })
+                if(err){
+                    res.status(500).send({
+                    message: `Error reading system file.`
+                });
+                }else{
+                    fs.writeFile("./config/issp_system.json",JSON.stringify(issp_system),function(err){
+                        if(err){
+                          res.status(500).send({
+                              message: `Error writing to system file.`
+                          });
+                        };
+                      })
+                }
               })
         }
     },// END check function
@@ -84,17 +93,28 @@ module.exports = {
     get_submission_tag: ()=>{
         return [issp_system.submission_to_year,issp_system.submission_to_term]
     },
-    update_deadline: (year, month, day)=>{
+    update_stat: (year, month, day, submission_year, submission_term)=>{
         issp_system.next_deadline = {
             "year": year,
             "month": month,
             "day": day
         }
+        issp_system.submission_to_year = submission_year
+        issp_system.submission_to_term = submission_term
         fs.readFile("./config/issp_system.json",function(err,content){
-            if(err) throw err;
+            if(err){
+                res.status(500).send({
+                    message: `Error reading system file.`
+                });
+            }else{
             fs.writeFile("./config/issp_system.json",JSON.stringify(issp_system),function(err){
-              if(err) throw err;
+              if(err){
+                res.status(500).send({
+                    message: `Error writing to system file.`
+                });
+              };
             })
-          })
+            }
+        })
     }
 }

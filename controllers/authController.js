@@ -5,7 +5,7 @@ exports.login = (req, res) => {
     res.render('login');
 };
 
-exports.loginuser = (req, res, next) => {
+exports.loginuser = (req, res, next) => {-
     passport.authenticate('local-login', {
         successRedirect: '/submissionList',
         failureRedirect: '/login',

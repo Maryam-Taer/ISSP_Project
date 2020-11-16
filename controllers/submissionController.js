@@ -1,7 +1,5 @@
 const Submission = require("../models/submissionModel");
 var issp = require("../config/issp_system");
-// When the server starts, update the deadline if it has expired.
-issp.check()
 
 exports.index = (req, res) => {
     res.render('submission');
