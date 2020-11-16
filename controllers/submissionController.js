@@ -1,3 +1,4 @@
+var async = require("async")
 const Submission = require("../models/submissionModel");
 var issp = require("../config/issp_system");
 
@@ -76,16 +77,21 @@ exports.create = (req, res) => {
 };
 
 exports.getAll = async (req, res) => {
-    await Submission.getAll((err, data) => {
+    async.parallel([
+        Submission.getAll,
+        Submission.get_year_term
+    ], function (err, results) {
         if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving the Submissions."
-            });
-        else {
-            res.render('submissionList', { title: 'submission List', submissionData: data , username: req.user.username, role: req.user.role});
-        }
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while retrieving the Submissions."
+        });
+    else {
+        res.render('submissionList', { title: 'submission List', submissionData: JSON.stringify(results[0]), year_term: JSON.stringify(results[1]) , username: req.user.username, role: req.user.role});
+    }
     });
+
+    
 };
 
 exports.delete = (req, res) => {

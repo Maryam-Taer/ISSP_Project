@@ -6,8 +6,10 @@ exports.get_stats = (req, res) => {
             message: `Your role cannot perform this action!.`
         });
     } else {
-        var deadline = issp.get_deadline();
-        var submission_tag = issp.get_submission_tag();
+        // Check and update the deadlines if it has expired.
+        issp.check()
+        var deadline = issp.get_deadline()
+        var submission_tag = issp.get_submission_tag()
         res.render('system', { title: 'System Variable', deadline: deadline, tag: submission_tag , username: req.user.username, role: req.user.role});
     }
 };

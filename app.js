@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt');
 var issp = require("./config/issp_system");
 
-// When the server starts, update the deadlines if it has expired.
+// When the server starts, Check and update the deadlines if it has expired.
 issp.check()
 
 // Passport Config
