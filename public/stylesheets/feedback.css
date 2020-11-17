@@ -5,6 +5,7 @@
     width:40;
     border:1px solid #bbb;
     margin:50px;
+    color: #003C71;
 }
 .titleBox {
     background-color:#fdfdfd;
@@ -66,6 +67,10 @@
 .actionBox {
     border-top:1px dotted #bbb;
     padding:10px;
+    color: black;
+}
+.category{
+    color:black;
 }
 
 

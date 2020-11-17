@@ -27,7 +27,7 @@
 				<div class="container-fluid">
 					<div class="detailBox">
 						<div class="titleBox">
-							<label>Comment Box</label>
+							<h2>Comment Box</h2>
 						</div>
 						<div class="commentBox">
 							<p class="taskDescription">ID: <%= feedbackData.id %></p>
@@ -36,7 +36,7 @@
 							<form action="/submission/updateCategory" method="POST">
 								<input type="hidden" name="project_id" value="<%= feedbackData.id %>">
 								<label for="category">Current Submissions assign to:</label>
-								<div class="form-check">
+								<div class="form-check category">
 									<%
 										var options = [ "CIT", "CST", "Both", "Full Stack Development", "Not Assigned"];
 										for ( var i = 0; i < options.length; i++ ) 
@@ -47,8 +47,7 @@
 										}
 										%>
 								</div>
-								<div class="form-inline mt-2">
-									<div class="form-group">
+									<div class="form-group  mt-2">
 										<select name="assigned_year" class="form-control col-md-3">
 											<% 
 												var temp_year = new Date().getFullYear();
@@ -59,7 +58,6 @@
 											} %>
 										</select>
 									</div>
-								</div>
 								<div class="form-group mt-2">
 											<select name="assigned_term" class="form-control col-md-3">
 											<%
