@@ -8,7 +8,7 @@ const User = function (user) {
 };
 
 User.create = (newUser, result) => {
-    sql.query("select * from accounts where username = ?", + newUser.username.toLowerCase(), (err,rows) => {
+    sql.query("select * from accounts where username = ?", newUser.username.toLowerCase(), (err,rows) => {
         if (err)
             result(err, null);
         if (rows.length) {

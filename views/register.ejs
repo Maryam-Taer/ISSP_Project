@@ -29,11 +29,18 @@
                                     <%- include('partials/messages.ejs') %>
                                     <form method="POST" action="/user/add">
                                         <div class="form-group">
+                                            <label for="username">Username:</label>
                                             <input class="form-control cus-input" type="input" name="username" placeholder=" Username" required>
                                         </div>
                                         <div class="form-group">
-                                            <input class="form-control cus-input" type="input" name="role" placeholder="Role">
+                                            <label for="role">Role:</label>
+                                            <select class="form-control cus-input" name="role">
+                                                <option value="" disabled selected hidden>Select User's Role</option>
+                                                <option value="admin">admin</option>
+                                                <option value="reviewer">reviewer</option>
+                                            </select>
                                         </div>
+                                        <p>Password:</p>
                                         <div class="form-group">
                                             <input class="form-control-plaintext cus-input" id='psw' type="password" name="password" placeholder=" Password" required>
                                         </div>
