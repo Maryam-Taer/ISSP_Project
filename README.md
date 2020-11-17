@@ -42,7 +42,6 @@ To improve the functionality of the submission process, we decided to integrate 
     5. Auto Documents generation (PDF, Word)
     6. Interface(s) to filter/Edit/Categorization projects
     7. Interface to make notes/comments/feedback on each project
-    8. Accounts/Credentials to Login for faculty members & staff 
 
     Out of scope:
     1. Automated Google Sheet generation
