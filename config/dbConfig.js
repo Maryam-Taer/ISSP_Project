@@ -1,6 +1,6 @@
 module.exports = {
     host: 'localhost', // Replace with your host name
-    user: 'root',      // Replace with your database username
-    password: 'root',      // Replace with your database password
-    database: 'issp' // // Replace with your database Name
+    user: 'cp_cs_submission',      // Replace with your database username
+    password: 'Sbq*95i2',      // Replace with your database password
+    database: 'cp_cst-issp_ISSP' // // Replace with your database Name
 };

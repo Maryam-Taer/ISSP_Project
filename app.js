@@ -54,11 +54,12 @@ app.use(function(req, res, next) {
 });
 
 app.get("/", (req, res) => {
-  res.json({ message: "Available path /submission , /submissionList, /login, /register" });
+  //  res.json({ message: "Available path /submission , /submissionList" });
+  res.render("submission")
 });
 
 require('./routes/router')(app);
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000.");
+app.listen(process.env.PORT, () => {
+  console.log("Server is running on environment Port.");
 });
