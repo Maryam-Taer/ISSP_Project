@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>ISSP Submission Portal</title>
+	<link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+	<h1>ISSP Project Submission</h1>
+	<form action="/submission/create" method="POST">
+		<h2>Company</h2>
+		<h3>Company Name</h3>
+		<input type="text" name="company_name" required>
+
+		<h3>Address</h3>
+		<label>Street</label> <br>
+		<input type="text" name="street_address"> <br>
+		<label>Address Line 2</label> <br>
+		<input type="text" name="address_line_2"> <br>
+		<label>City</label> <br>
+		<input type="text" name="city"> <br>
+		<label>Province</label> <br>
+		<select name="province">
+			<option value="BC">British Columbia</option>
+			<option value="AB">Alberta</option>
+			<option value="MA">Manitoba</option>
+		</select><br>
+		<label>Postal Code</label> <br>
+		<input type="text" name="postal_code"> <br>
+
+		<h3>Phone</h3>
+		<input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone">
+
+		<h3>Website</h3>
+		<input type="text" value="https://" name="website"> <br><br>
+
+		<input type="checkbox" value="on" name="non_profit_organization">
+		<label>My company is a non-profit organization, governmental body or part of BCIT, and the fee of $500 will be
+			waived</label>
+
+		<h3>Company/Business profile</h3>
+		<label>(include the nature of business and an introduction, less than 150 words)</label> <br>
+		<textarea name="company_business_profile"></textarea>
+
+		<h2>Contact Person</h2>
+
+		<h3>Salutation</h3>
+		<select name="prefix">
+			<option value="mr">Mr.</option>
+			<option value="mrs">Mrs.</option>
+			<option value="ms">Ms.</option>
+		</select><br>
+
+		<h3>Name</h3>
+		<div class="firstname">
+			<label>First</label> <br>
+			<input type="text" name="first"> <br>
+		</div>
+		<div class="lastname">
+			<label>Last</label> <br>
+			<input type="text" name="last"> <br>
+		</div>
+
+		<h3>Position Name</h3>
+		<input type="text" name="position">
+
+		<h3>Phone</h3>
+		<input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="personal_phone">
+
+		<h3>Email</h3>
+		<input type="text" name="email">
+
+		<h2>Project</h2>
+
+		<h3>Project area (check whichever applicable)</h3>
+		<input type="checkbox" name="project_area" value="DevOps"> <label>DevOps</label> <br>
+		<input type="checkbox" name="project_area" value="Networking"> <label>Networking</label> <br>
+		<input type="checkbox" name="project_area" value="Web Development"> <label>Web Development</label> <br>
+		<input type="checkbox" name="project_area" value="Mobile Development"> <label>Mobile Development</label> <br>
+		<input type="checkbox" name="project_area" value="Scripting/IT"> <label>Scripting/IT</label> <br>
+		<input type="checkbox" name="project_area" value="Games"> <label>Games</label> <br>
+		<input type="checkbox" name="project_area" value="AR/VR"> <label>AR/VR</label> <br>
+		<input type="checkbox" name="project_area" value="Machine Learning/Algorithms/Research"> <label>Machine
+			Learning/Algorithms/Research</label> <br>
+		<input type="checkbox" name="project_area" value="Other"> <label>Other</label>
+
+		<br>
+		<h3>Project Description</h3>
+		<textarea name="project_description"></textarea> <br>
+		<label>Please include a detailed description of the project with well-defined goals and expectations. See hints
+			for successful proposals <a href="">here</a></label>
+		<h3>Project Duration/Timing</h3>
+		<textarea name="project_duration"></textarea> <br>
+		<label>Please see the <a href="">ISSP Options</a> table for more information</label>
+		<br>
+		<br>
+		<input type="checkbox" value="on" name="project_duration_no_preference"> <label>I have no preference on the
+			duration or
+			timing on the project</label>
+
+		<h3>Description of the current arrangement</h3>
+		<textarea name="current_arrangement"></textarea> <br>
+		<label>If applicable, describe how the tasks are currently carried out, current status of the information,
+			etc.</label>
+
+		<h3>If coding is required, what programming language or languages would be used?</h3>
+		<textarea name="programming_language"></textarea>
+
+		<h3>Hardware & Software Requirements</h3>
+		<textarea name="hardware_software_requirements"></textarea>
+
+		<h3>Is this a continuation of a previous student project?</h3>
+		<input type="radio" value="yes" name="continuation_project"> <label>Yes</label>
+		<input type="radio" value="no" name="continuation_project"> <label>No</label>
+
+		<h3>How did you hear about ISSP?</h3>
+		<input type="radio" name="hear_about_ISSP" value="BCIT website"> <label>BCIT's website</label> <br>
+		<input type="radio" name="hear_about_ISSP" value="BCIT email message"> <label>BCIT's email message</label>
+		<br>
+		<input type="radio" name="hear_about_ISSP" value="BCIT internal announcements"> <label>BCIT internal
+			announcements</label>
+		<br>
+		<input type="radio" name="hear_about_ISSP" value="Ad on LinkedIn"> <label>Ad on LinkedIn</label> <br>
+		<input type="radio" name="hear_about_ISSP" value="Ad on T-Net"> <label>Ad on T-Net</label> <br>
+		<input type="radio" name="hear_about_ISSP" value="Company I work for"> <label>Company I work for</label> <br>
+		<input type="radio" name="hear_about_ISSP" value="BC Technology Industry"> <label>BC Technology Industry
+			Association</label> <br>
+		<input type="radio" name="hear_about_ISSP" value="BC Innovation Council"> <label>BC Innovation Council</label>
+		<br>
+		<input type="radio" name="hear_about_ISSP" value="Other">
+		<input type="text" name="hear_about_ISSP_other" value="Other">
+
+		<h2>Sponsor Commitments</h2>
+		<input type="checkbox" value="on" name="sponsor_commitments"> <label>I've read and understood all commitments
+			required from
+			a sponsor, including the participation fee of $500.</label> <br>
+		<a href="">See commitments</a>
+		<br><br>
+		<button type="submit">Submit</button>
+	</form>
+
+</body>
+
+</html>

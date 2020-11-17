@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower|Monoton|Orbitron|Permanent+Marker|Raleway|Teko");
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+
+.cus-login{
+  max-width: 540px;
+  background-color: white;;
+  color: #003C71;
+  vertical-align: middle;
+}
+
+.cus-input {
+  background-color : whitesmoke;
+  color: black;
+  display: block;
+  width: 100%;
+  height: 38px;
+  margin: 0;
+  padding: 8px;
+  font-size: .875rem;
+  line-height: 1.5;
+  border: 1px solid #bfbfbf;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 2px #cccccc;
+}
+
+.cus-modal{
+  max-width: 400px;
+  background-color: #1b212c;
+  color: white;
+}
+
+.cus-modal-in{
+  background-color: #364052;
+  color: white;
+}
+
+.bcit-login{
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0;
+    padding: 10px 20px;
+    font: bold;
+    font-size: 1rem;
+    line-height: 1;
+    text-align: middle;
+    text-decoration: none;
+    background-color: #bfbfbf;
+    border: 0 none;
+    border-top: 1px solid rgba(0, 0, 0, 0);
+    border-bottom: 1px solid #999999;
+    border-radius: 3px;
+    cursor: default;
+    color: #ffffff;
+    background-color: #66a000;
+    border-bottom-color: #4c7700;
+}
+
+.bcit-login:hover{
+  color: #ffffff;
+  background-color: #73b400;
+}
+
+.tooltip-inner {
+  max-width: 300px;
+}
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#message p {
+  padding: 5px 5px;
+  font-size: 14px;
+}
+
+#message2 {
+    display:none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+}
+  
+#message2 p {
+    padding: 5px 5px;
+    font-size: 14px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -10px;
+  content: "✓";
+}
+
+/* Add a red text color and an "x" icon when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -10px;
+  content: "✘";
+}
+
+.homett, .homett:hover, .homett:focus{
+  color: antiquewhite;
+  font-weight: bold;
+}
+
+.gohome, .gohome:hover, .gohome:focus{
+  color:white;
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+  float: left;
+}
+
+.card-header {
+  background-color: #686868;
+  margin-left: -15px;
+  margin-right: -15px;
+}

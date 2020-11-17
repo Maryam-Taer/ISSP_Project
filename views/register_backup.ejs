@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BCIT ISSP Submission Login</title>
+
+    <link rel="stylesheet" href="./stylesheets/login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container justify-content-center text-center">
+        <div class="card col-md-5 mx-auto cus-login">
+            <div class="card-header">
+                <img src="./BCIT_logo.png" class="mx-auto d-block img-fluid logo" alt="BCIT Logo">
+              </div>
+            <div class="card-body align-middle">
+                <h2>ISSP Submission Management Register</h2>
+                <div>
+                    <%- include('partials/messages.ejs') %>
+                    <form method="POST" action="/register_backup">
+                    <div class="form-group">
+                        <input class="form-control-plaintext cus-input" type="text" name="username" placeholder=" Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control-plaintext cus-input" id='psw' type="password" name="password" placeholder=" Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control-plaintext cus-input" id='psw2' type="password" name="password2" placeholder=" Confirm your Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn bcit-login" id="regbtn" type="submit" value="Register" style="width: 100%" disabled>
+                    </div>
+                    <div id="message">
+                        <h5>Password must contain the following:</h5>
+                        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                        <p id="number" class="invalid">A <b>number</b></p>
+                        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                    </div>
+                    <div id="message2">
+                        <p id="match" class="invalid"><b>Password</b> Match</p>
+                    </div>
+                </form>
+                <a type="button" href="/login">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./js/strong_psw.js"></script>
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+</html>

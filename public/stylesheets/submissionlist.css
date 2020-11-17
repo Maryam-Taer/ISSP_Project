@@ -1,0 +1,9 @@
+td.details-control {
+    background: url('/details_open.png') no-repeat center center;
+    cursor: pointer;
+    width: 20px;
+}
+tr.shown td.details-control {
+    background: url('/details_close.png') no-repeat center center;
+    width: 20px;
+}
