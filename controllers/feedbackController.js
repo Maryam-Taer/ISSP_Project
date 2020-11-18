@@ -3,6 +3,20 @@ const Feedback = require("../models/feedbackModel");
 var async = require('async');
 
 
+
+
+exports.feedbackList = (req, res) => {
+    Feedback.getAll((err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving the Submissions."
+            });
+        else res.render('feedbackList',{ feedbackList: data, username: req.user.username, role: req.user.role });
+    });
+};
+
+
 // Create and Save a new Feedback
 exports.submitFeedback = (req, res) => {
     // Validate request
@@ -29,7 +43,7 @@ exports.submitFeedback = (req, res) => {
         // Display in raw data
         // else res.send(data);
         else {
-            res.redirect('/submissionList');
+            res.redirect('/feedbackList');
         }
     });
 };
@@ -95,7 +109,7 @@ exports.updateCategory = (req, res) => {
                     });
                 }
             } else {
-                res.redirect('/submissionList');
+                res.redirect('/feedbackList');
             }
         }
     );

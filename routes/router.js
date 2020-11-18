@@ -21,6 +21,8 @@ module.exports = app => {
   app.get("/submission/edit", ensureAuthenticated, submissionController.edit);
   // Edit a project
   app.post("/submission/update", ensureAuthenticated, submissionController.update);
+  // Feedback List Page
+  app.get("/feedbackList", ensureAuthenticated, feedbackController.feedbackList);
   // Feedback Page
   app.post("/submission/feedback",ensureAuthenticated, feedbackController.feedback);
   // Submit Feedback
