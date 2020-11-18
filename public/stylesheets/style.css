@@ -2,15 +2,63 @@
 	color: rgb(0, 31, 139);
 }
 
-/*:not(h1) :not(h2) :not(h3) {
-	font-size: 30px;
-}*/
+@font-face {
+    font-family: ArialCE;
+    src: url("/font/ArialCE.woff");
+}
 
+@font-face {
+    font-family: ArialCE_Bold;
+    src: url("/font/ArialCEBold.woff");
+}
 
-h1 {
-	font-size: 40px;
-	padding-bottom: 20px;
+#ISSPheader{
+	color: #5a5a5a;
+    font-size: 24px;
+    line-height: 1.4;
+	letter-spacing: -.2px;
 	margin: 0px;
+}
+
+body{
+	font-family: 'ArialCE_Bold', cursive !important;
+	color: #003c71 !important;
+}
+
+.underline{
+	text-decoration: none;
+	border-bottom: 3px solid #fff400;
+}
+
+.underline:hover{
+	text-decoration: none;
+	color: #003c71;
+	border-bottom: 3px solid #003c71;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.custom-tooltip{
+	border-radius: 50%; 
+	text-align: center; 
+	height: 17px; 
+	width: 20px; 
+	background-color: white!important; 
+	border-color: black!important; 
+	color: black!important; 
+	font-size: 7px; 
+	cursor: pointer; 
+	border-width: 2px;
+}
+
+.custom-tooltip:hover{
+	background-color: rgb(255, 234, 46)!important;
 }
 
 h2 {
@@ -24,6 +72,9 @@ h3 {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	margin: 0px;
+	font-size: 24px;
+    line-height: 1.4;
+    letter-spacing: -.2px;
 }
 
 select {
@@ -41,11 +92,25 @@ input {
 	margin-bottom: 5px;
 }
 
-/*.firstname {
-	float: left;
+@media (min-width: 960px){
+	p {
+		margin-bottom: 24px;
+	}
+	#ISSPheader{
+		font-size: 38px;
+		padding-bottom: 20px;
+	}
+
 }
 
-.lastname {
-	float: left;
-	padding-left: 10px;
-}*/
+@media (min-width: 768px){
+	h3 {
+		font-size: 32px;
+		line-height: 1.25;
+		letter-spacing: -.4px;
+	}
+	#ISSPheader{
+		font-size: 32px;
+		padding-bottom: 10px;
+	}
+}

@@ -59,9 +59,11 @@ module.exports = app => {
 
   // Handle unassigned GET request
   app.get('*', function(req, res) {
+    // if user is authenticated, redirect to dashboard home page
     if (req.isAuthenticated()){
       res.redirect("/submissionList");
     }else{
+      // if user is not authenticated, redirect to submission page.
       res.redirect("/");
     }
   }); 

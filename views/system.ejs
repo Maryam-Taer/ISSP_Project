@@ -26,7 +26,7 @@
                                 <h2>System Settings</h2>
                                 <div>
                                     <%- include('partials/messages.ejs') %>
-                                    <form method="POST" action="/system/update">
+                                    <form method="POST" id="sys_update" action="/system/update">
                                         <div class="form-group">
                                             <label for="deadline">Next Deadline:</label>
                                             <input class="form-control" type="date" value="" id="deadline" name="deadline">
@@ -83,11 +83,12 @@
         return [year, month, day].join('-');
     }
 
-    // format the date received
+    // format the deadline date received
+    var deadline_parsed = <%- JSON.stringify(deadline) %>
     var deadline_formatted = formatDate(
-        <%- JSON.stringify(deadline.month) %> + " " + 
-        <%- JSON.stringify(deadline.day) %> + " " + 
-        <%- JSON.stringify(deadline.year) %>
+        deadline_parsed.month + " " + 
+        deadline_parsed.day + " " + 
+        deadline_parsed.year
         )
     // set deadline on input field to data stored.
     document.getElementById("deadline").value = deadline_formatted;
@@ -113,6 +114,31 @@
     }
     select2.innerHTML = html2;
     select2.value = submission_tag[1]
+
+    $('#sys_update').on('submit', function () {
+        var year_value = select.value
+        var term_value = select2.value
+        var deadline_value = document.getElementById("deadline").value
+        console.log(year_value)
+        console.log(term_value)
+        console.log(deadline_value)
+        console.log(submission_tag)
+        console.log(deadline_parsed)
+        var months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+        let deadline_date = deadline_value.split("-");
+        deadline_date[1] = months[deadline_date[1]-1]
+        console.log(deadline_date)
+        
+        var deadline_compare = (deadline_date[0]==deadline_parsed.year)&&(deadline_date[1]==deadline_parsed.month)&&(deadline_date[2]==deadline_parsed.day)
+        console.log(deadline_compare)
+        if (!((submission_tag[0]==year_value)&&(submission_tag[1]==term_value)&&deadline_compare)){
+            if ((new Date(deadline_date.join(' ')) < (new Date()))){
+                return confirm('Are you sure you want to update the new deadline to a time in the past?\
+                \nThe system will automatically end the submission for the current term.')
+            }
+            return confirm("Are you sure you want to update the next deadline to "+ deadline_value + " for the term: "+ year_value + " "+ term_value + "?")
+        }
+    } );
 
 </script>
 </html>

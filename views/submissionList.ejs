@@ -214,6 +214,7 @@ $(document).ready(function() {
         temp_option.innerHTML = year_term_list[i].year_term
         temp_option.value = year_term_list[i].year_term
         if (i == 0){
+            // initialize filter based on first item in year_term selection.
             document.getElementById("table_year_term").value = year_term_list[i].year_term
             var temp_year_term = year_term_list[i].year_term.split(" ")
             dt

@@ -5,67 +5,74 @@
 	<title>ISSP Project Submission Form - BCIT</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="icon" type="image/png" sizes="32x32" href="./android-chrome-192x192.png"><!-- Need to get it from plesk -->
+	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="icon" type="image/png" sizes="32x32" href="./android-chrome-192x192.png">
+	<!-- Need to get it from plesk -->
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
 	<div class="container">
-
+		<!-- Logo -->
 		<a href="https://www.bcit.ca/" target="_blank"><img src="/BCIT_logo.png" style="width:100px;height:auto;"></a>
 
 		<br><br><br>
-
+		<!-- Link to ISSP Home & Admin Portal -->
 		<div class="bs-example">
 			<ul class="nav nav-pills mb-5">
 				<li class="nav-item">
-					<a href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/" target="_blank" 
-						style="background-color: rgb(0, 60, 113);"
-						class="nav-link active">Homepage</a>
+					<a href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/"
+						target="_blank" style="background-color: rgb(0, 60, 113);" class="nav-link active">ISSP Homepage</a>
 				</li>
-		
+
 				<li class="nav-item dropdown ml-auto">
-					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" style="background-color: rgb(0, 60, 113); color: white;">Admin</a>
+					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+						style="background-color: rgb(0, 60, 113); color: white;">Admin</a>
 					<div class="dropdown-menu dropdown-menu-right">
 						<a href="https://issp.bcit.ca/login" target="_blank" class="dropdown-item">Management Portal</a>
 					</div>
 				</li>
 			</ul>
 		</div>
-		<!-- <form action="https://issp.bcit.ca/login" target="_blank">
-			<button class="btn btn-primary" type="submit" style="position: absolute; right: 50px; top: 50px; background-color: rgb(0, 60, 113);">Management Portal</button>
-		</form> -->
 
-		<div class="someText">	
-			<p>The ISSP program runs every September, January and April (see ISSP Options Table for details of project terms). Submission deadlines are August 1, December 1, and March 23.<br><br>
-
-				Please fill out the project submission form below. Projects received after the deadlines will be saved for the next term.
-				
-				<br><br><b>Important:</b> Before submitting a project, please read 
-				<a href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/" target="_blank" 
-				style="text-decoration: rgb(255, 234, 46) underline;">about ISSP</a>,
-
-				check out the <a href="https://www.youtube.com/watch?v=tCeVkom4tuI&feature=youtu.be" target="_blank" 
-				style="text-decoration: rgb(255, 234, 46) underline;">ISSP Intro Video</a> 
-				
-				or review the <a href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/frequently-asked-questions/" target="_blank" 
-				style="text-decoration: rgb(255, 234, 46) underline;">frequently asked questions</a> 
-				
+		<!-- First Section Text-->
+		<div class="someText">
+			<p>The ISSP program runs every September, January and April (see <a class="underline"
+					href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/#terms"
+					target="_blank">ISSP Options Table</a> for details of project
+				terms). Submission deadlines are August 1, December 1, and March 23.</p>
+		
+			<p>Please fill out the project submission form below. Projects received after the deadlines will be saved
+				for the next term.</p>
+		
+			<p><b>Important:</b> Before submitting a project, please read
+				<a class="underline"
+					href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/"
+					target="_blank">about ISSP</a>,
+		
+				check out the <a class="underline" href="https://www.youtube.com/watch?v=tCeVkom4tuI&feature=youtu.be"
+					target="_blank">ISSP Intro Video</a>
+		
+				or review the <a class="underline"
+					href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/frequently-asked-questions/"
+					target="_blank">frequently asked questions</a>
+		
 				pages to familiarize with the Program.</p>
 		</div>
-		
+
 		<h1 id="ISSPheader">ISSP project submission</h1>
 		<div class=row>
-			<div class="col-lg-6 col-sm-12 col-xs-12 col-md-12">
+			<div class="col-lg-6">
 
 				<form action="/submission/create" method="POST">
-					<br><h2><strong>Company</strong></h2>
+					<br>
+					<h2><strong>Company</strong></h2>
 					<h3><strong>Company Name</strong></h3>
 					<input type="text" class="form-control" name="company_name" required><br>
 
-					<br><h3><strong>Address</strong></h3>
+					<br>
+					<h3><strong>Address</strong></h3>
 					<label>Street</label> <br>
 					<input type="text" class="form-control" name="street_address"> <br>
 					<label>Address Line 2</label> <br>
@@ -84,38 +91,46 @@
 					<label>Postal Code</label> <br>
 					<input type="text" class="form-control" name="postal_code"> <br>
 
-					<br><h3><strong>Phone</strong></h3>
+					<br>
+					<h3><strong>Phone</strong></h3>
 					<input type="tel" class="form-control phone" name="phone"><br>
 
-					<br><h3><strong>Website</strong></h3>
+					<br>
+					<h3><strong>Website</strong></h3>
 					<input type="text" class="form-control" value="https://" name="website"> <br><br>
 
 					<div class="form-check">
 						<input type="checkbox" class="form-check-input" value="on" name="non_profit_organization">
 						<label class="form-check-label">
-							My company is a non-profit organization, governmental body or part of BCIT, and the fee of $500 will be
+							My company is a non-profit organization, governmental body or part of BCIT, and the fee of
+							$500 will be
 							waived
 						</label>
 					</div>
 
-					<br><hr class="style14"/><br>
+					<br>
+					<hr class="style14" /><br>
 
-					<br><h3><strong>Company/Business profile</strong></h3>
+					<br>
+					<h3><strong>Company/Business profile</strong></h3>
 					<label>(include the nature of business and an introduction, less than 150 words)</label> <br>
 					<textarea rows="10" class="form-control" name="company_business_profile"></textarea>
 
-					<br><hr class="style14"/><br>
+					<br>
+					<hr class="style14" /><br>
 
-					<br><h2><strong>Contact Person</strong></h2>
+					<br>
+					<h2><strong>Contact Person</strong></h2>
 
 					<h3><strong>Salutation</strong></h3>
-					<select name="prefix">
+					<select class="form-control" name="prefix">
 						<option value="mr">Mr.</option>
 						<option value="mrs">Mrs.</option>
 						<option value="ms">Ms.</option>
 					</select><br>
 
-					<br><h3><strong>Name</strong></h3>
+					<br>
+					<h3><strong>Name</strong></h3>
 					<div class="firstname">
 						<label>First Name</label> <br>
 						<input type="text" name="first" class="form-control"> <br>
@@ -125,33 +140,34 @@
 						<input type="text" name="last" class="form-control"> <br>
 					</div>
 
-					<br><h3><strong>Position</strong></h3>
+					<br>
+					<h3><strong>Position</strong></h3>
 					<input type="text" name="position" class="form-control">
 
-					<br><h3><strong>Phone</strong></h3>
-					<input type="tel" class="form-control phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="personal_phone">
+					<br>
+					<h3><strong>Phone</strong></h3>
+					<input type="tel" class="form-control phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+						name="personal_phone">
 
-					<br><h3><strong>Email</strong></h3>
+					<br>
+					<h3><strong>Email</strong></h3>
 					<input type="text" name="email" class="form-control">
 
-					<br><hr class="style14"/><br>
+					<br>
+					<hr class="style14" /><br>
 
-					<br><h2><strong>Project</strong></h2>
+					<br>
+					<h2><strong>Project</strong></h2>
 
 					<h3><strong>Project area (check whichever applicable)</strong></h3>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]" value="DevOps"> 
+							<input class="form-check-input" type="checkbox" name="project_area[]" value="DevOps">
 							<label class="form-check-label">DevOps</label>
 
-							<button type="button" style="border-radius: 50%; text-align: center; height: 17px; 
-												width: 20px; background-color: white; border-color: black; color: black; 
-												font-size: 7px; cursor: pointer; border-width: 2px;"
-								id="tooltipId" onmouseover="mouseover()" onmouseout="mouseout()"
-								class="btn-outline-info toggle-tooltip m-2" 
-								data-toggle="tooltip" data-placement="right" 
-								title="A set of practices that combines software 
+							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
+								data-toggle="tooltip" data-placement="right" title="A set of practices that combines software 
 								development (Dev) and IT operations (Ops).">
 								<strong>i</strong>
 							</button>
@@ -160,259 +176,265 @@
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]" value="Networking"> 
+							<input class="form-check-input" type="checkbox" name="project_area[]" value="Networking">
 							<label class="form-check-label">Networking</label>
 
-							<button type="button" style="border-radius: 50%; text-align: center; height: 17px; 
-												width: 20px; background-color: white; border-color: black; color: black; 
-												font-size: 7px; cursor: pointer; border-width: 2px;"
-								id="tooltipId1" onmouseover="mouseover1()" onmouseout="mouseout1()"
-								class="btn-outline-info toggle-tooltip m-2" 
-								data-toggle="tooltip" data-placement="right" 
+							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
+								data-toggle="tooltip" data-placement="right"
 								title="It is the practice of transporting and exchanging data between nodes over a shared medium in an information system.">
-							<strong>i</strong>
+								<strong>i</strong>
 							</button>
 						</div>
 					</from>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]" value="Web Development"> 
+							<input class="form-check-input" type="checkbox" name="project_area[]"
+								value="Web Development">
 							<label class="form-check-label">Web Development</label>
 
-							<button type="button" style="border-radius: 50%; text-align: center; height: 17px; 
-												width: 20px; background-color: white; border-color: black; color: black; 
-												font-size: 7px; cursor: pointer; border-width: 2px;"
-								id="tooltipId2" onmouseover="mouseover2()" onmouseout="mouseout2()"
-								class="btn-outline-info toggle-tooltip m-2" 
-								data-toggle="tooltip" data-placement="right" 
+							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
+								data-toggle="tooltip" data-placement="right"
 								title="It is the building and maintenance of websites that happens behind the scenes to make a website look great.">
-							<strong>i</strong>
+								<strong>i</strong>
 							</button>
 						</div>
 					</from>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]]" value="Mobile Development"> 
+							<input class="form-check-input" type="checkbox" name="project_area[]]"
+								value="Mobile Development">
 							<label class="form-check-label">Mobile Development</label>
 
-							<button type="button" style="border-radius: 50%; text-align: center; height: 17px; 
-												width: 20px; background-color: white; border-color: black; color: black; 
-												font-size: 7px; cursor: pointer; border-width: 2px;"
-								id="tooltipId3" onmouseover="mouseover3()" onmouseout="mouseout3()"
-								class="btn-outline-info toggle-tooltip m-2" 
-								data-toggle="tooltip" data-placement="right" 
+							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
+								data-toggle="tooltip" data-placement="right"
 								title="It is the set of processes and procedures involved in writing software for mobile devices.">
-							<strong>i</strong>
+								<strong>i</strong>
 							</button>
 						</div>
 					</from>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]" value="Scripting/IT"> 
+							<input class="form-check-input" type="checkbox" name="project_area[]" value="Scripting/IT">
 							<label class="form-check-label">Scripting/IT</label>
 
-							<button type="button" style="border-radius: 50%; text-align: center; height: 17px; 
-												width: 20px; background-color: white; border-color: black; color: black; 
-												font-size: 7px; cursor: pointer; border-width: 2px;"
-								id="tooltipId4" onmouseover="mouseover4()" onmouseout="mouseout4()"
-								class="btn-outline-info toggle-tooltip m-2" 
-								data-toggle="tooltip" data-placement="right" 
+							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
+								data-toggle="tooltip" data-placement="right"
 								title="Scripting is the process of using a scripting languages to automate the execution of tasks that could alternatively be executed one-by-one by a human operator.">
-							<strong>i</strong>
+								<strong>i</strong>
 							</button>
 						</div>
 					</from>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]" value="Games"> 
+							<input class="form-check-input" type="checkbox" name="project_area[]" value="Games">
 							<label class="form-check-label">Games</label>
 
-							<button type="button" style="border-radius: 50%; text-align: center; height: 17px; 
-												width: 20px; background-color: white; border-color: black; color: black; 
-												font-size: 7px; cursor: pointer; border-width: 2px;"
-								id="tooltipId5" onmouseover="mouseover5()" onmouseout="mouseout5()"
-								class="btn-outline-info toggle-tooltip m-2" 
-								data-toggle="tooltip" data-placement="right" 
+							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
+								data-toggle="tooltip" data-placement="right"
 								title="Scripting is the process of using a scripting languages to automate the execution of tasks that could alternatively be executed one-by-one by a human operator.">
-							<strong>i</strong>
+								<strong>i</strong>
 							</button>
 						</div>
 					</from>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]" value="AR/VR"> 
+							<input class="form-check-input" type="checkbox" name="project_area[]" value="AR/VR">
 							<label class="form-check-label">AR/VR</label>
 
-							<button type="button" style="border-radius: 50%; text-align: center; height: 17px; 
-												width: 20px; background-color: white; border-color: black; color: black; 
-												font-size: 7px; cursor: pointer; border-width: 2px;"
-								id="tooltipId6" onmouseover="mouseover6()" onmouseout="mouseout6()"
-								class="btn-outline-info toggle-tooltip m-2" 
-								data-toggle="tooltip" data-placement="right" 
-								title="AV is short for Audiovisual Technology which contains audio and video systems like video cameras. <br>VR is short for Virtual Reality that refers to a computer-generated simulation in which a person can interact whithin an artificial 3D environment using electronic devives.">
-							<strong>i</strong>
+							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
+								data-toggle="tooltip" data-placement="right"
+								title="Augumented Reality(AR) is an interactive experience of a real-world environment where the objects that reside in the real world are enhanced by computer-generated visuals. Virtual Reality(VR) refers to a computer-generated simulation in which a person can interact whithin an artificial 3D environment using electronic devives.">
+								<strong>i</strong>
 							</button>
 						</div>
 					</from>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]" value="Machine Learning/Algorithms/Research"> 
+							<input class="form-check-input" type="checkbox" name="project_area[]"
+								value="Machine Learning/Algorithms/Research">
 							<label class="form-check-label">Machine Learning/Algorithms/Research</label>
 
-							<button type="button" style="border-radius: 50%; text-align: center; height: 17px; 
-												width: 20px; background-color: white; border-color: black; color: black; 
-												font-size: 7px; cursor: pointer; border-width: 2px;"
-								id="tooltipId7" onmouseover="mouseover7()" onmouseout="mouseout7()"
-								class="btn-outline-info toggle-tooltip m-2" 
-								data-toggle="tooltip" data-placement="right" 
+							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
+								data-toggle="tooltip" data-placement="right"
 								title="automate key areas of your development workflow (CI/CD pipelines, build processes, scripting, etc.) and build your cloud infrastructure; or let our students help scale existing (legacy) software, migrate to cloud, and introduce proper development processes">
-							<strong>i</strong>
+								<strong>i</strong>
 							</button>
 						</div>
 					</from>
-				
+
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" name="project_area[8]" value="Other"> 
+						<input class="form-check-input" type="checkbox" name="project_area[8]" value="Other">
 						<label class="form-check-label">Other</label>
 					</div>
 
 					<br>
 
-					<hr class="style14"/><br>
+					<hr class="style14" /><br>
 
-					<br><h3><strong>Project Description</strong></h3>
-					<p>This is a crucial part of your submission since your description will be published in 
-						the Projects Catalogue. Our students will determine their project choice primarily 
-						on the information you provide. Please include a detailed description of the project 
-						with well-defined goals and expectations. See also <a href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/frequently-asked-questions/" target="_blank" style="text-decoration: underline;">our hints for successful proposals</a>.</p><br>
+					<br>
+					<h3><strong>Project Description</strong></h3>
+					<p>This is a crucial part of your submission since your description will be published in
+						the Projects Catalogue. Our students will determine their project choice primarily
+						on the information you provide. Please include a detailed description of the project
+						with well-defined goals and expectations. See also <a
+							href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/frequently-asked-questions/"
+							target="_blank" style="text-decoration: underline;">our hints for successful proposals</a>.
+					</p><br>
 
 					<textarea rows="10" class="form-control" name="project_description"></textarea> <br>
 
-					<br><hr class="style14"/><br>
+					<br>
+					<hr class="style14" /><br>
 
-					<br><h3><strong>Project Duration/Timing</strong></h3>
+					<br>
+					<h3><strong>Project Duration/Timing</strong></h3>
 					<textarea rows="10" class="form-control" name="project_duration"></textarea> <br>
-					<label>Please see the <a href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/#terms" target="_blank" style="text-decoration: rgb(255, 234, 46) underline;">ISSP Options</a> table for more information</label>
+					<label>Please see the <a
+							href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/#terms"
+							target="_blank" class="underline">ISSP Options</a> table
+						for more information</label>
 					<br>
 					<br>
 
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="on" name="project_duration_no_preference"> 
+						<input class="form-check-input" type="checkbox" value="on"
+							name="project_duration_no_preference">
 						<label class="form-check-label">I have no preference on the
 							duration or
 							timing on the project</label>
 					</div>
 
-					<br><hr class="style14"/><br>
+					<br>
+					<hr class="style14" /><br>
 
-					<br><h3><strong>Description of the current arrangement</strong></h3>
+					<br>
+					<h3><strong>Description of the current arrangement</strong></h3>
 					<textarea rows="10" class="form-control" name="current_arrangement"></textarea> <br>
-					<label>If applicable, describe how the tasks are currently carried out, current status of the information,
+					<label>If applicable, describe how the tasks are currently carried out, current status of the
+						information,
 						etc.</label>
 
-					<br><hr class="style14"/><br>
+					<br>
+					<hr class="style14" /><br>
 
-					<br><h3><strong>If coding is required, what programming language or languages would be used?</strong></h3>
+					<br>
+					<h3><strong>If coding is required, what programming language or languages would be used?</strong>
+					</h3>
 					<textarea rows="10" class="form-control" name="programming_language"></textarea>
 
-					<br><hr class="style14"/><br>
+					<br>
+					<hr class="style14" /><br>
 
-					<br><h3><strong>Hardware & Software Requirements</strong></h3>
+					<br>
+					<h3><strong>Hardware & Software Requirements</strong></h3>
 					<textarea rows="10" class="form-control" name="hardware_software_requirements"></textarea>
 
-					<br><hr class="style14"/><br>
+					<br>
+					<hr class="style14" /><br>
 
-					<br><h3><strong>Is this a continuation of a previous student project?</strong></h3>
+					<br>
+					<h3><strong>Is this a continuation of a previous student project?</strong></h3>
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" value="yes" name="continuation_project"> 
+						<input class="form-check-input" type="radio" value="yes" name="continuation_project">
 						<label class="form-check-label">Yes</label><br>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" value="no" name="continuation_project"> 
+						<input class="form-check-input" type="radio" value="no" name="continuation_project">
 						<label class="form-check-label">No</label>
 					</div>
 
-					<br><hr class="style14"/><br>
+					<br>
+					<hr class="style14" /><br>
 
-					<br><h3><strong>How did you hear about ISSP?</strong></h3>
+					<br>
+					<h3><strong>How did you hear about ISSP?</strong></h3>
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT website"> 
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT website">
 						<label class="form-check-label">BCIT's website</label> <br>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT email message"> 
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT email message">
 						<label class="form-check-label">BCIT's email message</label>
 						<br>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT internal announcements"> 
+						<input class="form-check-input" type="radio" name="hear_about_ISSP"
+							value="BCIT internal announcements">
 						<label class="form-check-label">BCIT internal
 							announcements</label>
 						<br>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Ad on LinkedIn"> 
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Ad on LinkedIn">
 						<label class="form-check-label">Ad on LinkedIn</label> <br>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Ad on T-Net"> 
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Ad on T-Net">
 						<label class="form-check-label">Ad on T-Net</label> <br>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Company I work for"> 
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Company I work for">
 						<label class="form-check-label">Company I work for</label> <br>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BC Technology Industry"> 
+						<input class="form-check-input" type="radio" name="hear_about_ISSP"
+							value="BC Technology Industry">
 						<label class="form-check-label">BC Technology Industry
 							Association</label> <br>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BC Innovation Council"> 
+						<input class="form-check-input" type="radio" name="hear_about_ISSP"
+							value="BC Innovation Council">
 						<label class="form-check-label">BC Innovation Council</label>
 						<br>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Other"> <input type="text" value="Other">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Other"> <input
+							type="text" value="Other">
 					</div>
 
-					<br><hr class="style14"/><br>
+					<br>
+					<hr class="style14" /><br>
 
-					<br><h2><strong>Sponsor Commitments</strong></h2>
+					<br>
+					<h2><strong>Sponsor Commitments</strong></h2>
 
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="on" name="sponsor_commitments"> 
+						<input class="form-check-input" type="checkbox" value="on" name="sponsor_commitments">
 						<label class="form-check-label">I've read and understood all commitments
 							required from
 							a sponsor, including the participation fee of $500.</label> <br>
 					</div>
 
-					<a href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/#commitments" target="_blank" style="text-decoration: rgb(255, 234, 46) underline;">See commitments</a>
+					<a href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/#commitments"
+						target="_blank" class="underline">See commitments</a>
 					<br><br>
 
-					<br><hr class="style14"/><br>
+					<br>
+					<hr class="style14" /><br>
 
-					<br><h2><strong>Consent</strong></h2>
+					<br>
+					<h2><strong>Consent</strong></h2>
 
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="on" name="sponsor_commitments"> 
+						<input class="form-check-input" type="checkbox" value="on" name="sponsor_commitments">
 						<label class="form-check-label">I agree to the privacy policy.</label> <br><br>
 					</div>
 
@@ -420,7 +442,8 @@
 						If not, please let us know.
 					</p>
 
-					<button class="btn btn-primary" type="submit" style="background-color: rgb(0, 60, 113);">SEND</button>
+					<button class="btn btn-primary" type="submit"
+						style="background-color: rgb(0, 60, 113);">SEND</button>
 				</form>
 			</div>
 		</div>
@@ -429,71 +452,13 @@
 	<script src="/vendor/jquery/jquery.js"></script>
 	<script src="/vendor/jquery/jquery.inputmask.js"></script>
 	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>-->
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 	<script>
-		$(document).ready(function(){
-			$('[data-toggle="tooltip"]').tooltip();   
+		$(document).ready(function () {
+			$('[data-toggle="tooltip"]').tooltip();
 			$('.phone').inputmask("(999)-999-9999");
 		});
 	</script>
-	<script> 
-		function mouseover() { 
-			document.getElementById("tooltipId").style.backgroundColor = "rgb(255, 234, 46)"; 
-		}
-		function mouseout() { 
-			document.getElementById("tooltipId").style.backgroundColor = "white"; 
-		}
-		
-		function mouseover1() { 
-			document.getElementById("tooltipId1").style.backgroundColor = "rgb(255, 234, 46)"; 
-		}
-		function mouseout1() { 
-			document.getElementById("tooltipId1").style.backgroundColor = "white"; 
-		}  
-
-		function mouseover2() { 
-			document.getElementById("tooltipId2").style.backgroundColor = "rgb(255, 234, 46)"; 
-		}
-		function mouseout2() { 
-			document.getElementById("tooltipId2").style.backgroundColor = "white"; 
-		}  
-
-		function mouseover3() { 
-			document.getElementById("tooltipId3").style.backgroundColor = "rgb(255, 234, 46)"; 
-		}
-		function mouseout3() { 
-			document.getElementById("tooltipId3").style.backgroundColor = "white"; 
-		}  
-
-		function mouseover4() { 
-			document.getElementById("tooltipId4").style.backgroundColor = "rgb(255, 234, 46)"; 
-		}
-		function mouseout4() { 
-			document.getElementById("tooltipId4").style.backgroundColor = "white"; 
-		}  
-
-		function mouseover5() { 
-			document.getElementById("tooltipId5").style.backgroundColor = "rgb(255, 234, 46)"; 
-		}
-		function mouseout5() { 
-			document.getElementById("tooltipId5").style.backgroundColor = "white"; 
-		}  
-
-		function mouseover6() { 
-			document.getElementById("tooltipId6").style.backgroundColor = "rgb(255, 234, 46)"; 
-		}
-		function mouseout6() { 
-			document.getElementById("tooltipId6").style.backgroundColor = "white"; 
-		}  
-
-		function mouseover7() { 
-			document.getElementById("tooltipId7").style.backgroundColor = "rgb(255, 234, 46)"; 
-		}
-		function mouseout7() { 
-			document.getElementById("tooltipId7").style.backgroundColor = "white"; 
-		}  
-
-
-	</script>
 </body>
+
 </html>
