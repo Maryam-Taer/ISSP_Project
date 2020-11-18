@@ -5,9 +5,8 @@ const saltRounds = 10;
 
 exports.register = (req, res) => {
     if (req.user.role != 'admin') {
-        res.status(404).send({
-            message: `Your role cannot perform this action!.`
-        });
+        res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
+        );
     } else {
         res.render('register',{ role:req.user.role, username:req.user.username });
     }
@@ -17,9 +16,8 @@ exports.register = (req, res) => {
 exports.create = async (req, res) => {
     // Validate request
     if (req.user.role != 'admin') {
-        res.status(404).send({
-            message: `Your role cannot perform this action!.`
-        });
+        res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
+        );
     } else if (!req.body) {
         req.flash('error_msg', 'Content can not be empty!');
         res.redirect("/register");
@@ -56,9 +54,8 @@ exports.create = async (req, res) => {
 
 exports.profile = async (req,res) => {
     if (req.user.role != 'admin') {
-        res.status(404).send({
-            message: `Your role cannot perform this action!.`
-        });
+        res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
+        );
     } else {
         // var username = JSON.stringify(req.body.username);
         var username = JSON.stringify(req.query.username);
@@ -89,9 +86,8 @@ exports.selfprofile = (req,res) => {
 exports.edituser = async (req, res) => {
     // Validate request
     if (req.user.role != 'admin') {
-        res.status(404).send({
-            message: `Your role cannot perform this action!.`
-        });
+        res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
+        );
     } else if (!req.body) {
         req.flash('error_msg', 'Content can not be empty!');
         res.redirect("/userProfile?username="+req.body.username);
@@ -138,9 +134,8 @@ exports.edituser = async (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
     if (req.user.role != 'admin') {
-        res.status(404).send({
-            message: `Your role cannot perform this action!.`
-        });
+        res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
+        );
     } else {
         await User.getAll((err, data) => {
             if (err)
@@ -155,10 +150,9 @@ exports.getAllUsers = async (req, res) => {
 
 
 exports.delete = (req, res) => {
-    if (req.user.role != 'admin'){
-        res.status(404).send({
-            message: `Your role cannot perform this action!.`
-        });
+    if (req.user.role != 'admin') {
+        res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
+        );
     } else {
         User.delete(req.body.id, (err, data) => {
             if (err) {

@@ -95,10 +95,9 @@ exports.getAll = async (req, res) => {
 };
 
 exports.delete = (req, res) => {
-    if (req.user.role != 'admin'){
-        res.status(404).send({
-            message: `Your role cannot perform this action!.`
-        });
+    if (req.user.role != 'admin') {
+        res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
+        );
     } else {
         Submission.delete(req.body.id, (err, data) => {
             if (err) {
@@ -120,10 +119,9 @@ exports.delete = (req, res) => {
 
 
 exports.edit = async (req, res) => {
-    if (req.user.role != 'admin'){
-        res.status(404).send({
-            message: `Your role cannot perform this action!.`
-        });
+    if (req.user.role != 'admin') {
+        res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
+        );
     } else {
         await Submission.findById(req.query.id, (err, data) => {
             if (err) {
@@ -152,10 +150,9 @@ exports.update = (req, res) => {
         });
     }
     // Role based access
-    if (req.user.role != 'admin'){
-        res.status(404).send({
-            message: `Your role cannot perform this action!.`
-        });
+    if (req.user.role != 'admin') {
+        res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
+        );
     } else {
         Submission.updateById(
             req.body.id,
