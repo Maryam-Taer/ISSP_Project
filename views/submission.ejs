@@ -5,9 +5,8 @@
 	<title>ISSP Project Submission Form - BCIT</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/stylesheets/style.css">
-	<link rel="stylesheet" href="/ISSP_Project-develop/public/stylesheets/bootstrap-4.5.3/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<link rel="icon" type="image/png" sizes="32x32" href="./android-chrome-192x192.png">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="icon" type="image/png" sizes="32x32" href="./android-chrome-192x192.png"><!-- Need to get it from plesk -->
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
 </head>
@@ -15,7 +14,7 @@
 <body>
 	<div class="container">
 
-		<a href="https://www.bcit.ca/" target="_blank"><img src="./bcit_cmyk.jpg"></a>
+		<a href="https://www.bcit.ca/" target="_blank"><img src="/BCIT_logo.png" style="width:100px;height:auto;"></a>
 
 		<br><br><br>
 
@@ -86,7 +85,7 @@
 					<input type="text" class="form-control" name="postal_code"> <br>
 
 					<br><h3><strong>Phone</strong></h3>
-					<input type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone"><br>
+					<input type="tel" class="form-control phone" name="phone"><br>
 
 					<br><h3><strong>Website</strong></h3>
 					<input type="text" class="form-control" value="https://" name="website"> <br><br>
@@ -130,7 +129,7 @@
 					<input type="text" name="position" class="form-control">
 
 					<br><h3><strong>Phone</strong></h3>
-					<input type="tel" class="form-control" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="personal_phone">
+					<input type="tel" class="form-control phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="personal_phone">
 
 					<br><h3><strong>Email</strong></h3>
 					<input type="text" name="email" class="form-control">
@@ -427,12 +426,14 @@
 		</div>
 	</div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="/vendor/jquery/jquery.js"></script>
+	<script src="/vendor/jquery/jquery.inputmask.js"></script>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>-->
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 	<script>
 		$(document).ready(function(){
-		$('[data-toggle="tooltip"]').tooltip();   
+			$('[data-toggle="tooltip"]').tooltip();   
+			$('.phone').inputmask("(999)-999-9999");
 		});
 	</script>
 	<script> 
@@ -491,6 +492,7 @@
 		function mouseout7() { 
 			document.getElementById("tooltipId7").style.backgroundColor = "white"; 
 		}  
+
 
 	</script>
 </body>

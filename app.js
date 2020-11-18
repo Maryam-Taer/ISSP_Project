@@ -53,10 +53,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.json({ message: "Available path /submission , /submissionList, /login, /register" });
-});
-
 require('./routes/router')(app);
 
 app.listen(3000, () => {
