@@ -59,6 +59,10 @@ module.exports = app => {
 
   // Handle unassigned GET request
   app.get('*', function(req, res) {
-    res.redirect("/");
-  });
+    if (req.isAuthenticated()){
+      res.redirect("/submissionList");
+    }else{
+      res.redirect("/");
+    }
+  }); 
 };
