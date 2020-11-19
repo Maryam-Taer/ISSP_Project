@@ -36,7 +36,8 @@
                                 <th></th>
                             </thead>
                             <tbody>
-                                <% if(feedbackList.length!=0) {var i=0; feedbackList.forEach(function(data){ %>
+                                <% if (feedbackList.length!=0) {var i=0; feedbackList.forEach(function(data){ %>
+                                    <% var last_comment = (data.feedback_time == "No Comment Yet") ? data.feedback_time: data.feedback_time + " by " + data.feedback_user %>
                                 <tr>
                                     <td><%=data.id %></td>
                                     <td><%=data.created_time %></td>
@@ -45,7 +46,7 @@
                                     <td><%=data.assigned_term %></td>
                                     <td><%=data.company_name %></td>
                                     <td><%=data.project_description %></td>
-                                    <td><%=data.last_comment %></td>
+                                    <td><%=last_comment %></td>
                                     <td>
                                          <form action="/submission/feedback" method="POST" >
                                                 <input name="id" type="hidden" value="<%= data.id %>"/>
