@@ -78,12 +78,12 @@ Feedback.getAll = result => {
         for (var i = 0; i < res.length; i++) {
             res[i].created_time = moment(res[i].created_time).format("YYYY-MM-DD HH:mm:ss");
             if (res[i].feedback_time != null) {
-                res[i].feedback_time = moment(res[i].last_comment).format("YYYY-MM-DD HH:mm:ss");
+                res[i].feedback_time = moment(res[i].feedback_time).format("YYYY-MM-DD HH:mm:ss");
             } else {
                 res[i].feedback_time = "No Comment Yet";
             }
         }
-        // console.log(res);
+        console.log(res);
         result(null, res);
     });
 };
