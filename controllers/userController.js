@@ -85,48 +85,82 @@ exports.selfprofile = (req,res) => {
 
 exports.edituser = async (req, res) => {
     // Validate request
-    if (req.user.role != 'admin') {
-        res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
-        );
-    } else if (!req.body) {
-        req.flash('error_msg', 'Content can not be empty!');
-        res.redirect("/userProfile?username="+req.body.username);
-    } else {
-        // Edit user and Validate if password and password confirmation matches
-        var password1 = req.body.password;
-        var password2 = req.body.password2;
-        if (password1 == password2) {
-            var role = (req.body.role) ? req.body.role : "reviewer";
-            const user = new User({
-                username: req.body.username,
-                password: bcrypt.hashSync(req.body.password, saltRounds),
-                role: role,
-            });
-            // Update User in the database
-            User.updateByUsername(
-                req.body.username,
-                bcrypt.hashSync(req.body.password, saltRounds),
-                req.body.role,
-                (err, data) => {
-                    if (err) {
-                        if (err.kind === "not_found") {
-                            res.status(404).send({
-                                message: `Not found Account with username ${req.body.username}.`
-                            });
-                        } else {
-                            res.status(500).send({
-                                message: "Error updating Account with username " + req.body.username
-                            });
-                        }
-                    } else {
-                        req.flash('success_msg', 'User has been updated successfully!');
-                        res.redirect('/admin');
-                    }
-                }
+    if (req.body.username) {
+        if (req.user.role != 'admin') {
+            res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
             );
-        } else {
-            req.flash('error_msg', 'Passwords do not match; Please re-type them');
+        } else if (!req.body) {
+            req.flash('error_msg', 'Content can not be empty!');
             res.redirect("/userProfile?username="+req.body.username);
+        } else {
+            // Edit user and Validate if password and password confirmation matches
+            var password1 = req.body.password;
+            var password2 = req.body.password2;
+            if (password1 == password2) {
+                var role = (req.body.role) ? req.body.role : "reviewer";
+                // Update User in the database
+                User.updateByUsername(
+                    req.body.username,
+                    bcrypt.hashSync(req.body.password, saltRounds),
+                    role,
+                    (err, data) => {
+                        if (err) {
+                            if (err.kind === "not_found") {
+                                res.status(404).send({
+                                    message: `Not found Account with username ${req.body.username}.`
+                                });
+                            } else {
+                                res.status(500).send({
+                                    message: "Error updating Account with username " + req.body.username
+                                });
+                            }
+                        } else {
+                            req.flash('success_msg', 'User has been updated successfully!');
+                            res.redirect('/admin');
+                        }
+                    }
+                );
+            } else {
+                req.flash('error_msg', 'Passwords do not match; Please re-type them');
+                res.redirect("/userProfile?username="+req.body.username);
+            }
+        }
+    } else {
+        if (!req.body) {
+            req.flash('error_msg', 'Content can not be empty!');
+            res.redirect("/profile");
+        } else {
+            // Edit user and Validate if password and password confirmation matches
+            var password3 = req.body.password;
+            var password4 = req.body.password2;
+            if (password3 == password4) {
+                var user_role = (req.user.role) ? req.user.role : "reviewer";
+                // Update User in the database
+                User.updateByUsername(
+                    req.user.username,
+                    bcrypt.hashSync(req.body.password, saltRounds),
+                    user_role,
+                    (err, data) => {
+                        if (err) {
+                            if (err.kind === "not_found") {
+                                res.status(404).send({
+                                    message: `Not found Account with username ${req.user.username}.`
+                                });
+                            } else {
+                                res.status(500).send({
+                                    message: "Error updating Account with username " + req.user.username
+                                });
+                            }
+                        } else {
+                            req.flash('success_msg', 'User has been updated successfully!');
+                            res.redirect("/profile");
+                        }
+                    }
+                );
+            } else {
+                req.flash('error_msg', 'Passwords do not match; Please re-type them');
+                res.redirect("/profile");
+            }
         }
     }
 };
