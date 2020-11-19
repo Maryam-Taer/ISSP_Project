@@ -8,6 +8,7 @@
     <!-- Custom styles for this page -->
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/sd-admin_custom.css">
+    <link rel="stylesheet" href="/stylesheets/edit.css">
 </head>
 <body id="page-top">
     <!-- Page Wrapper -->
@@ -20,52 +21,47 @@
                     <%- include('./partials/dashboard_top_nav.ejs') %>
                     
                     <!-- Begin Page Content -->
-                    <div class="container-fluid">
+                    <div class="container-fluid edit">
 
                       <form action="/submission/update" method="POST">
-
-                        <h1>Project Detail</h1>
-                        <b>id:<%= data.id %> </b>
-                        <input type="hidden" name="id" value="<%= data.id %>">
-                        <br>
-                        <b>Date Created: <%= data.created_time %> </b>
-                        <br>
-                        <br>
-                        <h2>Company</h2>
-                        <div class="form-inline">
+                        <div class="mb-4">
+                          <h1>Project Detail</h1>
+                          <b>id:<%= data.id %> </b>
+                          <input type="hidden" name="id" value="<%= data.id %>">
+                          <br>
+                          <b>Date Created: <%= data.created_time %> </b>
+                        </div>
+                          <h2 class="mb-3">Company</h2>
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>Company Name: </b>
-                            <input type="text" name="company_name" class="form-control"
+                            <label for="company_name" class="font-weight-bold">Company Name:</label>
+                            <input type="text" name="company_name" id="company_name" class="form-control"
                               value="<%= data.company_name ? data.company_name : '' %>">
                           </div>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>Street:</b>
-                            <input type="text" name="street_address" class="form-control"
+                            <label for="street" class="font-weight-bold">Street:</label>
+                            <input type="text" name="street_address" id="street" class="form-control"
                               value="<%= data.street_address ? data.street_address : '' %>">
                           </div>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>Address Line 2:</b>
-                            <input type="text" name="address_line_2" class="form-control"
+                            <label for="address_line_2" class="font-weight-bold">Address Line 2:</label>
+                            <input type="text" name="address_line_2" id="address_line_2" class="form-control"
                               value="<%= data.address_line_2 ? data.address_line_2 : '' %>">
                           </div>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>City:</b>
-                            <input type="text" name="city" class="form-control" value="<%= data.city ? data.city : '' %>">
+                            <label for="city" class="font-weight-bold">City:</label>
+                            <input type="text" name="city" id="city" class="form-control " value="<%= data.city ? data.city : '' %>">
                           </div>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>Province:</b>
+                            <label for="province" class="font-weight-bold">Province:</label>
                             <select name="province" class="form-control">
                         <%
                           var province_lable = [ "British Columbia", "Alberta", "Manitoba" ];
@@ -79,50 +75,44 @@
                             </select>
                           </div>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>Postal Code:</b>
-                            <input type="text" name="postal_code" class="form-control"
+                            <label for="post_code" class="font-weight-bold">Postal Code:</label>
+                            <input type="text" name="postal_code" id="post_code" class="form-control"
                               value="<%= data.postal_code ? data.postal_code : '' %>">
                           </div>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>Phone:</b>
-                            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone" class="form-control"
+                            <label for="phone" class="font-weight-bold">Phone:</label>
+                            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone" id="phone" class="form-control"
                               value="<%= data.phone ? data.phone : '' %>">
                           </div>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>Website: </b>
-                            <input type="text" name="website" class="form-control" value="<%= data.website ? data.website : '' %>">
+                            <label for="website" class="font-weight-bold">Website:</label>
+                            <input type="text" name="website" id="website" class="form-control" value="<%= data.website ? data.website : '' %>">
                           </div>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-check">
-                            <b>Non Profit Organization: </b>
+                            <label for="non_profit_organization" class="font-weight-bold">Non Profit Organization:</label>
                             <% var checked=( data.non_profit_organization == "on")? "checked" : "" %>
-                            <input type="checkbox" name="non_profit_organization" class="form-check-input ml-1" value="on" <%=checked %>>
+                            <input type="checkbox" name="non_profit_organization" id="non_profit_organization" class="form-check-input ml-1" value="on" <%=checked %>>
                           </div>
                         </div>
-                        <br>
                         <div class="form-group">
-                          <b>Company/Business profile:</b><br>
-                          <textarea name="company_business_profile" class="form-control" style="width:40%"
+                          <label for="company_business_profile" class="font-weight-bold">Company/Business profile:</label>
+                          <textarea name="company_business_profile" id="company_business_profile"  class="form-control" style="width:50%"
                             rows="10"><%= data.company_business_profile %></textarea>
                         </div>
-                        <br>
-                        <h2>Contact Person</h2>
+                        <h2 class="mb-3">Contact Person</h2>
                     
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>Salutation: </b>
-                            <select name="prefix" class="form-control">
+                            <label for="salutation" class="font-weight-bold">Salutation:</label>
+                            <select name="prefix" id="salutation" class="form-control">
                         <%
                           var prefix_lable = [ "Mr.", "Mrs.", "Ms." ];
                           var options = ["mr", "mrs", "ms"]
@@ -134,117 +124,97 @@
                             </select>
                           </div>
                         </div>
-                        <br>
-                    
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>First Name: </b>
-                            <input type="text" name="first" class="form-control" value="<%= data.first ? data.first : '' %>">
+                            <label for="first" class="font-weight-bold">First Name:</label>
+                            <input type="text" name="first" id="first" class="form-control" value="<%= data.first ? data.first : '' %>">
                           </div>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>Last Name: </b>
-                            <input type="text" name="last" class="form-control" value="<%= data.last ? data.last : '' %>">
+                            <label for="last" class="font-weight-bold">Last Name:</label>
+                            <input type="text" name="last" id="last" class="form-control" value="<%= data.last ? data.last : '' %>">
                           </div>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>Position Name: </b>
-                            <input type="text" name="position" class="form-control" value="<%= data.position ? data.position : '' %>">
+                            <label for="position" class="font-weight-bold">Position Name:</label>
+                            <input type="text" name="position" id="position" class="form-control" value="<%= data.position ? data.position : '' %>">
                           </div>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>Phone: </b>
-                            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="personal_phone" class="form-control"
+                            <label for="personal_phone" class="font-weight-bold">Phone:</label>
+                            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="personal_phone" id="personal_phone" class="form-control"
                               value="<%= data.personal_phone ? data.personal_phone : '' %>">
                           </div>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-group">
-                            <b>Email: </b>
-                            <input type="text" name="email" class="form-control" value="<%= data.email ? data.email : '' %>">
+                            <label for="email" class="font-weight-bold">Email:</label>
+                            <input type="text" name="email" id="email" class="form-control" value="<%= data.email ? data.email : '' %>">
                           </div>
                         </div>
-                        <br>
-                        <br>
-                        <h2>Project</h2>
-                    
-                    
-                        <b>Project area</b>
-                        <div class="form-check">
-                        <%
-                          var project_list = data.project_area.split(',');
-                          var options = [ "DevOps", "Networking", "Web Development","Mobile Development","Scripting/IT","Games","AR/VR", "Machine Learning/Algorithms/Research","Other"];
-                          for ( var i = 0; i < options.length; i++ ) 
-                          { var checked=( project_list[i] == options[i] )? "checked" : ""; %>
-                          <input type="checkbox" name="project_area" class="form-check-input" value="<%=options[ i ] %>"
-                            <%=checked %>/> <%=options[i] %><br><%
-                          }
-                        %>
+                        <h2 class="mb-3">Project</h2>
+                        <label for="project_area" class="font-weight-bold">Project Area:</label>
+                        <div class="form-check mb-3">
+                          <%
+                            var project_list = data.project_area.split(',');
+                            var options = [ "DevOps", "Networking", "Web Development","Mobile Development","Scripting/IT","Games","AR/VR", "Machine Learning/Algorithms/Research","Other"];
+                            for ( var i = 0; i < options.length; i++ ) 
+                            { var checked=( project_list[i] == options[i] )? "checked" : ""; %>
+                            <input type="checkbox" name="project_area" id="project_area" class="form-check-input" value="<%=options[ i ] %>"
+                              <%=checked %>/> <%=options[i] %><br><%
+                            }
+                          %>
                         </div>
-                        <br>
-                        <div class="form-group">
-                          <b>Project Description:</b><br>
-                          <textarea name="project_description" rows="10" class="form-control"
-                            style="width:40%"><%= data.project_description %></textarea>
+                        <div class="form-group mb-3">
+                          <label for="project_description" class="font-weight-bold">Project Description:</label>
+                          <textarea name="project_description" id="project_description" rows="10" class="form-control"
+                            style="width:50%"><%= data.project_description %></textarea>
                         </div>
-                        <br>
-                        <div class="form-group">
-                          <b>Project Duration/Timing</b> <br>
-                          <textarea name="project_duration" rows="10" class="form-control"
-                            style="width:40%"><%= data.project_duration %></textarea>
+                        <div class="form-group mb-3">
+                          <label for="project_duration" class="font-weight-bold">Project Duration/Timing:</label>
+                          <textarea name="project_duration" id="project_duration" rows="10" class="form-control"
+                            style="width:50%"><%= data.project_duration %></textarea>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-check">
-                            <b>No preference on the duration or timing on the project: </b>
+                            <label for="project_duration_no_preference" class="font-weight-bold">No preference on the duration or timing on the project:</label>
                             <% var checked=( data.project_duration_no_preference == "on")? "checked" : "" %>
-                            <input type="checkbox" name="project_duration_no_preference" class="form-check-input ml-1" value="on" <%=checked %>>
-                    
+                            <input type="checkbox" name="project_duration_no_preference" id="project_duration_no_preference" class="form-check-input ml-1" value="on" <%=checked %>>
                           </div>
                         </div>
-                        <br>
                         <div class="form-group">
-                          <b>Description of the current arrangement: </b> <br>
-                          <textarea name="current_arrangement" rows="10" class="form-control"
-                            style="width:40%"><%= data.current_arrangement %></textarea>
+                          <label for="current_arrangement" class="font-weight-bold">Description of the current arrangement:</label>
+                          <textarea name="current_arrangement" id="current_arrangement" rows="10" class="form-control"
+                            style="width:50%"><%= data.current_arrangement %></textarea>
                         </div>
-                        <br>
                         <div class="form-group">
-                          <b>Programming language or languages would be used: </b><br>
-                          <textarea name="programming_language" rows="10" class="form-control"
-                            style="width:40%"><%= data.programming_language %></textarea>
+                          <label for="programming_language" class="font-weight-bold">Programming language or languages would be used:</label>
+                          <textarea name="programming_language" id="programming_language" rows="10" class="form-control"
+                            style="width:50%"><%= data.programming_language %></textarea>
                         </div>
-                        <br>
                         <div class="form-group">
-                          <b>Hardware & Software Requirements:</b><br>
-                          <textarea name="hardware_software_requirements" rows="10" class="form-control"
-                            style="width:40%"><%= data.hardware_software_requirements %></textarea>
+                          <label for="hardware_software_requirements" class="font-weight-bold">Hardware & Software Requirements:</label>
+                          <textarea name="hardware_software_requirements" id="hardware_software_requirements" rows="10" class="form-control"
+                            style="width:50%"><%= data.hardware_software_requirements %></textarea>
                         </div>
-                        <br>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-check">
-                            <b>Continuation of a previous student project: </b>
+                            <label for="continuation_project" class="font-weight-bold">Continuation of a previous student project:</label>
                         <%
                           var options = [ "yes", "no"];
                           for ( var i = 0; i < options.length; i++ ) 
                           { var checked=( data.continuation_project == options[i] )? "checked" : "" ; %>
-                            <input type="radio" name="continuation_project" class="form-check-input" value="<%=options[ i ] %>"
+                            <input type="radio" name="continuation_project" id="continuation_project" class="form-check-input ml-1" value="<%=options[ i ] %>"
                               <%=checked %>><label class="mr-1"><%=options[i] %></label>
                             <%
                           }
                         %>
                           </div>
                         </div>
-                        <br>
-                    
-                        <b>Hear about ISSP</b><br>
+                        <label for="hear_about_ISSP" class="font-weight-bold">Hear about ISSP:</label>
                         <div class="form-check">
                         <%
                           var options = [ "BCIT's website", "BCIT email message", "BCIT internal announcements", "Ad on LinkedIn", "Ad on T-Net", "Company I work for", "BC Technology Industry", "BC Innovation Council"];
@@ -256,23 +226,21 @@
                           }
                           for ( var i = 0; i < options.length; i++ ) 
                             { var checked=( data.hear_about_ISSP == options[i] )? "checked" : "" ; %>
-                            <input type="radio" name="hear_about_ISSP" class="form-check-input" value="<%=options[ i ] %>"
+                            <input type="radio" name="hear_about_ISSP" id="hear_about_ISSP" class="form-check-input" value="<%=options[ i ] %>"
                               <%=checked %>><label><%=options[i] %></label><br>
                           <% } %>
                         </div>
-                        <div class="form-inline">
+                        <div class="form-inline mb-3">
                           <div class="form-check">
-                            <b>Sponsor Commitments: </b>
+                            <label for="sponsor_commitments" class="font-weight-bold">Sponsor Commitments:</label>
                             <% var checked=( data.sponsor_commitments == "on")? "checked" : "" %>
-                            <input type="checkbox" name="sponsor_commitments" class="form-check-input ml-1" value="on" <%=checked %>>
+                            <input type="checkbox" name="sponsor_commitments" id="sponsor_commitments" class="form-check-input ml-1" value="on" <%=checked %>>
                           </div>
                         </div>
-                        <br>
                         <div class="form-group">
                           <input type="submit" class="btn btn-success mr-4" value="Submit" />
                           <button type="button" class="btn btn-danger" onclick="location.href='/submissionList'">Cancel</button>
                         </div>
-                       
                       </form>
                       
                     </div>

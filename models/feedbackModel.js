@@ -68,6 +68,28 @@ Feedback.category = async (id, submission, result) => {
 };
 
 
+Feedback.getAll = result => {
+    sql.query("SELECT t1.id, t1.created_time, t1.category, t1.assigned_year, t1.assigned_term, t1.company_name,t1.project_description ,t2.feedback_time, t2.feedback_user FROM issp t1 LEFT JOIN feedback t2 ON t2.project_id = t1.id AND t2.feedback_time = (SELECT MAX(feedback_time) FROM feedback WHERE feedback.project_id = t1.id) order by t2.feedback_time desc, t1.id asc;", (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+        for (var i = 0; i < res.length; i++) {
+            res[i].created_time = moment(res[i].created_time).format("YYYY-MM-DD HH:mm:ss");
+            if (res[i].feedback_time != null) {
+                res[i].feedback_time = moment(res[i].last_comment).format("YYYY-MM-DD HH:mm:ss");
+            } else {
+                res[i].feedback_time = "No Comment Yet";
+            }
+        }
+        // console.log(res);
+        result(null, res);
+    });
+};
+
+
+
 
 module.exports = Feedback;
 

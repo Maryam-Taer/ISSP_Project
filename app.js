@@ -53,11 +53,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get("/", (req, res) => {
-  //  res.json({ message: "Available path /submission , /submissionList" });
-  res.render("submission")
-});
-
 require('./routes/router')(app);
 
 app.listen(process.env.PORT, () => {

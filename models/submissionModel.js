@@ -141,7 +141,7 @@ Submission.updateById = (id, submission, result) => {
 };
 
 Submission.get_year_term = result => {
-    sql.query(`SELECT concat(issp.assigned_year," ", issp.assigned_term) AS "year_term", count(*) AS "num_project" FROM issp GROUP BY issp.assigned_year, issp.assigned_term`, (err, res) => {
+    sql.query(`SELECT concat(issp.assigned_year," ", issp.assigned_term) AS "year_term", count(*) AS "num_project" FROM issp GROUP BY issp.assigned_year, issp.assigned_term ORDER BY assigned_year desc, assigned_term asc`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
