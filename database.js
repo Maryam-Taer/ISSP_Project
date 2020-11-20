@@ -45,6 +45,7 @@ connection.connect(function (err) {
                             continuation_project varchar(25),
                             hear_about_ISSP varchar(255),
                             sponsor_commitments varchar(25),
+                            privacy_policy varchar(25),
                             assigned_year varchar(25),
                             assigned_term varchar(25)
                         )`;
@@ -64,6 +65,12 @@ connection.connect(function (err) {
                                 FOREIGN KEY (project_id) REFERENCES issp(id) ON DELETE CASCADE
                         )`;
 
+    let createDefaultAccount = `INSERT IGNORE INTO accounts
+                                SET username = 'admin',
+                                password = '$2b$10$TptWsX7yUAwYFRYoOtFiNu3ZMbaonXnxOenMn0z9C9/Ac4FbfyJcK',
+                                role = 'admin';`
+                                //Default admin user with password Test1234
+
     connection.query(createIssp, function (err, results, fields) {
         if (err) {
             console.log(err.message);
@@ -77,6 +84,11 @@ connection.connect(function (err) {
                         if (err) {
                             console.log(err.message);
                         }
+                        connection.query(createDefaultAccount, function (err, results, fields) {
+                            if (err) {
+                                console.log(err.message);
+                            }
+                        });
                     });
                 }
             });

@@ -24,15 +24,74 @@
                         <div class="card col-md-5 mx-auto cus-login">
                             <div class="card-body align-middle">
                                 <h2>System Settings</h2>
+                                <!-- Table for Deadlines -->
+                                <div>
+                                    <h4>Default Deadlines:</h4>
+                                    <table  style="width:100%;">
+                                        <thead>
+                                            <th>
+                                                Term
+                                            </th>
+                                            <th>
+                                                Default Deadline
+                                            </th>
+                                        </thead>
+                                        <tr>
+                                            <td>
+                                                Summer
+                                            </td>
+                                            <td>
+                                                March 23
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Fall
+                                            </td>
+                                            <td>
+                                                August 01
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Winter
+                                            </td>
+                                            <td>
+                                                December 01
+                                            </td>
+                                        </tr>
+                                    </table>
+                            </div>
+                    <!-- END Table for Deadlines -->
+                                <div>
+                                    <p style="color:red;">Please Read before proceeding to make changes on this page</p>
+                                    <table>
+                                        <row>
+                                            <p>
+                                                "Next Deadline": indicates the time where the submission ends for the "year and term" shown below. 
+                                                You can extend / bring forward the deadline by changing it. 
+                                                Assigning a time in the past would automatically end the submission for the current term.
+                                            </p>
+                                        </row>
+                                        <row>
+                                            <p>
+                                                "Current Submissions assign to": indicates the year and term that any incoming submissions will be assigned to.
+                                                Changing this is NOT needed in most cases. 
+                                            </p>
+                                        </row>
+                                    </table>
+                                </div>
+                                
+                            <!-- Changes Submission form -->
                                 <div>
                                     <%- include('partials/messages.ejs') %>
                                     <form method="POST" id="sys_update" action="/system/update">
                                         <div class="form-group">
-                                            <label for="deadline">Next Deadline:</label>
+                                            <label for="deadline" style="font-weight:600;">Next Deadline:</label>
                                             <input class="form-control" type="date" value="" id="deadline" name="deadline">
                                         </div>
                                         <div class="form-group">
-                                            <label for="tag_year">Current Submissions assign to:</label>
+                                            <label for="tag_year" style="font-weight:600;">Current Submissions assign to:</label>
                                             <select  class="form-control" id ="tag_year" name="submission_year">
                                             </select>
                                         </div>
@@ -46,6 +105,7 @@
                                     </form>
                                 
                                 </div>
+                                <!-- END Changes Submission form -->
                             </div>
                         </div>
 

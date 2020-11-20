@@ -52,13 +52,11 @@ exports.create = (req, res) => {
         hardware_software_requirements: req.body.hardware_software_requirements,
         continuation_project: req.body.continuation_project,
         hear_about_ISSP: hear_about_ISSP,
-        sponsor_commitments: req.body.sponsor_commitments,
+        sponsor_commitments: req.body.sponsor_commitments || "unchecked",
+        privacy_policy: req.body.privacy_policy || "unchecked",
         assigned_year: submission_tag[0],
         assigned_term: submission_tag[1]
     });
-
-
-
 
     // Save Submission in the database
     Submission.create(submission, (err, data) => {
