@@ -197,11 +197,11 @@
             document.getElementById("table_year_term").value = year_term_list[i].year_term
             var temp_year_term = year_term_list[i].year_term.split(" ")
             dt
-            .columns( 10 )
+            .columns( 7 )
             .search( temp_year_term[0] )
             .draw();
             dt
-            .columns( 11 )
+            .columns( 8 )
             .search( temp_year_term[1] )
             .draw();
         }
@@ -212,11 +212,11 @@
     $("#table_year_term").change(function () {
         var temp_year_term = this.value.split(" ")
         dt
-        .columns( 10 )
+        .columns( 7 )
         .search( temp_year_term[0] )
         .draw();
         dt
-        .columns( 11 )
+        .columns( 8 )
         .search( temp_year_term[1] )
         .draw();
     } );
