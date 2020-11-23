@@ -36,16 +36,17 @@
 							<form action="/submission/updateCategory" method="POST">
 								<input type="hidden" name="project_id" value="<%= feedbackData.id %>">
 								<label for="category">Current Submissions assign to:</label>
-								<div class="form-check category">
+								<div class="form-group  mt-2">
+									<select class="form-control col-md-3" name="category" id="category">
 									<%
-										var options = [ "CIT", "CST", "Both", "Full Stack Web Development", "Rejected", "Not Assigned"];
-										for ( var i = 0; i < options.length; i++ ) 
-										{ var checked=( feedbackData.category == options[i] )? "checked" : ""
+										var options = [ "CIT", "CST", "Full Stack Web Development", "Rejected", "Not Assigned"];
+										for ( var i = 0; i < options.length; i++ ){ 
+											var selected=( feedbackData.category == options[i] )? "selected" : ""
 										; %>
-									<input type="radio" class="form-check-input" name="category" id="category"
-										value="<%=options[ i ] %>" <%=checked %>><%=options[i] %><br><%
+										<option value="<%= options[i] %>" <%= selected %>><%=options[i] %><%
 										}
 										%>
+									</select>
 								</div>
 									<div class="form-group  mt-2">
 										<select name="assigned_year" class="form-control col-md-3">
