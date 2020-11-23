@@ -51,10 +51,11 @@ connection.connect(function (err) {
                         )`;
 
     let createAccount = `create table if not exists accounts(
-                                id int primary key auto_increment,
+                                id int auto_increment,
                                 username varchar(255),
                                 password varchar(255),
-                                role varchar(25)
+                                role varchar(25),
+                                CONSTRAINT accounts_pk PRIMARY KEY (id, username)
                         )`;
     let createFeedback = `create table if not exists feedback(
                                 id int primary key auto_increment,
