@@ -3,16 +3,19 @@ const Feedback = require("../models/feedbackModel");
 var async = require('async');
 
 
-
-
 exports.feedbackList = (req, res) => {
-    Feedback.getAll((err, data) => {
+    async.parallel([
+        Feedback.getAll,
+        Submission.get_year_term
+    ], function (err, results) {
         if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving the Submissions."
-            });
-        else res.render('feedbackList',{ feedbackList: data, username: req.user.username, role: req.user.role });
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while retrieving the Submissions."
+        });
+    else {
+        res.render('feedbackList',{ feedbackList: results[0], year_term: JSON.stringify(results[1]) , username: req.user.username, role: req.user.role });
+    }
     });
 };
 
