@@ -35,7 +35,7 @@
                                         <tr>
                                             <th></th>
                                             <th>ID</th>
-                                            <th>Date Created</th>
+                                            <th>Program</th>
                                             <th>Company name</th>
                                             <th>Project description</th>
                                             <th>Current Arrangement</th>
@@ -107,7 +107,7 @@ $(document).ready(function() {
         });}
     });
     var dt = $('table.table').DataTable( {
-        dom: 'Bfrtip',
+        dom: 'Blfrtip',
         buttons: [
         {
             extend: 'pdf',
@@ -123,6 +123,7 @@ $(document).ready(function() {
         "ordering": true,
         "searching": true,
         "processing": true,
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         "data": <%- submissionData %>,
         "columns": [
             {
@@ -130,44 +131,56 @@ $(document).ready(function() {
                 "orderable":      false,
                 "data":           null,
                 "defaultContent": ""
-            },
-            { "data": "id" },
-            { "data": "created_time" },
-            { "data": "company_name" },
-            { "data": "project_description" },
-            { "data": "current_arrangement" },
+            },// index 0
+            { "data": "id" },// index 1
+            { "data": "category" },// index 2
+            { "data": "company_name" },// index 3
+            { "data": "project_description" },// index 4
+            { "data": "current_arrangement" },// index 5
             {"orderable":      false,
             "render": function ( data, type, row, meta ) {
                 return '<a href="/submission/edit?id='+row.id+ '" class="btn btn-outline-info">Edit</a>';
-            }},
+            }},// index 6
             {"orderable":      false,
             "render": function ( data, type, row, meta ) {
                 return '<form action="/submission/feedback" method="POST" >' + 
                     '<input name="id" type="hidden" value="'+row.id+ '" />' +
                     '<button class="btn btn-outline-success" type="submit">Feedback</button>' +
                 '</form>';
-            }},
+            }},// index 7
             {"orderable":      false,
             "render": function ( data, type, row, meta ) {
                 return '<form class="del" action="/submission/delete" method="POST" >' + 
                     '<input name="id" type="hidden" value="'+row.id+ '" />' +
                     '<button class="btn btn-danger" type="submit">Delete</button>' +
                 '</form>';
-            }},
+            }},// index 8
             {"orderable":      false,
             "render": function ( data, type, row, meta ) {
                 return JSON.stringify(row)
-            }},
-            { "data": "assigned_year" },
-            { "data": "assigned_term" }
+            }},// index 9
+            { "data": "assigned_year" },// index 10
+            { "data": "assigned_term" }// index 11
+           
         ],
         "columnDefs": [
         {
-            "targets": [ <%- role == 'admin' ? '9,10,11' : '6,8,9,10,11' %> ], // show buttons based on roles
+            "targets": [ <%- role == 'admin' ? '9,10,11' : '6,8,9,10,11' %> ], // show buttons/columns based on roles
             "visible": false,
             "searchable": true
         }],
-        "order": [[1, 'asc']]
+        "order": [[1, 'asc']],
+        "createdRow": function( row, data, dataIndex){
+                if( data['category'] ===  'CIT'){
+                    $(row).addClass('cit_bg');
+                } else if( data['category'] ===  'CST'){
+                    $(row).addClass('cst_bg');
+                }else if( data['category'] ===  'Full Stack Development'){
+                    $(row).addClass('fswd_bg');
+                }else if( data['category'] ===  'Rejected'){
+                    $(row).addClass('reject_bg');
+                }
+            }
     } );
 
     // Array to track the ids of the details displayed rows
