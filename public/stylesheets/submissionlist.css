@@ -1,9 +1,15 @@
 td.details-control {
-    background: url('/details_open.png') no-repeat center center;
+    background: url('/details_open.png') center center;
+    background-repeat: no-repeat;
+    background-size: auto;
     cursor: pointer;
-    width: 20px;
+    width: 30px;
+    height: auto;
 }
 tr.shown td.details-control {
-    background: url('/details_close.png') no-repeat center center;
-    width: 20px;
+    background: url('/details_close.png') center center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    width: 30px;
+    height: auto;
 }
