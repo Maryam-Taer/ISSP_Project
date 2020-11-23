@@ -139,13 +139,13 @@ $(document).ready(function() {
             { "data": "current_arrangement" },// index 5
             {"orderable":      false,
             "render": function ( data, type, row, meta ) {
-                return '<a href="/submission/edit?id='+row.id+ '" class="btn btn-outline-info">Edit</a>';
+                return '<a href="/submission/edit?id='+row.id+ '" class="btn btn-info">Edit</a>';
             }},// index 6
             {"orderable":      false,
             "render": function ( data, type, row, meta ) {
                 return '<form action="/submission/feedback" method="POST" >' + 
                     '<input name="id" type="hidden" value="'+row.id+ '" />' +
-                    '<button class="btn btn-outline-success" type="submit">Feedback</button>' +
+                    '<button class="btn btn-success" type="submit">Feedback</button>' +
                 '</form>';
             }},// index 7
             {"orderable":      false,
