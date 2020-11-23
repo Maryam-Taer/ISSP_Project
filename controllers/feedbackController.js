@@ -14,7 +14,7 @@ exports.feedbackList = (req, res) => {
                 err.message || "Some error occurred while retrieving the Submissions."
         });
     else {
-        res.render('feedbackList',{ feedbackList: results[0], year_term: JSON.stringify(results[1]) , username: req.user.username, role: req.user.role });
+        res.render('feedbackList',{ feedbackList: JSON.stringify(results[0]), year_term: JSON.stringify(results[1]) , username: req.user.username, role: req.user.role });
     }
     });
 };
