@@ -84,11 +84,13 @@ connection.connect(function (err) {
                         if (err) {
                             console.log(err.message);
                         }
+                        /*
                         connection.query(createDefaultAccount, function (err, results, fields) {
                             if (err) {
                                 console.log(err.message);
                             }
                         });
+                        */
                     });
                 }
             });
