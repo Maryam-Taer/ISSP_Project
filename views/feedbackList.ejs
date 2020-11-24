@@ -98,7 +98,7 @@
                 if (dt.column(i).search() !== this.value) {
                     dt
                         .column(i)
-                        .search(this.value)
+                        .search(this.value, true)
                         .draw();
                 }
             });}
@@ -106,6 +106,9 @@
 
 
         var dt = $('table.table').DataTable( {
+            "search": {
+                "regex": true
+            },
             "orderCellsTop": true,
             "searching": true,
             "processing": true,

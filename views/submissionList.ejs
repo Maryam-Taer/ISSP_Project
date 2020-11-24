@@ -107,23 +107,26 @@ $(document).ready(function() {
             if (dt.column(i).search() !== this.value) {
                 dt
                     .column(i)
-                    .search(this.value)
+                    .search(this.value, true)
                     .draw();
             }
         });}
     });
     var dt = $('table.table').DataTable( {
+        "search": {
+            "regex": true
+        },
         dom: 'Blfrtip',
         buttons: [
-        {
-            extend: 'pdf',
-            orientation: 'landscape',
-            text: 'Export PDF',
-            exportOptions: {
-                columns: [ 0, 1, 2, 3, 4, 5,],
-            }
+            {
+                extend: 'pdf',
+                orientation: 'landscape',
+                text: 'Export PDF',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5,],
+                }
 
-        }
+            }
         ],
         "orderCellsTop": true,
         "ordering": true,
