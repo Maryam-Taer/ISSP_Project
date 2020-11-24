@@ -17,17 +17,19 @@
 		<!-- Logo -->
 		<a href="https://www.bcit.ca/" target="_blank"><img src="/BCIT_logo.png" style="width:100px;height:auto;"></a>
 
-		<br><br><br>
+
 		<!-- Link to ISSP Home & Admin Portal -->
 		<div class="bs-example">
 			<ul class="nav nav-pills mb-5">
 				<li class="nav-item">
 					<a href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/"
-						target="_blank" style="background-color: rgb(0, 60, 113);" class="nav-link active">ISSP Homepage</a>
+						target="_blank" style="background-color: rgb(0, 60, 113);" class="nav-link active">ISSP
+						Homepage</a>
 				</li>
 
 				<li class="nav-item dropdown ml-auto">
-					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"style="background-color: rgb(0, 60, 113); color: white;">Admin</a>
+					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+						style="background-color: rgb(0, 60, 113); color: white;">Admin</a>
 					<div class="dropdown-menu dropdown-menu-right">
 						<a href="/login" target="_blank" class="dropdown-item">Management Portal</a>
 					</div>
@@ -41,400 +43,408 @@
 					href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/#terms"
 					target="_blank">ISSP Options Table</a> for details of project
 				terms). Submission deadlines are August 1, December 1, and March 23.</p>
-		
+
 			<p>Please fill out the project submission form below. Projects received after the deadlines will be saved
 				for the next term.</p>
-		
+
 			<p><b>Important:</b> Before submitting a project, please read
 				<a class="underline"
 					href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/"
 					target="_blank">about ISSP</a>,
-		
+
 				check out the <a class="underline" href="https://www.youtube.com/watch?v=tCeVkom4tuI&feature=youtu.be"
 					target="_blank">ISSP Intro Video</a>
-		
+
 				or review the <a class="underline"
 					href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/frequently-asked-questions/"
 					target="_blank">frequently asked questions</a>
-		
+
 				pages to familiarize with the Program.</p>
 		</div>
 
 		<h1 id="ISSPheader">ISSP project submission</h1>
-		<div class=row>
-			<div class="col-lg-6">
+
+			<div class="col-md-10">
 
 				<form action="/submission/create" method="POST">
-					<br>
-					<h2><strong>Company</strong></h2>
-					<h3><strong>Company Name</strong></h3>
-					<input type="text" class="form-control" name="company_name" required><br>
+					<!-- Form Section - Company -->
+					<h2>Company</h2>
+					<label for="company_name" class="h4">Company Name <span style="color: red;">*</span></label>
+					<input type="text" class="form-control" name="company_name" id="company_name"
+						placeholder="Company Name" required>
 
-					<br>
-					<h3><strong>Address</strong></h3>
-					<label>Street</label> <br>
-					<input type="text" class="form-control" name="street_address"> <br>
-					<label>Address Line 2</label> <br>
-					<input type="text" class="form-control" name="address_line_2"> <br>
 
-					<label>City</label><br>
-					<input type="text" class="form-control" name="city"><br>
+					<p class="h4">Address <span style="color: red;">*</span></p>
+					<label for="street_address">Street</label>
+					<input type="text" class="form-control" name="street_address" id="street_address"
+						placeholder="Street" required>
+					<label for="address_line_2">Address Line 2</label>
+					<input type="text" class="form-control" name="address_line_2" id="address_line_2"
+						placeholder="Address Line 2" required>
 
-					<label>Province</label><br>
-					<select name="province" class="form-control">
-						<option value="BC">British Columbia</option>
-						<option value="AB">Alberta</option>
-						<option value="MA">Manitoba</option>
-					</select><br>
+					<div class="form-row">
+						<div class="col-md-6">
+							<label for="city">City</label>
+							<input type="text" class="form-control" name="city" id="city" placeholder="City" required>
+						</div>
+						<div class="col-md-6">
+							<label for="province">Province</label>
+							<select name="province" id="province" class="form-control" required>
+								<option value=""></option>
+								<option value="BC">British Columbia</option>
+								<option value="AB">Alberta</option>
+								<option value="MA">Manitoba</option>
+								<option value="NB">New Brunswick</option>
+								<option value="NL">Newfoundland and Labrador</option>
+								<option value="NT">Northwest Territories</option>
+								<option value="NS">Nova Scotia</option>
+								<option value="NU">Nunavut</option>
+								<option value="ON">Ontario</option>
+								<option value="PE">Prince Edward Island</option>
+								<option value="QC">Quebec</option>
+								<option value="SK">Saskatchewan</option>
+								<option value="YT">Yukon</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-md-6">
+							<label for="postal_code">Postal Code</label>
+							<input type="text" class="form-control" name="postal_code" id="postal_code" required>
+						</div>
+						<div class="col-md-6">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-md-6">
+							<label for="phone" class="h4">Phone <span style="color: red;">*</span></label>
+							<input type="tel" class="form-control phone" name="phone" id="phone" required>
+						</div>
+						<div class="col-md-6">
 
-					<label>Postal Code</label> <br>
-					<input type="text" class="form-control" name="postal_code"> <br>
-
-					<br>
-					<h3><strong>Phone</strong></h3>
-					<input type="tel" class="form-control phone" name="phone"><br>
-
-					<br>
-					<h3><strong>Website</strong></h3>
-					<input type="text" class="form-control" value="https://" name="website"> <br><br>
+						</div>
+					</div>
+					<label class="h4">Website</label>
+					<input type="text" class="form-control" placeholder="https://" name="website" id="website">
 
 					<div class="form-check">
-						<input type="checkbox" class="form-check-input" value="on" name="non_profit_organization">
-						<label class="form-check-label">
-							My company is a non-profit organization, governmental body or part of BCIT, and the fee of
-							$500 will be
-							waived
+						<input type="checkbox" class="form-check-input" value="on" name="non_profit_organization" id="non_profit_organization">
+						<label class="form-check-label" for="non_profit_organization" style="margin-top: 5px;">
+							My company is a non-profit organization, governmental body or part of BCIT, and the fee of $500 will be waived
 						</label>
 					</div>
+					<hr class="style14" />
 
-					<br>
-					<hr class="style14" /><br>
+					<h4>Company/Business profile <span style="color: red;">*</span></h4>
+					<small>(include the nature of business and an introduction, less than 150 words)</small>
+					<textarea rows="10" class="form-control" name="company_business_profile" required></textarea>
+					<!-- END - Form Section - Company -->
 
-					<br>
-					<h3><strong>Company/Business profile</strong></h3>
-					<label>(include the nature of business and an introduction, less than 150 words)</label> <br>
-					<textarea rows="10" class="form-control" name="company_business_profile"></textarea>
+					<hr class="style14" />
 
-					<br>
-					<hr class="style14" /><br>
+					<!-- Form Section - Contact Person -->
+					<h2>Contact Person</h2>
 
-					<br>
-					<h2><strong>Contact Person</strong></h2>
-
-					<h3><strong>Salutation</strong></h3>
+					<h5>Salutation</h5>
 					<select class="form-control" name="prefix">
-						<option value="mr">Mr.</option>
-						<option value="mrs">Mrs.</option>
-						<option value="ms">Ms.</option>
-					</select><br>
+						<option value="Mr.">Mr.</option>
+						<option value="Mrs.">Mrs.</option>
+						<option value="Ms.">Ms.</option>
+						<option value="Miss">Miss</option>
+						<option value="Dr.">Dr.</option>
+					</select>
 
-					<br>
-					<h3><strong>Name</strong></h3>
-					<div class="firstname">
-						<label>First Name</label> <br>
-						<input type="text" name="first" class="form-control"> <br>
+
+					<h5>Name <span style="color: red;">*</span></h5>
+					<div class="form-row">
+						<div class="col-md-6">
+							<label for="first">First Name</label>
+							<input type="text" id="first" name="first" class="form-control" required>
+						</div>
+						<div class="col-md-6">
+							<label for="last">Last Name</label>
+							<input type="text" id="last" name="last" class="form-control" required>
+						</div>
 					</div>
-					<div class="lastname">
-						<label>Last Name</label> <br>
-						<input type="text" name="last" class="form-control"> <br>
-					</div>
 
-					<br>
-					<h3><strong>Position</strong></h3>
-					<input type="text" name="position" class="form-control">
+					<label for="position" class="h5">Position</label>
+					<input type="text" name="position" id="position" class="form-control">
 
-					<br>
-					<h3><strong>Phone</strong></h3>
-					<input type="tel" class="form-control phone"
-						name="personal_phone">
+					<label for="personal_phone" class="h5">Phone</label>
+					<input type="tel" class="form-control phone" name="personal_phone" id="personal_phone">
 
-					<br>
-					<h3><strong>Email</strong></h3>
-					<input type="text" name="email" class="form-control">
+					<label for="email" class="h5">Email <span style="color: red;">*</span></label>
+					<input type="text" name="email" id="email" class="form-control" required>
+					<!-- END Form Section - Contact Person -->
 
-					<br>
-					<hr class="style14" /><br>
+					<hr class="style14" />
 
-					<br>
-					<h2><strong>Project</strong></h2>
+					<!-- Form Section - Project -->
+					<h2>Project</h2>
 
-					<h3><strong>Project area (check whichever applicable)</strong></h3>
+					<h5>Project area (check whichever applicable)</h5>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]" value="DevOps">
-							<label class="form-check-label">DevOps</label>
+							<input class="form-check-input" id="pa-devops" type="checkbox" name="project_area[]" value="DevOps">
+							<label class="form-check-label" for="pa-devops">DevOps</label>
 
 							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
 								data-toggle="tooltip" data-placement="right" title="A set of practices that combines software 
-								development (Dev) and IT operations (Ops).">
-								<strong>i</strong>
+                                development (Dev) and IT operations (Ops).">
+								i
 							</button>
 						</div>
 					</from>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]" value="Networking">
-							<label class="form-check-label">Networking</label>
-
+							<input class="form-check-input" id="pa-net" type="checkbox" name="project_area[]" value="Networking">
+							<label class="form-check-label" for="pa-net">
+								Networking
+							</label>
 							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
 								data-toggle="tooltip" data-placement="right"
 								title="It is the practice of transporting and exchanging data between nodes over a shared medium in an information system.">
-								<strong>i</strong>
+								i
 							</button>
 						</div>
 					</from>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]"
+							<input class="form-check-input" id="pa-web" type="checkbox" name="project_area[]"
 								value="Web Development">
-							<label class="form-check-label">Web Development</label>
-
+							<label class="form-check-label" for="pa-web">
+								Web Development
+							</label>
 							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
 								data-toggle="tooltip" data-placement="right"
 								title="It is the building and maintenance of websites that happens behind the scenes to make a website look great.">
-								<strong>i</strong>
+								i
 							</button>
 						</div>
 					</from>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]]"
+							<input class="form-check-input" id="pa-mobile" type="checkbox" name="project_area[]]"
 								value="Mobile Development">
-							<label class="form-check-label">Mobile Development</label>
-
+							<label class="form-check-label" for="pa-mobile">
+								Mobile Development
+							</label>
 							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
 								data-toggle="tooltip" data-placement="right"
 								title="It is the set of processes and procedures involved in writing software for mobile devices.">
-								<strong>i</strong>
+								i
 							</button>
 						</div>
 					</from>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]" value="Scripting/IT">
-							<label class="form-check-label">Scripting/IT</label>
+							<input class="form-check-input" id="pa-script" type="checkbox" name="project_area[]" value="Scripting/IT">
+							<label class="form-check-label" for="pa-script">
+								Scripting/IT
+							</label>
+							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
+								data-toggle="tooltip" data-placement="right"
+								title="Scripting is the process of using a scripting languages to automate the execution of tasks that could alternatively be executed one-by-one by a human operator.">
+								i
+							</button>
+						</div>
+					</from>
+
+					<from class="form-inline">
+						<div class="form-check">
+							<input class="form-check-input" id="pa-game" type="checkbox" name="project_area[]" value="Games">
+							<label class="form-check-label" for="pa-game">
+								Games
+							</label>
 
 							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
 								data-toggle="tooltip" data-placement="right"
 								title="Scripting is the process of using a scripting languages to automate the execution of tasks that could alternatively be executed one-by-one by a human operator.">
-								<strong>i</strong>
+								i
 							</button>
 						</div>
 					</from>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]" value="Games">
-							<label class="form-check-label">Games</label>
-
-							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
-								data-toggle="tooltip" data-placement="right"
-								title="Scripting is the process of using a scripting languages to automate the execution of tasks that could alternatively be executed one-by-one by a human operator.">
-								<strong>i</strong>
-							</button>
-						</div>
-					</from>
-
-					<from class="form-inline">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]" value="AR/VR">
-							<label class="form-check-label">AR/VR</label>
-
+							<input class="form-check-input" id="pa-arvr" type="checkbox" name="project_area[]" value="AR/VR">
+							<label class="form-check-label" for="pa-arvr">AR/VR</label>
 							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
 								data-toggle="tooltip" data-placement="right"
 								title="Augumented Reality(AR) is an interactive experience of a real-world environment where the objects that reside in the real world are enhanced by computer-generated visuals. Virtual Reality(VR) refers to a computer-generated simulation in which a person can interact whithin an artificial 3D environment using electronic devives.">
-								<strong>i</strong>
+								i
 							</button>
 						</div>
 					</from>
 
 					<from class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="project_area[]"
-								value="Machine Learning/Algorithms/Research">
-							<label class="form-check-label">Machine Learning/Algorithms/Research</label>
-
-							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
-								data-toggle="tooltip" data-placement="right"
+							<input class="form-check-input" id="pa-ml"type="checkbox" name="project_area[]" value="Machine Learning/Algorithms/Research">
+							<label class="form-check-label" for="pa-ml">
+								Machine Learning/Algorithms/Research
+							</label>
+							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip" data-toggle="tooltip"
+								data-placement="right"
 								title="automate key areas of your development workflow (CI/CD pipelines, build processes, scripting, etc.) and build your cloud infrastructure; or let our students help scale existing (legacy) software, migrate to cloud, and introduce proper development processes">
-								<strong>i</strong>
+								i
+							</button>
+						</div>
+					</from>
+					
+					<from class="form-inline">
+						<div class="form-check">
+							<input class="form-check-input" id='pa-other' type="checkbox" name="project_area[8]" value="Other">
+							<label class="form-check-label" for="pa-other">
+								Other
+							</label>
+							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip" data-toggle="tooltip"
+								data-placement="right" title="Other Areas that are not listed above">
+								i
 							</button>
 						</div>
 					</from>
 
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" name="project_area[8]" value="Other">
-						<label class="form-check-label">Other</label>
-					</div>
 
-					<br>
+					<hr class="style14" />
 
-					<hr class="style14" /><br>
 
-					<br>
-					<h3><strong>Project Description</strong></h3>
-					<p>This is a crucial part of your submission since your description will be published in
+					<h5>Project Description</h5>
+					<small>This is a crucial part of your submission since your description will be published in
 						the Projects Catalogue. Our students will determine their project choice primarily
 						on the information you provide. Please include a detailed description of the project
 						with well-defined goals and expectations. See also <a
 							href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/frequently-asked-questions/"
 							target="_blank" style="text-decoration: underline;">our hints for successful proposals</a>.
-					</p><br>
+					</small>
 
-					<textarea rows="10" class="form-control" name="project_description"></textarea> <br>
+					<textarea rows="15" class="form-control" name="project_description"></textarea>
 
-					<br>
-					<hr class="style14" /><br>
+					<hr class="style14" />
 
-					<br>
-					<h3><strong>Project Duration/Timing</strong></h3>
-					<textarea rows="10" class="form-control" name="project_duration"></textarea> <br>
-					<label>Please see the <a
-							href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/#terms"
-							target="_blank" class="underline">ISSP Options</a> table
-						for more information</label>
-					<br>
-					<br>
+
+					<h5>Project Duration/Timing</h5>
+					<textarea rows="10" class="form-control" name="project_duration"></textarea>
+					<label>Please see the
+						<a href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/#terms"
+							target="_blank" class="underline">
+							ISSP Options
+						</a> table for more information
+					</label>
 
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="on"
+						<input class="form-check-input" id="project_duration_no_preference" type="checkbox" value="on"
 							name="project_duration_no_preference">
-						<label class="form-check-label">I have no preference on the
-							duration or
-							timing on the project</label>
+						<label class="form-check-label" for="project_duration_no_preference" style="padding-top:5px; padding-left:3px;">I have no preference on the	duration or	timing on the project</label>
 					</div>
 
-					<br>
-					<hr class="style14" /><br>
+					<hr class="style14" />
 
-					<br>
-					<h3><strong>Description of the current arrangement</strong></h3>
-					<textarea rows="10" class="form-control" name="current_arrangement"></textarea> <br>
-					<label>If applicable, describe how the tasks are currently carried out, current status of the
-						information,
-						etc.</label>
+					<h5>Description of the current arrangement</h5>
+					<textarea rows="10" class="form-control" name="current_arrangement"></textarea>
+					<small>
+						If applicable, describe how the tasks are currently carried out, current status of the information, etc.
+					</small>
 
-					<br>
-					<hr class="style14" /><br>
+					<hr class="style14" />
 
-					<br>
-					<h3><strong>If coding is required, what programming language or languages would be used?</strong>
-					</h3>
+
+					<h5>If coding is required, what programming language or languages would be used?</h5>
 					<textarea rows="10" class="form-control" name="programming_language"></textarea>
 
-					<br>
-					<hr class="style14" /><br>
 
-					<br>
-					<h3><strong>Hardware & Software Requirements</strong></h3>
-					<textarea rows="10" class="form-control" name="hardware_software_requirements"></textarea>
+					<hr class="style14" />
 
-					<br>
-					<hr class="style14" /><br>
 
-					<br>
-					<h3><strong>Is this a continuation of a previous student project?</strong></h3>
+					<h5>Hardware & Software Requirements <span style="color: red;">*</span></h5>
+					<textarea rows="10" class="form-control" name="hardware_software_requirements" required></textarea>
 
-					<div class="form-check">
-						<input class="form-check-input" type="radio" value="yes" name="continuation_project">
-						<label class="form-check-label">Yes</label><br>
+
+					<hr class="style14" />
+
+
+					<h4>Is this a continuation of a previous student project?</h4>
+
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" value="yes" name="continuation_project" id="continuation_project1">
+						<label class="form-check-label" for="continuation_project1">Yes</label>
 					</div>
 
-					<div class="form-check">
-						<input class="form-check-input" type="radio" value="no" name="continuation_project">
-						<label class="form-check-label">No</label>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" value="no" name="continuation_project" id="continuation_project2">
+						<label class="form-check-label" for="continuation_project2">No</label>
 					</div>
 
-					<br>
-					<hr class="style14" /><br>
+					<!-- END Form Section - Project -->
+					<hr class="style14" />
 
-					<br>
-					<h3><strong>How did you hear about ISSP?</strong></h3>
 
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT website">
-						<label class="form-check-label">BCIT's website</label> <br>
+					<h4>How did you hear about ISSP?</h4>
+
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT website" id="hear_bcit_web">
+						<label class="form-check-label" for="hear_bcitweb">BCIT's website</label>
+					</div>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT email message" id="hear_bcit_email">
+						<label class="form-check-label" for="hear_bcit_email">BCIT's email message</label>
+					</div>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT internal announcements" id="hear_bcit_internal">
+						<label class="form-check-label" for="hear_bcit_internal">BCIT internal announcements</label>
+					</div>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Ad on LinkedIn" id="hear_linkedin">
+						<label class="form-check-label" for="hear_linkedin">Ad on LinkedIn</label>
+					</div>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Ad on T-Net" id="hear_tnet">
+						<label class="form-check-label" for="hear_tnet">Ad on T-Net</label>
+					</div>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Company I work for" id="hear_company">
+						<label class="form-check-label" for="hear_company">Company I work for</label>
+					</div>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BC Technology Industry" id="hear_BCtech">
+						<label class="form-check-label" for="hear_BCtech">BC Technology Industry Association</label>
+					</div>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BC Innovation Council" id="hear_inno">
+						<label class="form-check-label" for="hear_inno">BC Innovation Council</label>
+					</div>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" style="margin-top:13px !important;" value="" id="hear_other">
+						<input type="text" class="form-control col-md-4" placeholder="Other" id="hear_other_input">
 					</div>
 
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT email message">
-						<label class="form-check-label">BCIT's email message</label>
-						<br>
-					</div>
+					<hr class="style14" />
+
+					<h4>Sponsor Commitments <span style="color: red;">*</span></h4>
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP"
-							value="BCIT internal announcements">
-						<label class="form-check-label">BCIT internal
-							announcements</label>
-						<br>
-					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Ad on LinkedIn">
-						<label class="form-check-label">Ad on LinkedIn</label> <br>
-					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Ad on T-Net">
-						<label class="form-check-label">Ad on T-Net</label> <br>
-					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Company I work for">
-						<label class="form-check-label">Company I work for</label> <br>
-					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP"
-							value="BC Technology Industry">
-						<label class="form-check-label">BC Technology Industry
-							Association</label> <br>
-					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP"
-							value="BC Innovation Council">
-						<label class="form-check-label">BC Innovation Council</label>
-						<br>
-					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Other"> <input
-							type="text" value="Other">
-					</div>
-
-					<br>
-					<hr class="style14" /><br>
-
-					<br>
-					<h2><strong>Sponsor Commitments</strong></h2>
-
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="on" name="sponsor_commitments">
-						<label class="form-check-label">I've read and understood all commitments
-							required from
-							a sponsor, including the participation fee of $500.</label> <br>
+						<input class="form-check-input" type="checkbox" value="on" name="sponsor_commitments" id="sponsor_commitments" required>
+						<label class="form-check-label" for="sponsor_commitments" style="margin-top:5px;">
+							I've read and understood all commitments required from a sponsor, including the participation fee of $500.
+						</label>
 					</div>
 
 					<a href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/#commitments"
 						target="_blank" class="underline">See commitments</a>
-					<br><br>
 
-					<br>
-					<hr class="style14" /><br>
 
-					<br>
-					<h2><strong>Consent</strong></h2>
+					<hr class="style14" />
 
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="on" name="privacy_policy">
-						<label class="form-check-label">I agree to the privacy policy.</label> <br><br>
+
+					<h4>Consent</h4>
+
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="checkbox" value="on" name="privacy_policy" id="privacy_policy">
+						<label class="form-check-label" for="privacy_policy" style="margin-top:5px;">I agree to the privacy policy.</label>
 					</div>
 
 					<p>After submitting this form you should get a confirmation page and a confirmation in your emal.
@@ -445,7 +455,7 @@
 						style="background-color: rgb(0, 60, 113);">SEND</button>
 				</form>
 			</div>
-		</div>
+
 	</div>
 
 	<script src="/vendor/jquery/jquery.js"></script>
@@ -457,6 +467,9 @@
 			$('[data-toggle="tooltip"]').tooltip();
 			$('.phone').inputmask("(999)-999-9999");
 		});
+		$("#hear_other_input").keyup(function(e){
+			document.getElementById('hear_other').value = document.getElementById("hear_other_input").value
+		})
 	</script>
 </body>
 

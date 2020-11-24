@@ -35,19 +35,21 @@
 							<p>Company: <%= feedbackData.company_name %></p>
 							<form action="/submission/updateCategory" method="POST">
 								<input type="hidden" name="project_id" value="<%= feedbackData.id %>">
-								<label for="category">Current Submissions assign to:</label>
-								<div class="form-check category">
+								<div class="form-group mt-2">
+									<label for="category">Current Submissions assign to Program:</label>
+									<select class="form-control col-md-3" name="category" id="category">
 									<%
-										var options = [ "CIT", "CST", "Both", "Full Stack Development", "Not Assigned"];
-										for ( var i = 0; i < options.length; i++ ) 
-										{ var checked=( feedbackData.category == options[i] )? "checked" : ""
+										var options = [ "CIT", "CST", "Full Stack Web Development", "Rejected", "Not Assigned"];
+										for ( var i = 0; i < options.length; i++ ){ 
+											var selected=( feedbackData.category == options[i] )? "selected" : ""
 										; %>
-									<input type="radio" class="form-check-input" name="category" id="category"
-										value="<%=options[ i ] %>" <%=checked %>><%=options[i] %><br><%
+										<option value="<%= options[i] %>" <%= selected %>><%=options[i] %><%
 										}
 										%>
+									</select>
 								</div>
-									<div class="form-group  mt-2">
+									<div class="form-group mt-2">
+										<label for="assigned_year">Year and Term:</label>
 										<select name="assigned_year" class="form-control col-md-3">
 											<% 
 												var temp_year = new Date().getFullYear();
@@ -127,8 +129,9 @@
 	<!-- Core plugin JavaScript-->
 	<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for all pages -->
-	<script src="/js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="/js/jquery-cookie.js"></script>
+    <script src="/js/sb-admin-2.js"></script>
 
 	<!-- Page level plugins -->
 	<script src="/vendor/datatables/jquery.dataTables.min.js"></script>

@@ -1,9 +1,36 @@
 td.details-control {
-    background: url('/details_open.png') no-repeat center center;
+    background: url('/details_open.png') center center;
+    background-repeat: no-repeat;
+    background-size: auto;
     cursor: pointer;
-    width: 20px;
+    width: 30px;
+    height: auto;
 }
 tr.shown td.details-control {
-    background: url('/details_close.png') no-repeat center center;
-    width: 20px;
+    background: url('/details_close.png') center center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    width: 30px;
+    height: auto;
 }
+
+table{
+    color: black !important;
+}
+
+.cst_bg{
+    background-image:linear-gradient(to right, rgb(141, 133, 253),rgb(32, 78, 138));
+}
+
+.cit_bg{
+    background-image:linear-gradient(to right, rgb(255, 121, 255),rgb(194, 84, 194));
+}
+
+.fswd_bg{
+    background-image:linear-gradient(to right, rgb(127, 247, 123),rgb(80, 129, 33));
+}
+
+.reject_bg{
+    background-image:linear-gradient(to right, rgb(255, 128, 128),rgb(252, 53, 46));
+}
+

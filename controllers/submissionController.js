@@ -88,8 +88,6 @@ exports.getAll = async (req, res) => {
         res.render('submissionList', { title: 'submission List', submissionData: JSON.stringify(results[0]), year_term: JSON.stringify(results[1]) , username: req.user.username, role: req.user.role});
     }
     });
-
-    
 };
 
 exports.delete = (req, res) => {

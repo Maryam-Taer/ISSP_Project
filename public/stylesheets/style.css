@@ -47,12 +47,12 @@ p {
 .custom-tooltip{
 	border-radius: 50%; 
 	text-align: center; 
-	height: 17px; 
+	height: 20px; 
 	width: 20px; 
 	background-color: white!important; 
 	border-color: black!important; 
 	color: black!important; 
-	font-size: 7px; 
+	font-size: 10px; 
 	cursor: pointer; 
 	border-width: 2px;
 }
@@ -61,11 +61,15 @@ p {
 	background-color: rgb(255, 234, 46)!important;
 }
 
+.h2{
+	font-size:20px;
+}
+
+
 h2 {
 	padding-top: 10px;
 	padding-bottom: 10px; 
 	margin: 0px;
-
 }
 
 h3 {
@@ -84,12 +88,47 @@ select {
 }
 
 textarea {
-	width: 300px;
-	height: 100px;
+	height: 100%;
 }
 
-input {
-	margin-bottom: 5px;
+input:not([type=checkbox]):not([type=submit]):not([type=radio]) {
+	margin-top: -8px !important;
+	margin-bottom: 20px !important;
+	padding-bottom: 10px !important;
+}
+
+select{
+	margin-top: -10px !important;
+	margin-bottom: 20px !important;
+	padding-bottom: 10px !important;
+}
+
+input[type=checkbox]{
+	/* Double-sized Checkboxes */
+	-ms-transform: scale(1.75); /* IE */
+	-moz-transform: scale(1.75); /* FF */
+	-webkit-transform: scale(1.75); /* Safari and Chrome */
+	-o-transform: scale(1.75); /* Opera */
+	margin-top: 10px;
+	padding: 20px !important;
+	margin-right: 20px !important;
+}
+
+input[type=radio]{
+	/* 1.75 sized radio buttons */
+	-ms-transform: scale(1.75); /* IE */
+	-moz-transform: scale(1.75); /* FF */
+	-webkit-transform: scale(1.75); /* Safari and Chrome */
+	-o-transform: scale(1.75); /* Opera */
+	margin-right: 30px !important;
+}
+
+.form-check-label{
+	padding: 3px;
+	padding-top: 0px;
+}
+.cus_form_group{
+	margin-bottom: 7px !important;
 }
 
 @media (min-width: 960px){
@@ -100,6 +139,7 @@ input {
 		font-size: 38px;
 		padding-bottom: 20px;
 	}
+
 
 }
 

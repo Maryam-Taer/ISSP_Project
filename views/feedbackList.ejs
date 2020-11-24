@@ -6,6 +6,7 @@
     <link href="/stylesheets/sb-admin-2.min.css" rel="stylesheet">
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- Custom styles for this page -->
+    <link rel="stylesheet" href="/stylesheets/submissionlist.css">
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/sd-admin_custom.css">
 </head>
@@ -17,51 +18,34 @@
             <div id="content-wrapper" class="d-flex flex-column">
                 <!-- Main Content -->
                 <div id="content">
-
                     <%- include('./partials/dashboard_top_nav.ejs') %>
-
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
                         <%- include('partials/messages.ejs') %>
-                        <table id="table_id_feedbackList" class="table table-striped table-bordered" data-page-length='10'>
-                            <thead>
-                                <th>ID</th>
-                                <th>Time Created</th>
-                                <th>Category</th>
-                                <th>Year Assigned</th>
-                                <th>Term Assigned</th>
-                                <th>Company Name</th>
-                                <th>Project Description</th>
-                                <th>Last Comment</th>
-                                <th></th>
-                            </thead>
-                            <tbody>
-                                <% if (feedbackList.length!=0) {var i=0; feedbackList.forEach(function(data){ %>
-                                    <% var last_comment = (data.feedback_time == "No Comment Yet") ? data.feedback_time: data.feedback_time + " by " + data.feedback_user %>
-                                <tr>
-                                    <td><%=data.id %></td>
-                                    <td><%=data.created_time %></td>
-                                    <td><%=data.category %></td>
-                                    <td><%=data.assigned_year %></td>
-                                    <td><%=data.assigned_term %></td>
-                                    <td><%=data.company_name %></td>
-                                    <td><%=data.project_description %></td>
-                                    <td><%=last_comment %></td>
-                                    <td>
-                                         <form action="/submission/feedback" method="POST" >
-                                                <input name="id" type="hidden" value="<%= data.id %>"/>
-                                                <button class="btn btn-outline-success" type="submit">Feedback</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <%  i++; }) %>
-                                <% } else{ %>
-                                <tr>
-                                    <td colspan="7">No Data Found</td>
-                                </tr>
-                                <% } %>
-                            </tbody>
-                        </table>
+                        <!-- DataTales -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header">
+                                <select id="table_year_term" class="form-control col-1">
+                                </select>
+                            </div>
+                            <div class="card-body">
+                                <table id="table_id_feedbackList" class="table table-striped table-bordered dt-responsive" width="100%" data-page-length='10'>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>ID</th>
+                                            <th>Program</th>
+                                            <th>Project Description</th>
+                                            <th>Last Comment</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.container-fluid -->
     
@@ -80,18 +64,184 @@
     <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/js/sb-admin-2.min.js"></script>
+    <script src="/js/jquery-cookie.js"></script>
+    <script src="/js/sb-admin-2.js"></script>
 
     <!-- Page level plugins -->
     <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src=/js/dataTables.buttons.js></script>
+    <script src=/js/buttons.html5.min.js></script>
+    <script src=/js/jszip.min.js></script>
+    <script src=/js/pdfmake.min.js></script>
+    <script src=/js/vfs_fonts.js></script>
 
 </body>
 <script>
-    $('#table_id_feedbackList').dataTable( {
-        "ordering": false
-      } );
-</script>
+    function format ( d ) {
+        var pre = ''
+        if (d.prefix != null){
+            pre = d.prefix
+        }
+        return 'Contact: '+ pre + ' ' + d.first + ' '+ d.last +'<br>'+
+        'Contact Phone: '+d.phone+'<br>'+
+        'The child row can contain any data you wish, including links, images, inner tables etc.';
+    }
 
+    $(document).ready(function() {
+        $('table thead tr').clone(true).appendTo('table thead');
+        $('table thead tr:eq(1) th').each(function (i) {
+            if (i>0 && i <5){
+            $(this).html('<input class="form-control form-control-sm" type="text" placeholder="Filter..." />');
+            $('input', this).on('keyup change', function () {
+                if (dt.column(i).search() !== this.value) {
+                    dt
+                        .column(i)
+                        .search(this.value)
+                        .draw();
+                }
+            });}
+        });
+
+
+        var dt = $('table.table').DataTable( {
+            "orderCellsTop": true,
+            "searching": true,
+            "processing": true,
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "data": <%- feedbackList %>,
+            "columns": [
+                {
+                    "class":          "details-control",
+                    "orderable":      false,
+                    "data":           null,
+                    "defaultContent": ""
+                },// index 0
+                { "data": "id" },// index 1
+                { "data": "category" },// index 2
+                { "data": "project_description" },// index 3
+                {"render": function( data, type, row, meta){
+                    return (row.feedback_time == "No Comment Yet") ? row.feedback_time: row.feedback_time + " by " + row.feedback_user
+                }},// index 4
+                {"orderable":      false,
+                "render": function ( data, type, row, meta ) {
+                    return '<form action="/submission/feedback" method="POST" >' + 
+                        '<input name="id" type="hidden" value="'+row.id+ '" />' +
+                        '<button class="btn btn-success" type="submit">Feedback</button>' +
+                    '</form>';
+                }},// index 5
+                {"orderable":      false,
+                "render": function ( data, type, row, meta ) {
+                    return JSON.stringify(row)
+                }},// index 6
+                { "data": "assigned_year" },// index 7
+                { "data": "assigned_term" }// index 8
+            
+            ],
+            "columnDefs": [
+            {
+                "targets": [6,7,8], 
+                "visible": false,
+                "searchable": true
+            },
+            {
+            targets: [3],
+                render: function ( data, type, row ) {
+                    var extra = (data.length>250)? "...":" ";
+                    return (data.substr( 0, 250 )+extra) ;
+                }
+            },
+            { 
+                "width": "30px", "targets": 0 
+            },
+            { 
+                "width": "60px", "targets": 1 
+            }],
+            "createdRow": function( row, data, dataIndex){
+                console.log(data);
+                    if( data['category'] ===  'CIT'){
+                        $(row).addClass('cit_bg');
+                    } else if( data['category'] ===  'CST'){
+                        $(row).addClass('cst_bg');
+                    }else if( data['category'] ===  'Full Stack Web Development'){
+                        $(row).addClass('fswd_bg');
+                    }else if( data['category'] ===  'Rejected'){
+                        $(row).addClass('reject_bg');
+                    }
+                }
+        } );
+
+    // Array to track the ids of the details displayed rows
+        var detailRows = [];
+
+        $('table tbody').on( 'click', 'tr td.details-control', function () {
+            var tr = $(this).closest('tr');
+            var row = dt.row( tr );
+            var idx = $.inArray( tr.attr('id'), detailRows );
+
+            if ( row.child.isShown() ) {
+                tr.removeClass( 'details' );
+                row.child.hide();
+                tr.removeClass('shown');
+                // Remove from the 'open' array
+                detailRows.splice( idx, 1 );
+            }
+            else {
+                tr.addClass( 'details' );
+                row.child( format( row.data() ) ).show();
+                tr.addClass('shown');
+                // Add to the 'open' array
+                if ( idx === -1 ) {
+                    detailRows.push( tr.attr('id') );
+                }
+            }
+        } );
+
+    // On each draw, loop over the `detailRows` array and show any child rows
+    dt.on( 'draw', function () {
+        $.each( detailRows, function ( i, id ) {
+            $('#'+id+' td.details-control').trigger( 'click' );
+        } );
+    } );
+
+    // Dynamic generate options for "year term" and select first option
+    var year_term_list = <%- year_term %>
+    $.each(year_term_list, function(i){
+        var temp_option = document.createElement("option")
+        temp_option.innerHTML = year_term_list[i].year_term
+        temp_option.value = year_term_list[i].year_term
+        if (i == 0){
+            // initialize filter based on first item in year_term selection.
+            document.getElementById("table_year_term").value = year_term_list[i].year_term
+            var temp_year_term = year_term_list[i].year_term.split(" ")
+            dt
+            .columns( 7 )
+            .search( temp_year_term[0] )
+            .draw();
+            dt
+            .columns( 8 )
+            .search( temp_year_term[1] )
+            .draw();
+        }
+        $("#table_year_term").append(temp_option)
+    })
+
+    // On selecting new "year term", filter of table accordingly
+    $("#table_year_term").change(function () {
+        var temp_year_term = this.value.split(" ")
+        dt
+        .columns( 7 )
+        .search( temp_year_term[0] )
+        .draw();
+        dt
+        .columns( 8 )
+        .search( temp_year_term[1] )
+        .draw();
+    } );
+        
+
+    })
+
+</script>
 
 </html>
