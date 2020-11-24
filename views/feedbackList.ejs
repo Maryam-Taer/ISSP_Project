@@ -106,7 +106,6 @@
 
         var dt = $('table.table').DataTable( {
             "orderCellsTop": true,
-            "ordering": true,
             "searching": true,
             "processing": true,
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -158,7 +157,6 @@
             { 
                 "width": "60px", "targets": 1 
             }],
-            "order": [[1, 'asc']],
             "createdRow": function( row, data, dataIndex){
                 console.log(data);
                     if( data['category'] ===  'CIT'){
