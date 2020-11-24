@@ -54,8 +54,7 @@ connection.connect(function (err) {
                                 id int primary key auto_increment,
                                 username varchar(255) UNIQUE,
                                 password varchar(255),
-                                role varchar(25),
-                                CONSTRAINT accounts_pk PRIMARY KEY (id, username)
+                                role varchar(25)
                         )`;
     let createFeedback = `create table if not exists feedback(
                                 id int primary key auto_increment,
