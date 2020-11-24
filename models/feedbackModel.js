@@ -83,7 +83,7 @@ Feedback.getAll = result => {
                 res[i].feedback_time = "No Comment Yet";
             }
         }
-        console.log(res);
+        // console.log(res);
         result(null, res);
     });
 };
