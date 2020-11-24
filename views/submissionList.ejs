@@ -91,11 +91,46 @@
 function format ( d ) {
     var pre = ''
     if (d.prefix != null){
-        pre = d.prefix
+        pre = d.prefix + ' '
     }
-    return 'Contact: '+ pre + ' ' + d.first + ' '+ d.last +'<br>'+
-        'Contact Phone: '+d.phone+'<br>'+
-        'The child row can contain any data you wish, including links, images, inner tables etc.';
+    var temp_html = 
+    "<div class='form-row'>"+
+        "<div class='col-md-6'>"+
+                "<h5>Company </h5>" +
+                'Name: ' + d.company_name + '<br>' +
+                'Profile: ' + d.company_business_profile + '<br>' +
+                'Address: ' + d.street_address + ' ' + d.address_line_2 + ', ' + d.city + ', ' + d.province + ', ' + d.postal_code + '<br>' +
+                'Phone: ' + d.phone + '<br>' +
+                'Website: ' + d.website + '<br>' +
+        "</div>"+
+        "<div class='col-md-6'>"+
+                "<h5>Contact </h5>" +
+                'Name: ' + pre + d.first + ' ' + d.last + '<br>' +
+                'Phone: ' + d.personal_phone + '<br>' +
+                'Email: ' + d.email + '<br>' +
+                'Position: ' + d.position + '<br>' +
+        "</div>"+
+    "</div>"+
+    "<div class='row'>"+
+        "<div class='col-md-6'>"+
+                "<h5>Project Details </h5>" +
+                'Project Area: ' + d.project_area + '<br>' +
+                'Description: ' + d.project_description + '<br>' +
+                'Duration: ' + d.duration + '<br>' +
+                'No preference of project duration: ' + d.project_duration_no_preference + '<br>' +
+                'Current Arrangement: ' + d.current_arrangement + '<br>' +
+                'Programming Language: ' + d.programming_language + '<br>' +
+                'Software & Hardware Requirements: ' + d.hardware_software_requirements + '<br>' +
+        "</div>"+
+        "<div class='col-md-6'>"+
+                "<h5>Other Information </h5>" +
+                'Where did you hear about ISSP? : ' + d.hear_about_ISSP + '<br>' +
+                'Assigned Year: ' + d.assigned_year + '<br>' +
+                'Assigned Term: ' + d.assigned_term + '<br>' +
+                'Assigned Program: ' + d.category + '<br>' +
+        "</div>"+
+    "</div>"
+    return temp_html;
 }
 
 $(document).ready(function() {
