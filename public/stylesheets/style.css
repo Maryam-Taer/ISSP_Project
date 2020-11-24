@@ -23,6 +23,7 @@
 body{
 	font-family: 'ArialCE_Bold', cursive !important;
 	color: #003c71 !important;
+	padding-bottom: 20px;
 }
 
 .underline{
@@ -105,6 +106,7 @@ select{
 
 input[type=checkbox]{
 	/* Double-sized Checkboxes */
+	transform: scale(1.75); /* normal */
 	-ms-transform: scale(1.75); /* IE */
 	-moz-transform: scale(1.75); /* FF */
 	-webkit-transform: scale(1.75); /* Safari and Chrome */
@@ -116,6 +118,7 @@ input[type=checkbox]{
 
 input[type=radio]{
 	/* 1.75 sized radio buttons */
+	transform: scale(1.75); /* normal */
 	-ms-transform: scale(1.75); /* IE */
 	-moz-transform: scale(1.75); /* FF */
 	-webkit-transform: scale(1.75); /* Safari and Chrome */

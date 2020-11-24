@@ -62,10 +62,7 @@ exports.create = (req, res) => {
     Submission.create(submission, (err, data) => {
         // console.log(submission.created_time)
         if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while creating the Submission."
-            });
+            res.render('error', { message: "Some error occurred while creating the Submission.", role: req.user.role, username: req.user.username });
         // Display in raw data
         // else res.send(data);
         else {
@@ -75,19 +72,19 @@ exports.create = (req, res) => {
 };
 
 exports.getAll = async (req, res) => {
-    async.parallel([
-        Submission.getAll,
-        Submission.get_year_term
-    ], function (err, results) {
-        if (err)
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while retrieving the Submissions."
-        });
-    else {
-        res.render('submissionList', { title: 'submission List', submissionData: JSON.stringify(results[0]), year_term: JSON.stringify(results[1]) , username: req.user.username, role: req.user.role});
-    }
-    });
+    async.parallel(
+        [
+            Submission.getAll,
+            Submission.get_year_term
+        ],
+        function (err, results) {
+            if (err){
+                res.render('error', { message: "Some error occurred while retrieving the Submissions.", role: req.user.role, username: req.user.username });
+            }else {
+                res.render('submissionList', { title: 'submission List', submissionData: JSON.stringify(results[0]), year_term: JSON.stringify(results[1]), username: req.user.username, role: req.user.role });
+            }
+        }
+    );
 };
 
 exports.delete = (req, res) => {
@@ -98,13 +95,9 @@ exports.delete = (req, res) => {
         Submission.delete(req.body.id, (err, data) => {
             if (err) {
                 if (err.kind === "not_found") {
-                    res.status(404).send({
-                        message: `Not found Submission with id ${req.body.id}.`
-                    });
+                    res.render('error', { message: `Not found Submission with id ${req.body.id}.`, role: req.user.role, username: req.user.username });
                 } else {
-                    res.status(500).send({
-                        message: "Could not delete Submission with id " + req.body.id
-                    });
+                    res.render('error', { message: `Could not delete Submission with id ${req.body.id}.`, role: req.user.role, username: req.user.username });
                 }
             } else {
                 res.redirect('/submissionList');
@@ -122,13 +115,9 @@ exports.edit = async (req, res) => {
         await Submission.findById(req.query.id, (err, data) => {
             if (err) {
                 if (err.kind === "not_found") {
-                    res.status(404).send({
-                        message: `Not found Submission with id ${req.params.id}.`
-                    });
+                    res.render('error', { message: `Not found Submission with id ${req.params.id}.`, role: req.user.role, username: req.user.username });
                 } else {
-                    res.status(500).send({
-                        message: "Error retrieving Submission with id " + req.params.id
-                    });
+                    res.render('error', { message: `Error retrieving Submission with id ${req.params.id}.`, role: req.user.role, username: req.user.username });
                 }
             } else {
                 res.render('edit', { data: data , username: req.user.username, role: req.user.role});
@@ -147,8 +136,7 @@ exports.update = (req, res) => {
     }
     // Role based access
     if (req.user.role != 'admin') {
-        res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
-        );
+        res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username});
     } else {
         Submission.updateById(
             req.body.id,
@@ -156,13 +144,9 @@ exports.update = (req, res) => {
             (err, data) => {
                 if (err) {
                     if (err.kind === "not_found") {
-                        res.status(404).send({
-                            message: `Not found Submission with id ${req.body.id}.`
-                        });
+                        res.render( 'error', {message: `Not found Submission with id ${req.body.id}.`, role:req.user.role, username:req.user.username});
                     } else {
-                        res.status(500).send({
-                            message: "Error updating Submission with id " + req.body.id
-                        });
+                        res.render( 'error', {message: `Error updating Submission with id ${req.body.id}.`, role:req.user.role, username:req.user.username});
                     }
                 } else {
                     res.redirect('/submissionList');
