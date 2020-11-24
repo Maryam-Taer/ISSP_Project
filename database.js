@@ -28,7 +28,7 @@ connection.connect(function (err) {
                             phone varchar(255) not null,
                             website varchar(255),
                             non_profit_organization varchar(25),
-                            company_business_profile varchar(255) not null,
+                            company_business_profile TEXT not null,
                             prefix varchar(25),
                             first varchar(255) not null,
                             last varchar(255) not null,
@@ -36,12 +36,12 @@ connection.connect(function (err) {
                             personal_phone varchar(255),
                             email varchar(255) not null,
                             project_area varchar(255),
-                            project_description varchar(255),
-                            project_duration varchar(255),
+                            project_description TEXT,
+                            project_duration TEXT,
                             project_duration_no_preference varchar(25),
-                            current_arrangement varchar(255),
-                            programming_language varchar(255),
-                            hardware_software_requirements varchar(255) not null,
+                            current_arrangement TEXT,
+                            programming_language TEXT,
+                            hardware_software_requirements TEXT not null,
                             continuation_project varchar(25),
                             hear_about_ISSP varchar(255),
                             sponsor_commitments varchar(25),
@@ -51,11 +51,10 @@ connection.connect(function (err) {
                         )`;
 
     let createAccount = `create table if not exists accounts(
-                                id int auto_increment,
-                                username varchar(255),
+                                id int primary key auto_increment,
+                                username varchar(255) UNIQUE,
                                 password varchar(255),
-                                role varchar(25),
-                                CONSTRAINT accounts_pk PRIMARY KEY (id, username)
+                                role varchar(25)
                         )`;
     let createFeedback = `create table if not exists feedback(
                                 id int primary key auto_increment,

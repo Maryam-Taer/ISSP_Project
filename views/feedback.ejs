@@ -35,8 +35,8 @@
 							<p>Company: <%= feedbackData.company_name %></p>
 							<form action="/submission/updateCategory" method="POST">
 								<input type="hidden" name="project_id" value="<%= feedbackData.id %>">
-								<label for="category">Current Submissions assign to:</label>
-								<div class="form-group  mt-2">
+								<div class="form-group mt-2">
+									<label for="category">Current Submissions assign to Program:</label>
 									<select class="form-control col-md-3" name="category" id="category">
 									<%
 										var options = [ "CIT", "CST", "Full Stack Web Development", "Rejected", "Not Assigned"];
@@ -48,7 +48,8 @@
 										%>
 									</select>
 								</div>
-									<div class="form-group  mt-2">
+									<div class="form-group mt-2">
+										<label for="assigned_year">Year and Term:</label>
 										<select name="assigned_year" class="form-control col-md-3">
 											<% 
 												var temp_year = new Date().getFullYear();
