@@ -67,7 +67,7 @@
 			<div class="col-md-10">
 
 				<form action="/submission/create" method="POST">
-
+					<!-- Form Section - Company -->
 					<h2>Company</h2>
 					<label for="company_name" class="h4">Company Name <span style="color: red;">*</span></label>
 					<input type="text" class="form-control" name="company_name" id="company_name"
@@ -77,19 +77,19 @@
 					<p class="h4">Address <span style="color: red;">*</span></p>
 					<label for="street_address">Street</label>
 					<input type="text" class="form-control" name="street_address" id="street_address"
-						placeholder="Street">
+						placeholder="Street" required>
 					<label for="address_line_2">Address Line 2</label>
 					<input type="text" class="form-control" name="address_line_2" id="address_line_2"
-						placeholder="Address Line 2">
+						placeholder="Address Line 2" required>
 
 					<div class="form-row">
 						<div class="col-md-6">
 							<label for="city">City</label>
-							<input type="text" class="form-control" name="city" id="city" placeholder="City">
+							<input type="text" class="form-control" name="city" id="city" placeholder="City" required>
 						</div>
 						<div class="col-md-6">
 							<label for="province">Province</label>
-							<select name="province" id="province" class="form-control">
+							<select name="province" id="province" class="form-control" required>
 								<option value=""></option>
 								<option value="BC">British Columbia</option>
 								<option value="AB">Alberta</option>
@@ -110,7 +110,7 @@
 					<div class="form-row">
 						<div class="col-md-6">
 							<label for="postal_code">Postal Code</label>
-							<input type="text" class="form-control" name="postal_code" id="postal_code">
+							<input type="text" class="form-control" name="postal_code" id="postal_code" required>
 						</div>
 						<div class="col-md-6">
 						</div>
@@ -118,73 +118,71 @@
 					<div class="form-row">
 						<div class="col-md-6">
 							<label for="phone" class="h4">Phone <span style="color: red;">*</span></label>
-							<input type="tel" class="form-control phone" name="phone" id="phone">
+							<input type="tel" class="form-control phone" name="phone" id="phone" required>
 						</div>
 						<div class="col-md-6">
 
 						</div>
 					</div>
 					<label class="h4">Website</label>
-					<input type="text" class="form-control" value="https://" name="website" id="website">
+					<input type="text" class="form-control" placeholder="https://" name="website" id="website">
 
 					<div class="form-check">
 						<input type="checkbox" class="form-check-input" value="on" name="non_profit_organization" id="non_profit_organization">
-						<label class="form-check-label" for="non_profit_organization">
+						<label class="form-check-label" for="non_profit_organization" style="margin-top: 5px;">
 							My company is a non-profit organization, governmental body or part of BCIT, and the fee of $500 will be waived
 						</label>
 					</div>
+					<hr class="style14" />
 
+					<h4>Company/Business profile <span style="color: red;">*</span></h4>
+					<small>(include the nature of business and an introduction, less than 150 words)</small>
+					<textarea rows="10" class="form-control" name="company_business_profile" required></textarea>
+					<!-- END - Form Section - Company -->
 
 					<hr class="style14" />
 
-
-					<h3>Company/Business profile</h3>
-					<label>(include the nature of business and an introduction, less than 150 words)</label>
-					<textarea rows="10" class="form-control" name="company_business_profile"></textarea>
-
-
-					<hr class="style14" />
-
-
+					<!-- Form Section - Contact Person -->
 					<h2>Contact Person</h2>
 
-					<h3>Salutation</h3>
+					<h5>Salutation</h5>
 					<select class="form-control" name="prefix">
-						<option value="mr">Mr.</option>
-						<option value="mrs">Mrs.</option>
-						<option value="ms">Ms.</option>
+						<option value="Mr.">Mr.</option>
+						<option value="Mrs.">Mrs.</option>
+						<option value="Ms.">Ms.</option>
+						<option value="Miss">Miss</option>
+						<option value="Dr.">Dr.</option>
 					</select>
 
 
-					<h3>Name <span style="color: red;">*</span></h3>
-					<div class="firstname">
-						<label>First Name</label>
-						<input type="text" name="first" class="form-control">
+					<h5>Name <span style="color: red;">*</span></h5>
+					<div class="form-row">
+						<div class="col-md-6">
+							<label for="first">First Name</label>
+							<input type="text" id="first" name="first" class="form-control" required>
+						</div>
+						<div class="col-md-6">
+							<label for="last">Last Name</label>
+							<input type="text" id="last" name="last" class="form-control" required>
+						</div>
 					</div>
-					<div class="lastname">
-						<label>Last Name</label>
-						<input type="text" name="last" class="form-control">
-					</div>
 
+					<label for="position" class="h5">Position</label>
+					<input type="text" name="position" id="position" class="form-control">
 
-					<h3>Position</h3>
-					<input type="text" name="position" class="form-control">
+					<label for="personal_phone" class="h5">Phone</label>
+					<input type="tel" class="form-control phone" name="personal_phone" id="personal_phone">
 
-
-					<h3>Phone</h3>
-					<input type="tel" class="form-control phone" name="personal_phone">
-
-
-					<h3>Email <span style="color: red;">*</span></h3>
-					<input type="text" name="email" class="form-control">
-
+					<label for="email" class="h5">Email <span style="color: red;">*</span></label>
+					<input type="text" name="email" id="email" class="form-control" required>
+					<!-- END Form Section - Contact Person -->
 
 					<hr class="style14" />
 
-
+					<!-- Form Section - Project -->
 					<h2>Project</h2>
 
-					<h3>Project area (check whichever applicable)</h3>
+					<h5>Project area (check whichever applicable)</h5>
 
 					<from class="form-inline">
 						<div class="form-check">
@@ -315,7 +313,7 @@
 					<hr class="style14" />
 
 
-					<h3>Project Description</h3>
+					<h5>Project Description</h5>
 					<small>This is a crucial part of your submission since your description will be published in
 						the Projects Catalogue. Our students will determine their project choice primarily
 						on the information you provide. Please include a detailed description of the project
@@ -326,153 +324,127 @@
 
 					<textarea rows="15" class="form-control" name="project_description"></textarea>
 
-
 					<hr class="style14" />
 
 
-					<h3>Project Duration/Timing</h3>
+					<h5>Project Duration/Timing</h5>
 					<textarea rows="10" class="form-control" name="project_duration"></textarea>
-					<label>Please see the <a
-							href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/#terms"
-							target="_blank" class="underline">ISSP Options</a> table
-						for more information</label>
-
-
+					<label>Please see the
+						<a href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/#terms"
+							target="_blank" class="underline">
+							ISSP Options
+						</a> table for more information
+					</label>
 
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="on"
+						<input class="form-check-input" id="project_duration_no_preference" type="checkbox" value="on"
 							name="project_duration_no_preference">
-						<label class="form-check-label">I have no preference on the
-							duration or
-							timing on the project</label>
+						<label class="form-check-label" for="project_duration_no_preference" style="padding-top:5px; padding-left:3px;">I have no preference on the	duration or	timing on the project</label>
 					</div>
 
-
 					<hr class="style14" />
 
-
-					<h3>Description of the current arrangement</h3>
+					<h5>Description of the current arrangement</h5>
 					<textarea rows="10" class="form-control" name="current_arrangement"></textarea>
-					<label>If applicable, describe how the tasks are currently carried out, current status of the
-						information,
-						etc.</label>
-
+					<small>
+						If applicable, describe how the tasks are currently carried out, current status of the information, etc.
+					</small>
 
 					<hr class="style14" />
 
 
-					<h3>If coding is required, what programming language or languages would be used?
-					</h3>
+					<h5>If coding is required, what programming language or languages would be used?</h5>
 					<textarea rows="10" class="form-control" name="programming_language"></textarea>
 
 
 					<hr class="style14" />
 
 
-					<h3>Hardware & Software Requirements <span style="color: red;">*</span></h3>
-					<textarea rows="10" class="form-control" name="hardware_software_requirements"></textarea>
+					<h5>Hardware & Software Requirements <span style="color: red;">*</span></h5>
+					<textarea rows="10" class="form-control" name="hardware_software_requirements" required></textarea>
 
 
 					<hr class="style14" />
 
 
-					<h3>Is this a continuation of a previous student project?</h3>
+					<h4>Is this a continuation of a previous student project?</h4>
 
-					<div class="form-check">
+					<div class="form-check cus_form_group">
 						<input class="form-check-input" type="radio" value="yes" name="continuation_project" id="continuation_project1">
 						<label class="form-check-label" for="continuation_project1">Yes</label>
 					</div>
 
-					<div class="form-check">
+					<div class="form-check cus_form_group">
 						<input class="form-check-input" type="radio" value="no" name="continuation_project" id="continuation_project2">
 						<label class="form-check-label" for="continuation_project2">No</label>
 					</div>
 
-
+					<!-- END Form Section - Project -->
 					<hr class="style14" />
 
 
-					<h3>How did you hear about ISSP?</h3>
+					<h4>How did you hear about ISSP?</h4>
 
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT website">
-						<label class="form-check-label">BCIT's website</label>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT website" id="hear_bcit_web">
+						<label class="form-check-label" for="hear_bcitweb">BCIT's website</label>
 					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT email message">
-						<label class="form-check-label">BCIT's email message</label>
-
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT email message" id="hear_bcit_email">
+						<label class="form-check-label" for="hear_bcit_email">BCIT's email message</label>
 					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP"
-							value="BCIT internal announcements">
-						<label class="form-check-label">BCIT internal
-							announcements</label>
-
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT internal announcements" id="hear_bcit_internal">
+						<label class="form-check-label" for="hear_bcit_internal">BCIT internal announcements</label>
 					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Ad on LinkedIn">
-						<label class="form-check-label">Ad on LinkedIn</label>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Ad on LinkedIn" id="hear_linkedin">
+						<label class="form-check-label" for="hear_linkedin">Ad on LinkedIn</label>
 					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Ad on T-Net">
-						<label class="form-check-label">Ad on T-Net</label>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Ad on T-Net" id="hear_tnet">
+						<label class="form-check-label" for="hear_tnet">Ad on T-Net</label>
 					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Company I work for">
-						<label class="form-check-label">Company I work for</label>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Company I work for" id="hear_company">
+						<label class="form-check-label" for="hear_company">Company I work for</label>
 					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP"
-							value="BC Technology Industry">
-						<label class="form-check-label">BC Technology Industry
-							Association</label>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BC Technology Industry" id="hear_BCtech">
+						<label class="form-check-label" for="hear_BCtech">BC Technology Industry Association</label>
 					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP"
-							value="BC Innovation Council">
-						<label class="form-check-label">BC Innovation Council</label>
-
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BC Innovation Council" id="hear_inno">
+						<label class="form-check-label" for="hear_inno">BC Innovation Council</label>
 					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="Other"> <input
-							type="text" value="Other">
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="radio" name="hear_about_ISSP" style="margin-top:13px !important;" value="" id="hear_other">
+						<input type="text" class="form-control col-md-4" placeholder="Other" id="hear_other_input">
 					</div>
-
 
 					<hr class="style14" />
 
-
-					<h2>Sponsor Commitments</h2>
+					<h4>Sponsor Commitments <span style="color: red;">*</span></h4>
 
 					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="on" name="sponsor_commitments">
-						<label class="form-check-label">I've read and understood all commitments
-							required from
-							a sponsor, including the participation fee of $500.</label>
+						<input class="form-check-input" type="checkbox" value="on" name="sponsor_commitments" id="sponsor_commitments" required>
+						<label class="form-check-label" for="sponsor_commitments" style="margin-top:5px;">
+							I've read and understood all commitments required from a sponsor, including the participation fee of $500.
+						</label>
 					</div>
 
 					<a href="https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/about-the-issp-program/#commitments"
 						target="_blank" class="underline">See commitments</a>
 
 
-
 					<hr class="style14" />
 
 
-					<h2>Consent</h2>
+					<h4>Consent</h4>
 
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" value="on" name="privacy_policy">
-						<label class="form-check-label">I agree to the privacy policy.</label>
+					<div class="form-check cus_form_group">
+						<input class="form-check-input" type="checkbox" value="on" name="privacy_policy" id="privacy_policy">
+						<label class="form-check-label" for="privacy_policy" style="margin-top:5px;">I agree to the privacy policy.</label>
 					</div>
 
 					<p>After submitting this form you should get a confirmation page and a confirmation in your emal.
@@ -495,6 +467,9 @@
 			$('[data-toggle="tooltip"]').tooltip();
 			$('.phone').inputmask("(999)-999-9999");
 		});
+		$("#hear_other_input").keyup(function(e){
+			document.getElementById('hear_other').value = document.getElementById("hear_other_input").value
+		})
 	</script>
 </body>
 

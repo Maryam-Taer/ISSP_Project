@@ -92,15 +92,13 @@ textarea {
 }
 
 input:not([type=checkbox]):not([type=submit]):not([type=radio]) {
-	margin-top: 0px !important;
-	padding-top: 3px !important;
+	margin-top: -8px !important;
 	margin-bottom: 20px !important;
 	padding-bottom: 10px !important;
 }
 
 select{
-	margin-top: 0px !important;
-	padding-top: 3px !important;
+	margin-top: -10px !important;
 	margin-bottom: 20px !important;
 	padding-bottom: 10px !important;
 }
@@ -122,11 +120,16 @@ input[type=radio]{
 	-moz-transform: scale(1.75); /* FF */
 	-webkit-transform: scale(1.75); /* Safari and Chrome */
 	-o-transform: scale(1.75); /* Opera */
-	margin-top: 10px;
-	padding: 20px !important;
-	margin-right: 20px !important;
+	margin-right: 30px !important;
 }
 
+.form-check-label{
+	padding: 3px;
+	padding-top: 0px;
+}
+.cus_form_group{
+	margin-bottom: 7px !important;
+}
 
 @media (min-width: 960px){
 	p {
