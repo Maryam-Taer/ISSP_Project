@@ -81,12 +81,24 @@
 <script>
     function format ( d ) {
         var pre = ''
-        if (d.prefix != null){
-            pre = d.prefix
-        }
-        return 'Contact: '+ pre + ' ' + d.first + ' '+ d.last +'<br>'+
-        'Contact Phone: '+d.phone+'<br>'+
-        'The child row can contain any data you wish, including links, images, inner tables etc.';
+        var temp_html = 
+    "<div class='row'>"+
+        "<div class='col-md-6'>"+
+                "<h5>Project Details </h5>" +
+                '<strong>Project Area: </strong>' + d.project_area + '<br>' +
+                '<strong>Description: </strong>' + d.project_description + '<br>' +
+                '<strong>Current Arrangement: </strong>' + d.current_arrangement + '<br>' +
+                '<strong>Programming Language: </strong>' + d.programming_language + '<br>' +
+                '<strong>Software & Hardware Requirements: </strong>' + d.hardware_software_requirements + '<br>' +
+        "</div>"+
+        "<div class='col-md-6'>"+
+                "<h5>Other Information </h5>" +
+                '<strong>Assigned Year: </strong>' + d.assigned_year + '<br>' +
+                '<strong>Assigned Term: </strong>' + d.assigned_term + '<br>' +
+                '<strong>Assigned Program: </strong>' + d.category + '<br>' +
+        "</div>"+
+    "</div>"
+    return temp_html;
     }
 
     $(document).ready(function() {

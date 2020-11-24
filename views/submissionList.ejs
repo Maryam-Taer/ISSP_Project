@@ -97,43 +97,45 @@ function format ( d ) {
     "<div class='form-row'>"+
         "<div class='col-md-6'>"+
                 "<h5>Company </h5>" +
-                'Name: ' + d.company_name + '<br>' +
-                'Profile: ' + d.company_business_profile + '<br>' +
-                'Address: ' + d.street_address + ' ' + d.address_line_2 + ', ' + d.city + ', ' + d.province + ', ' + d.postal_code + '<br>' +
-                'Phone: ' + d.phone + '<br>' +
-                'Website: ' + d.website + '<br>' +
+                '<strong>Name: </strong>' + d.company_name + '<br>' +
+                '<strong>Profile: </strong>' + d.company_business_profile + '<br>' +
+                '<strong>Address: </strong>' + d.street_address + ' ' + d.address_line_2 + ', ' + d.city + ', ' + d.province + ', ' + d.postal_code + '<br>' +
+                '<strong>Phone: </strong>' + d.phone + '<br>' +
+                '<strong>Website: </strong>' + d.website + '<br>' +
+                '<strong>Non-profit: </strong>' + d.non_profit_organization + '<br>' +
         "</div>"+
         "<div class='col-md-6'>"+
                 "<h5>Contact </h5>" +
-                'Name: ' + pre + d.first + ' ' + d.last + '<br>' +
-                'Phone: ' + d.personal_phone + '<br>' +
-                'Email: ' + d.email + '<br>' +
-                'Position: ' + d.position + '<br>' +
+                '<strong>Name: </strong>' + pre + d.first + ' ' + d.last + '<br>' +
+                '<strong>Phone: </strong>' + d.personal_phone + '<br>' +
+                '<strong>Email: </strong>' + d.email + '<br>' +
+                '<strong>Position: </strong>' + d.position + '<br>' +
         "</div>"+
     "</div>"+
     "<div class='row'>"+
         "<div class='col-md-6'>"+
                 "<h5>Project Details </h5>" +
-                'Project Area: ' + d.project_area + '<br>' +
-                'Description: ' + d.project_description + '<br>' +
-                'Duration: ' + d.duration + '<br>' +
-                'No preference of project duration: ' + d.project_duration_no_preference + '<br>' +
-                'Current Arrangement: ' + d.current_arrangement + '<br>' +
-                'Programming Language: ' + d.programming_language + '<br>' +
-                'Software & Hardware Requirements: ' + d.hardware_software_requirements + '<br>' +
+                '<strong>Project Area: </strong>' + d.project_area + '<br>' +
+                '<strong>Description: </strong>' + d.project_description + '<br>' +
+                '<strong>Duration: </strong>' + d.duration + '<br>' +
+                '<strong>No preference of project duration: </strong>' + d.project_duration_no_preference + '<br>' +
+                '<strong>Current Arrangement: </strong>' + d.current_arrangement + '<br>' +
+                '<strong>Programming Language: </strong>' + d.programming_language + '<br>' +
+                '<strong>Software & Hardware Requirements: </strong>' + d.hardware_software_requirements + '<br>' +
         "</div>"+
         "<div class='col-md-6'>"+
                 "<h5>Other Information </h5>" +
-                'Where did you hear about ISSP? : ' + d.hear_about_ISSP + '<br>' +
-                'Assigned Year: ' + d.assigned_year + '<br>' +
-                'Assigned Term: ' + d.assigned_term + '<br>' +
-                'Assigned Program: ' + d.category + '<br>' +
+                '<strong>How did you hear about ISSP? : </strong>' + d.hear_about_ISSP + '<br>' +
+                '<strong>Assigned Year: </strong>' + d.assigned_year + '<br>' +
+                '<strong>Assigned Term: </strong>' + d.assigned_term + '<br>' +
+                '<strong>Assigned Program: </strong>' + d.category + '<br>' +
         "</div>"+
     "</div>"
     return temp_html;
 }
 
 $(document).ready(function() {
+    // Column Search
     $('table thead tr').clone(true).appendTo('table thead');
     $('table thead tr:eq(1) th').each(function (i) {
         if (i>0 && i <6){
@@ -147,6 +149,7 @@ $(document).ready(function() {
             }
         });}
     });
+    // initialize datatable
     var dt = $('table.table').DataTable( {
         "search": {
             "regex": true
@@ -168,7 +171,7 @@ $(document).ready(function() {
         "searching": true,
         "processing": true,
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-        "data": <%- submissionData %>,
+        "data": <%- submissionData %>, 
         "columns": [
             {
                 "class":          "details-control",
@@ -209,12 +212,12 @@ $(document).ready(function() {
         ],
         "columnDefs": [
         {
-            "targets": [ <%- role == 'admin' ? '9,10,11' : '6,8,9,10,11' %> ], // show buttons/columns based on roles
+            "targets": [ <%- role == 'admin' ? '9,10,11' : '6,8,9,10,11' %> ], // show columns based on roles
             "visible": false,
             "searchable": true
         },
         {
-            targets: [4,5],
+            targets: [4,5], // Show substring only for long items in column 4, 5
             render: function ( data, type, row ) {
                 var extra = (data.length>170)? "...":" ";
                 return (data.substr( 0, 170 )+extra) ;
@@ -228,6 +231,7 @@ $(document).ready(function() {
         }],
         "order": [[1, 'asc']],
         "createdRow": function( row, data, dataIndex){
+            // add CSS class based on program assigned to the row
                 if( data['category'] ===  'CIT'){
                     $(row).addClass('cit_bg');
                 } else if( data['category'] ===  'CST'){
