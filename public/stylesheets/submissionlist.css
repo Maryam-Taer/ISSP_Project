@@ -34,3 +34,9 @@ table{
     background-image:linear-gradient(to right, rgb(255, 128, 128),rgb(252, 53, 46));
 }
 
+.cus-btn{
+    padding: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin: -5px;
+}
