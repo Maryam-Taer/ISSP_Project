@@ -48,7 +48,7 @@ exports.submitFeedback = (req, res) => {
 exports.feedback = (req, res) => {
     async.series({
         find_submission: function (callback) {
-            Submission.findById(req.body.id, (err, submissionData) => {
+            Submission.findById(req.query.id, (err, submissionData) => {
                 if (err) {
                     if (err.kind === "not_found") {
                         res.render('error', { message: `Not found Submission with id ${req.params.id}.`, role: req.user.role, username: req.user.username });
@@ -61,7 +61,7 @@ exports.feedback = (req, res) => {
             });
         },
         find_feedback: function (callback) {
-            Feedback.findAllById(req.body.id, (err, data) => {
+            Feedback.findAllById(req.query.id, (err, data) => {
                 if (err) {
                     res.render('error', { message: "Some error occurred while retrieving the Submissions.", role: req.user.role, username: req.user.username });
                 }

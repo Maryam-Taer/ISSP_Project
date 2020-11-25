@@ -190,10 +190,7 @@ $(document).ready(function() {
             }},// index 6
             {"orderable":      false,
             "render": function ( data, type, row, meta ) {
-                return '<form action="/submission/feedback" method="POST" >' + 
-                    '<input name="id" type="hidden" value="'+row.id+ '" />' +
-                    '<button class="btn btn-success" type="submit">Feedback</button>' +
-                '</form>';
+                return '<a href="/submission/feedback?id='+row.id+ '"class="btn btn-success" type="submit">Feedback</a>';
             }},// index 7
             {"orderable":      false,
             "render": function ( data, type, row, meta ) {
