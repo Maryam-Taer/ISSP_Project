@@ -27,15 +27,34 @@
 				<div class="container-fluid">
 					<div class="detailBox">
 						<div class="titleBox">
-							<h2>Comment Box</h2>
+							<h2>Project Review</h2>
 						</div>
 						<div class="commentBox">
 							<p class="taskDescription">ID: <%= feedbackData.id %></p>
-							<p>Date Created: <%= feedbackData.created_time %></p>
 							<p>Company: <%= feedbackData.company_name %></p>
+							<p>Date Created: <%= feedbackData.created_time %></p>
+							<div class='container-fluid'>
+								<h5>Project Details </h5>
+								<p class="feedback_item">Project Area:</p>
+								<%= feedbackData.project_area %>
+
+								<p class="feedback_item">Description:</p>
+								<%= feedbackData.project_description %>
+
+								<p class="feedback_item">Current Arrangement:</p>
+								<%= feedbackData.current_arrangement %>
+
+								<p class="feedback_item">Programming Language:</p>
+								<%= feedbackData.programming_language %>
+
+								<p class="feedback_item">Software & Hardware Requirements:</p>
+								<%= feedbackData.hardware_software_requirements %>
+							</div>
+						</div>
+						<div class="container-fluid">
 							<form action="/submission/updateCategory" method="POST">
 								<input type="hidden" name="project_id" value="<%= feedbackData.id %>">
-								<div class="form-group mt-2">
+								<div class="form-group md-2">
 									<label for="category">Current Submissions assign to Program:</label>
 									<select class="form-control col-md-3" name="category" id="category">
 									<%
@@ -48,9 +67,9 @@
 										%>
 									</select>
 								</div>
-									<div class="form-group mt-2">
+									<div class="form-group md-2">
 										<label for="assigned_year">Year and Term:</label>
-										<select name="assigned_year" class="form-control col-md-3">
+										<select name="assigned_year" class="form-control col-md-2">
 											<% 
 												var temp_year = new Date().getFullYear();
 												var year_list = [temp_year.toString(), (temp_year + 1).toString()]
@@ -60,8 +79,8 @@
 											} %>
 										</select>
 									</div>
-								<div class="form-group mt-2">
-											<select name="assigned_term" class="form-control col-md-3">
+								<div class="form-group md-2">
+											<select name="assigned_term" class="form-control col-md-2">
 											<%
 											var options = [ "winter", "summer", "fall", "Not Assigned" ];
 												for ( var i = 0; i < options.length; i++ ) 
