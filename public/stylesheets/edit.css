@@ -1,7 +1,155 @@
-@import url("https://fonts.googleapis.com/css?family=Indie+Flower|Monoton|Orbitron|Permanent+Marker|Raleway|Teko");
-@import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+@font-face {
+    font-family: ArialCE;
+    src: url("/font/ArialCE.woff");
+}
+
+@font-face {
+    font-family: ArialCE_Bold;
+    src: url("/font/ArialCEBold.woff");
+}
+
+#ISSPheader{
+	color: #5a5a5a;
+    font-size: 24px;
+    line-height: 1.4;
+	letter-spacing: -.2px;
+	margin: 0px;
+}
 
 .edit{
-  background-color: white;;
-  color: #003C71;
+	font-family: 'ArialCE_Bold', cursive !important;
+	color: #003c71 !important;
+	padding-bottom: 20px;
+}
+
+.underline{
+	text-decoration: none;
+	border-bottom: 3px solid #fff400;
+}
+
+.underline:hover{
+	text-decoration: none;
+	color: #003c71;
+	border-bottom: 3px solid #003c71;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.custom-tooltip{
+	border-radius: 50%; 
+	text-align: center; 
+	height: 20px; 
+	width: 20px; 
+	background-color: white!important; 
+	border-color: black!important; 
+	color: black!important; 
+	font-size: 10px; 
+	cursor: pointer; 
+	border-width: 2px;
+}
+
+.custom-tooltip:hover{
+	background-color: rgb(255, 234, 46)!important;
+}
+
+.h2{
+	font-size:20px;
+}
+
+
+h2 {
+	padding-top: 10px;
+	padding-bottom: 10px; 
+	margin: 0px;
+}
+
+h3 {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin: 0px;
+	font-size: 24px;
+    line-height: 1.4;
+    letter-spacing: -.2px;
+}
+
+select {
+	color: black;
+	padding-right: 8%;
+	margin-bottom: 10px;
+}
+
+textarea {
+	height: 100%;
+}
+
+input:not([type=checkbox]):not([type=submit]):not([type=radio]) {
+	margin-top: -8px !important;
+	margin-bottom: 20px !important;
+	padding-bottom: 10px !important;
+}
+
+select{
+	margin-top: -10px !important;
+	margin-bottom: 20px !important;
+	padding-bottom: 10px !important;
+}
+
+input[type=checkbox]{
+	/* Double-sized Checkboxes */
+	transform: scale(1.75); /* normal */
+	-ms-transform: scale(1.75); /* IE */
+	-moz-transform: scale(1.75); /* FF */
+	-webkit-transform: scale(1.75); /* Safari and Chrome */
+	-o-transform: scale(1.75); /* Opera */
+	margin-top: 10px;
+	padding: 20px !important;
+	margin-right: 20px !important;
+}
+
+input[type=radio]{
+	/* 1.75 sized radio buttons */
+	transform: scale(1.75); /* normal */
+	-ms-transform: scale(1.75); /* IE */
+	-moz-transform: scale(1.75); /* FF */
+	-webkit-transform: scale(1.75); /* Safari and Chrome */
+	-o-transform: scale(1.75); /* Opera */
+	margin-right: 30px !important;
+}
+
+.form-check-label{
+	padding: 3px;
+	padding-top: 0px;
+}
+.cus_form_group{
+	margin-bottom: 7px !important;
+}
+
+@media (min-width: 960px){
+	p {
+		margin-bottom: 24px;
+	}
+	#ISSPheader{
+		font-size: 38px;
+		padding-bottom: 20px;
+	}
+
+
+}
+
+@media (min-width: 768px){
+	h3 {
+		font-size: 32px;
+		line-height: 1.25;
+		letter-spacing: -.4px;
+	}
+	#ISSPheader{
+		font-size: 32px;
+		padding-bottom: 10px;
+	}
 }
