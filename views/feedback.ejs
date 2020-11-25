@@ -27,14 +27,14 @@
 				<div class="container-fluid">
 					<div class="detailBox">
 						<div class="titleBox">
-							<h2>Project Review</h2>
+							<h2>Project Review (Id: <%= feedbackData.id %>)</h2>
 						</div>
 						<div class="commentBox">
-							<p class="taskDescription">ID: <%= feedbackData.id %></p>
-							<p>Company: <%= feedbackData.company_name %></p>
-							<p>Date Created: <%= feedbackData.created_time %></p>
 							<div class='container-fluid'>
-								<h5>Project Details </h5>
+								<h4><strong>Project Details</strong></h4>
+								<p class="feedback_item">Company Name:</p>
+								<%= feedbackData.company_name %>
+
 								<p class="feedback_item">Project Area:</p>
 								<%= feedbackData.project_area %>
 
