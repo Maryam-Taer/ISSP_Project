@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/stylesheets/style.css">
 	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="icon" type="image/png" sizes="32x32" href="./android-chrome-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/android-chrome-192x192.png">
 	<!-- Need to get it from plesk -->
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
@@ -184,9 +184,9 @@
 
 					<h5>Project area (check whichever applicable)</h5>
 
-					<from class="form-inline">
+					<div class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" id="pa-devops" type="checkbox" name="project_area[]" value="DevOps">
+							<input class="form-check-input" id="pa-devops" type="checkbox" name="project_area" value="DevOps">
 							<label class="form-check-label" for="pa-devops">DevOps</label>
 
 							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
@@ -195,11 +195,11 @@
 								i
 							</button>
 						</div>
-					</from>
+					</div>
 
-					<from class="form-inline">
+					<div class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" id="pa-net" type="checkbox" name="project_area[]" value="Networking">
+							<input class="form-check-input" id="pa-net" type="checkbox" name="project_area" value="Networking">
 							<label class="form-check-label" for="pa-net">
 								Networking
 							</label>
@@ -209,11 +209,11 @@
 								i
 							</button>
 						</div>
-					</from>
+					</div>
 
-					<from class="form-inline">
+					<div class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" id="pa-web" type="checkbox" name="project_area[]"
+							<input class="form-check-input" id="pa-web" type="checkbox" name="project_area"
 								value="Web Development">
 							<label class="form-check-label" for="pa-web">
 								Web Development
@@ -224,11 +224,11 @@
 								i
 							</button>
 						</div>
-					</from>
+					</div>
 
-					<from class="form-inline">
+					<div class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" id="pa-mobile" type="checkbox" name="project_area[]]"
+							<input class="form-check-input" id="pa-mobile" type="checkbox" name="project_area"
 								value="Mobile Development">
 							<label class="form-check-label" for="pa-mobile">
 								Mobile Development
@@ -239,11 +239,11 @@
 								i
 							</button>
 						</div>
-					</from>
+					</div>
 
-					<from class="form-inline">
+					<div class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" id="pa-script" type="checkbox" name="project_area[]" value="Scripting/IT">
+							<input class="form-check-input" id="pa-script" type="checkbox" name="project_area" value="Scripting/IT">
 							<label class="form-check-label" for="pa-script">
 								Scripting/IT
 							</label>
@@ -253,11 +253,11 @@
 								i
 							</button>
 						</div>
-					</from>
+					</div>
 
-					<from class="form-inline">
+					<div class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" id="pa-game" type="checkbox" name="project_area[]" value="Games">
+							<input class="form-check-input" id="pa-game" type="checkbox" name="project_area" value="Games">
 							<label class="form-check-label" for="pa-game">
 								Games
 							</label>
@@ -268,11 +268,11 @@
 								i
 							</button>
 						</div>
-					</from>
+					</div>
 
-					<from class="form-inline">
+					<div class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" id="pa-arvr" type="checkbox" name="project_area[]" value="AR/VR">
+							<input class="form-check-input" id="pa-arvr" type="checkbox" name="project_area" value="AR/VR">
 							<label class="form-check-label" for="pa-arvr">AR/VR</label>
 							<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
 								data-toggle="tooltip" data-placement="right"
@@ -280,11 +280,11 @@
 								i
 							</button>
 						</div>
-					</from>
+					</div>
 
-					<from class="form-inline">
+					<div class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" id="pa-ml"type="checkbox" name="project_area[]" value="Machine Learning/Algorithms/Research">
+							<input class="form-check-input" id="pa-ml" type="checkbox" name="project_area" value="Machine Learning/Algorithms/Research">
 							<label class="form-check-label" for="pa-ml">
 								Machine Learning/Algorithms/Research
 							</label>
@@ -294,11 +294,11 @@
 								i
 							</button>
 						</div>
-					</from>
+					</div>
 					
-					<from class="form-inline">
+					<div class="form-inline">
 						<div class="form-check">
-							<input class="form-check-input" id='pa-other' type="checkbox" name="project_area[8]" value="Other">
+							<input class="form-check-input" id='pa-other' type="checkbox" name="project_area" value="Other">
 							<label class="form-check-label" for="pa-other">
 								Other
 							</label>
@@ -307,7 +307,7 @@
 								i
 							</button>
 						</div>
-					</from>
+					</div>
 
 
 					<hr class="style14" />
@@ -387,7 +387,7 @@
 
 					<div class="form-check cus_form_group">
 						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT website" id="hear_bcit_web">
-						<label class="form-check-label" for="hear_bcitweb">BCIT's website</label>
+						<label class="form-check-label" for="hear_bcit_web">BCIT's website</label>
 					</div>
 					<div class="form-check cus_form_group">
 						<input class="form-check-input" type="radio" name="hear_about_ISSP" value="BCIT email message" id="hear_bcit_email">
@@ -429,7 +429,7 @@
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" value="on" name="sponsor_commitments" id="sponsor_commitments" required>
 						<label class="form-check-label" for="sponsor_commitments" style="margin-top:5px;">
-							I've read and understood all commitments required from a sponsor, including the participation fee of $500.
+							I've read and understood all commitments required div a sponsor, including the participation fee of $500.
 						</label>
 					</div>
 

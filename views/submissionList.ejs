@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ISSP Submission List</title>
+    <title>ISSP Manage Projects</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/android-chrome-192x192.png">
     <!-- Custom styles for this template -->
     <link href="/stylesheets/sb-admin-2.min.css" rel="stylesheet">
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,7 +28,7 @@
                         <!-- DataTales -->
                         <div class="card shadow mb-4">
                             <div class="card-header">
-                                <select id="table_year_term" class="form-control col-1">
+                                <select id="table_year_term" class="form-control col-2">
                                 </select>
                             </div>
                             <div class="card-body">
@@ -90,14 +91,51 @@
 function format ( d ) {
     var pre = ''
     if (d.prefix != null){
-        pre = d.prefix
+        pre = d.prefix + ' '
     }
-    return 'Contact: '+ pre + ' ' + d.first + ' '+ d.last +'<br>'+
-        'Contact Phone: '+d.phone+'<br>'+
-        'The child row can contain any data you wish, including links, images, inner tables etc.';
+    var temp_html = 
+    "<div class='form-row'>"+
+        "<div class='col-md-6'>"+
+                "<h5>Company </h5>" +
+                '<strong>Name: </strong>' + d.company_name + '<br>' +
+                '<strong>Profile: </strong>' + d.company_business_profile + '<br>' +
+                '<strong>Address: </strong>' + d.street_address + ' ' + d.address_line_2 + ', ' + d.city + ', ' + d.province + ', ' + d.postal_code + '<br>' +
+                '<strong>Phone: </strong>' + d.phone + '<br>' +
+                '<strong>Website: </strong>' + d.website + '<br>' +
+                '<strong>Non-profit: </strong>' + d.non_profit_organization + '<br>' +
+        "</div>"+
+        "<div class='col-md-6'>"+
+                "<h5>Contact </h5>" +
+                '<strong>Name: </strong>' + pre + d.first + ' ' + d.last + '<br>' +
+                '<strong>Phone: </strong>' + d.personal_phone + '<br>' +
+                '<strong>Email: </strong>' + d.email + '<br>' +
+                '<strong>Position: </strong>' + d.position + '<br>' +
+        "</div>"+
+    "</div>"+
+    "<div class='row'>"+
+        "<div class='col-md-6'>"+
+                "<h5>Project Details </h5>" +
+                '<strong>Project Area: </strong>' + d.project_area + '<br>' +
+                '<strong>Description: </strong>' + d.project_description + '<br>' +
+                '<strong>Duration: </strong>' + d.duration + '<br>' +
+                '<strong>No preference of project duration: </strong>' + d.project_duration_no_preference + '<br>' +
+                '<strong>Current Arrangement: </strong>' + d.current_arrangement + '<br>' +
+                '<strong>Programming Language: </strong>' + d.programming_language + '<br>' +
+                '<strong>Software & Hardware Requirements: </strong>' + d.hardware_software_requirements + '<br>' +
+        "</div>"+
+        "<div class='col-md-6'>"+
+                "<h5>Other Information </h5>" +
+                '<strong>How did you hear about ISSP? : </strong>' + d.hear_about_ISSP + '<br>' +
+                '<strong>Assigned Year: </strong>' + d.assigned_year + '<br>' +
+                '<strong>Assigned Term: </strong>' + d.assigned_term + '<br>' +
+                '<strong>Assigned Program: </strong>' + d.category + '<br>' +
+        "</div>"+
+    "</div>"
+    return temp_html;
 }
 
 $(document).ready(function() {
+    // Column Search
     $('table thead tr').clone(true).appendTo('table thead');
     $('table thead tr:eq(1) th').each(function (i) {
         if (i>0 && i <6){
@@ -106,30 +144,34 @@ $(document).ready(function() {
             if (dt.column(i).search() !== this.value) {
                 dt
                     .column(i)
-                    .search(this.value)
+                    .search(this.value, true)
                     .draw();
             }
         });}
     });
+    // initialize datatable
     var dt = $('table.table').DataTable( {
+        "search": {
+            "regex": true
+        },
         dom: 'Blfrtip',
         buttons: [
-        {
-            extend: 'pdf',
-            orientation: 'landscape',
-            text: 'Export PDF',
-            exportOptions: {
-                columns: [ 0, 1, 2, 3, 4, 5,],
-            }
+            {
+                extend: 'pdf',
+                orientation: 'landscape',
+                text: 'Export PDF',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5,],
+                }
 
-        }
+            }
         ],
         "orderCellsTop": true,
         "ordering": true,
         "searching": true,
         "processing": true,
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-        "data": <%- submissionData %>,
+        "data": <%- submissionData %>, 
         "columns": [
             {
                 "class":          "details-control",
@@ -148,10 +190,7 @@ $(document).ready(function() {
             }},// index 6
             {"orderable":      false,
             "render": function ( data, type, row, meta ) {
-                return '<form action="/submission/feedback" method="POST" >' + 
-                    '<input name="id" type="hidden" value="'+row.id+ '" />' +
-                    '<button class="btn btn-success" type="submit">Feedback</button>' +
-                '</form>';
+                return '<a href="/submission/feedback?id='+row.id+ '"class="btn btn-success" type="submit">Feedback</a>';
             }},// index 7
             {"orderable":      false,
             "render": function ( data, type, row, meta ) {
@@ -170,12 +209,12 @@ $(document).ready(function() {
         ],
         "columnDefs": [
         {
-            "targets": [ <%- role == 'admin' ? '9,10,11' : '6,8,9,10,11' %> ], // show buttons/columns based on roles
+            "targets": [ <%- role == 'admin' ? '9,10,11' : '6,8,9,10,11' %> ], // show columns based on roles
             "visible": false,
             "searchable": true
         },
         {
-            targets: [4,5],
+            targets: [4,5], // Show substring only for long items in column 4, 5
             render: function ( data, type, row ) {
                 var extra = (data.length>170)? "...":" ";
                 return (data.substr( 0, 170 )+extra) ;
@@ -189,6 +228,7 @@ $(document).ready(function() {
         }],
         "order": [[1, 'asc']],
         "createdRow": function( row, data, dataIndex){
+            // add CSS class based on program assigned to the row
                 if( data['category'] ===  'CIT'){
                     $(row).addClass('cit_bg');
                 } else if( data['category'] ===  'CST'){

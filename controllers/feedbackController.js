@@ -9,13 +9,10 @@ exports.feedbackList = (req, res) => {
         Submission.get_year_term
     ], function (err, results) {
         if (err)
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while retrieving the Submissions."
-        });
-    else {
-        res.render('feedbackList',{ feedbackList: JSON.stringify(results[0]), year_term: JSON.stringify(results[1]) , username: req.user.username, role: req.user.role });
-    }
+            res.render('error', { message: "Some error occurred while retrieving the Submissions.", role: req.user.role, username: req.user.username });
+        else {
+            res.render('feedbackList', { feedbackList: JSON.stringify(results[0]), year_term: JSON.stringify(results[1]), username: req.user.username, role: req.user.role });
+        }
     });
 };
 
@@ -39,10 +36,7 @@ exports.submitFeedback = (req, res) => {
     // Save Submission in the database
     Feedback.create(feedback, (err, data) => {
         if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while creating the Submission."
-            });
+            res.render('error', { message: "Some error occurred while creating the Submission.", role: req.user.role, username: req.user.username });
         // Display in raw data
         // else res.send(data);
         else {
@@ -54,37 +48,30 @@ exports.submitFeedback = (req, res) => {
 exports.feedback = (req, res) => {
     async.series({
         find_submission: function (callback) {
-            Submission.findById(req.body.id, (err, submissionData) => {
+            Submission.findById(req.query.id, (err, submissionData) => {
                 if (err) {
                     if (err.kind === "not_found") {
-                        res.status(404).send({
-                            message: `Not found Submission with id ${req.params.id}.`
-                        });
+                        res.render('error', { message: `Not found Submission with id ${req.params.id}.`, role: req.user.role, username: req.user.username });
                     } else {
-                        res.status(500).send({
-                            message: "Error retrieving Submission with id " + req.params.id
-                        });
+                        res.render('error', { message: `Error retrieving Submission with id ${req.params.id}.`, role: req.user.role, username: req.user.username });
                     }
                 } else {
                     callback(err, submissionData);
                 }
-        });
+            });
         },
         find_feedback: function (callback) {
-            Feedback.findAllById(req.body.id, (err, data) => {
+            Feedback.findAllById(req.query.id, (err, data) => {
                 if (err) {
-                res.status(500).send({
-                    message:
-                        err.message || "Some error occurred while retrieving the Submissions."
-                });
+                    res.render('error', { message: "Some error occurred while retrieving the Submissions.", role: req.user.role, username: req.user.username });
                 }
                 else {
                     callback(err, data);
                 }
             });
         }
-    }, function(err, results) {
-        res.render('feedback', { role: req.user.role, username: req.user.username, returnData: results.find_feedback , feedbackData: results.find_submission });
+    }, function (err, results) {
+        res.render('feedback', { role: req.user.role, username: req.user.username, returnData: results.find_feedback, feedbackData: results.find_submission });
     });
 };
 
@@ -96,20 +83,16 @@ exports.updateCategory = (req, res) => {
             message: "Content can not be empty!"
         });
     }
-    
+
     Feedback.category(
         req.body.project_id,
         new Submission(req.body),
         (err, data) => {
             if (err) {
                 if (err.kind === "not_found") {
-                    res.status(404).send({
-                        message: `Not found Submission with id ${req.body.id}.`
-                    });
+                    res.render('error', { message: `Not found Submission with id ${req.body.id}.`, role: req.user.role, username: req.user.username });
                 } else {
-                    res.status(500).send({
-                        message: "Error updating Submission with id " + req.body.id
-                    });
+                    res.render('error', { message: `Error updating Submission with id ${req.body.id}.`, role: req.user.role, username: req.user.username });
                 }
             } else {
                 res.redirect('/feedbackList');

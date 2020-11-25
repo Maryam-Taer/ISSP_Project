@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/submissionList">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/feedbackList">
         <div class="sidebar-brand-icon">
             <img src="/BCIT_logo.png" class="mx-auto d-block img-fluid logo" alt="BCIT Logo">
         </div>
@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="/submissionList">
+        <a class="nav-link" href="/feedbackList">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -40,7 +40,7 @@
                 <a class="collapse-item" href="/profile" >My Profile</a>
             </form>
             <% if (role == "admin") { %>
-                <a class="collapse-item" href="/admin" >Account Management</a>
+                <a class="collapse-item" href="/admin" >User Management</a>
             <% } %>
             </div>
         </div>
@@ -55,7 +55,7 @@
     </li>
     <% } %>
 
-    <!-- Nav Item - Utilities Collapse Menu -->
+    <!-- Nav Item
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
@@ -73,16 +73,16 @@
             </div>
         </div>
     </li>
-
+    Utilities Collapse Menu -->
     <!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Addons
+        Tables
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
             aria-controls="collapsePages">
@@ -103,19 +103,21 @@
             </div>
         </div>
     </li>
+    Pages Collapse Menu -->
 
     <!-- Nav Item - Charts -->
+    <% if (role == "admin") { %>
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
+        <a class="nav-link" href="/submissionList">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Manage Projects</span></a>
     </li>
-
+    <% } %>
     <!-- Nav Item - Tables -->
     <li class="nav-item">
         <a class="nav-link" href="/feedbackList">
             <i class="fas fa-fw fa-table"></i>
-            <span>Feedback</span></a>
+            <span>Projects Review</span></a>
     </li>
 
     <!-- Divider -->

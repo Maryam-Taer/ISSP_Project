@@ -24,7 +24,7 @@ module.exports = app => {
   // Feedback List Page
   app.get("/feedbackList", ensureAuthenticated, feedbackController.feedbackList);
   // Feedback Page
-  app.post("/submission/feedback",ensureAuthenticated, feedbackController.feedback);
+  app.get("/submission/feedback",ensureAuthenticated, feedbackController.feedback);
   // Submit Feedback
   app.post("/submission/submitFeedback",ensureAuthenticated, feedbackController.submitFeedback);
   // Update Category
@@ -63,7 +63,7 @@ module.exports = app => {
   app.get('*', function(req, res) {
     // if user is authenticated, redirect to dashboard home page
     if (req.isAuthenticated()){
-      res.redirect("/submissionList");
+      res.redirect("/feedbackList");
     }else{
       // if user is not authenticated, redirect to submission page.
       res.redirect("/");

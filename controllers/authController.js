@@ -7,7 +7,7 @@ exports.login = (req, res) => {
 
 exports.loginuser = (req, res, next) => {-
     passport.authenticate('local-login', {
-        successRedirect: '/submissionList',
+        successRedirect: '/feedbackList',
         failureRedirect: '/login',
         failureFlash: 'Invalid Credentials'
       })(req, res, next);
