@@ -9,7 +9,7 @@
     <!-- Custom styles for this page -->
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/sd-admin_custom.css">
-    <link rel="stylesheet" href="/stylesheets/edit.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body id="page-top">
     <!-- Page Wrapper -->
@@ -24,225 +24,245 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid edit">
 
-                      <form action="/submission/update" method="POST">
-                        <div class="mb-4">
-                          <h1>Project Detail</h1>
-                          <b>id:<%= data.id %> </b>
-                          <input type="hidden" name="id" value="<%= data.id %>">
-                          <br>
-                          <b>Date Created: <%= data.created_time %> </b>
-                        </div>
-                          <h2 class="mb-3">Company</h2>
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="company_name" class="font-weight-bold">Company Name:</label>
-                            <input type="text" name="company_name" id="company_name" class="form-control"
-                              value="<%= data.company_name ? data.company_name : '' %>">
+                      <div class="col-md-10">
+
+                        <form action="/submission/update" method="POST">
+                          <div class="mb-4">
+                            <h1>Project Detail</h1>
+                            <b>id:<%= data.id %> </b>
+                            <input type="hidden" name="id" value="<%= data.id %>">
+                            <br>
+                            <b>Date Created: <%= data.created_time %> </b>
                           </div>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="street" class="font-weight-bold">Street:</label>
-                            <input type="text" name="street_address" id="street" class="form-control"
-                              value="<%= data.street_address ? data.street_address : '' %>">
+                          <!-- Form Section - Company -->
+                          <h2>Company</h2>
+                          <label for="company_name" class="h4">Company Name <span style="color: red;">*</span></label>
+                          <input type="text" class="form-control" name="company_name" id="company_name"
+                            placeholder="Company Name" value="<%= data.company_name ? data.company_name : '' %>" required>
+          
+                          <p class="h4">Address <span style="color: red;">*</span></p>
+                          <label for="street_address">Street</label>
+                          <input type="text" class="form-control" name="street_address" id="street_address"
+                            placeholder="Street" value="<%= data.street_address ? data.street_address : '' %>" required>
+                          <label for="address_line_2">Address Line 2</label>
+                          <input type="text" class="form-control" name="address_line_2" id="address_line_2"
+                            placeholder="Address Line 2" value="<%= data.address_line_2 ? data.address_line_2 : '' %>" required>
+                
+                          <div class="form-row">
+                            <div class="col-md-6">
+                              <label for="city">City</label>
+                              <input type="text" class="form-control" name="city" id="city" placeholder="City" value="<%= data.city ? data.city : '' %>" required>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="province">Province</label>
+                              <select name="province" id="province" class="form-control" required>
+                              <%
+                              var province_lable = [ "British Columbia", "Alberta", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan","Yukon"];
+                              var options = ["BC", "AB", "MA", "NB", "NL", "NT", "NS", "NU", "ON", "PE", "QC", "SK", "YT"]
+                              for ( var i = 0; i < options.length; i++ ) 
+                                { var selected=( data.province == options[i] )? "selected" : ""
+                                ; %>
+                                    <option value="<%=options[ i ] %>" <%=selected %>><%=province_lable[i] %></option>
+                              <% } %>
+                              </select>
+                            </div>
                           </div>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="address_line_2" class="font-weight-bold">Address Line 2:</label>
-                            <input type="text" name="address_line_2" id="address_line_2" class="form-control"
-                              value="<%= data.address_line_2 ? data.address_line_2 : '' %>">
+                          <div class="form-row">
+                            <div class="col-md-6">
+                              <label for="postal_code">Postal Code</label>
+                              <input type="text" class="form-control" name="postal_code" id="postal_code" value="<%= data.postal_code ? data.postal_code : '' %>" required>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
                           </div>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="city" class="font-weight-bold">City:</label>
-                            <input type="text" name="city" id="city" class="form-control " value="<%= data.city ? data.city : '' %>">
+                          <div class="form-row">
+                            <div class="col-md-6">
+                              <label for="phone" class="h4">Phone <span style="color: red;">*</span></label>
+                              <input type="tel" class="form-control phone" name="phone" id="phone" value="<%= data.phone ? data.phone : '' %>" required>
+                            </div>
+                            <div class="col-md-6">
+                
+                            </div>
                           </div>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="province" class="font-weight-bold">Province:</label>
-                            <select name="province" class="form-control">
-                        <%
-                          var province_lable = [ "British Columbia", "Alberta", "Manitoba" ];
-                          var options = ["BC", "AB", "MA"]
-                          for ( var i = 0; i < options.length; i++ ) 
-                          { var selected=( data.province == options[i] )? "selected" : ""
-                          ; %>
-                              <option value="<%=options[ i ] %>" <%=selected %>><%=province_lable[i] %></option><%
-                          }
-                        %>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="post_code" class="font-weight-bold">Postal Code:</label>
-                            <input type="text" name="postal_code" id="post_code" class="form-control"
-                              value="<%= data.postal_code ? data.postal_code : '' %>">
-                          </div>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="phone" class="font-weight-bold">Phone:</label>
-                            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone" id="phone" class="form-control"
-                              value="<%= data.phone ? data.phone : '' %>">
-                          </div>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="website" class="font-weight-bold">Website:</label>
-                            <input type="text" name="website" id="website" class="form-control" value="<%= data.website ? data.website : '' %>">
-                          </div>
-                        </div>
-                        <div class="form-inline mb-3">
+                          <label class="h4">Website</label>
+                          <input type="text" class="form-control" placeholder="https://" name="website" id="website" value="<%= data.website ? data.website : '' %>">
+                
                           <div class="form-check">
-                            <label for="non_profit_organization" class="font-weight-bold">Non Profit Organization:</label>
                             <% var checked=( data.non_profit_organization == "on")? "checked" : "" %>
-                            <input type="checkbox" name="non_profit_organization" id="non_profit_organization" class="form-check-input ml-1" value="on" <%=checked %>>
+                            <input type="checkbox" class="form-check-input" value="on" <%=checked %> name="non_profit_organization" id="non_profit_organization">
+                            <label class="form-check-label" for="non_profit_organization" style="margin-top: 5px;">
+                              My company is a non-profit organization, governmental body or part of BCIT, and the fee of $500 will be waived
+                            </label>
                           </div>
-                        </div>
-                        <div class="form-group">
-                          <label for="company_business_profile" class="font-weight-bold">Company/Business profile:</label>
-                          <textarea name="company_business_profile" id="company_business_profile"  class="form-control" style="width:50%"
-                            rows="10"><%= data.company_business_profile %></textarea>
-                        </div>
-                        <h2 class="mb-3">Contact Person</h2>
-                    
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="salutation" class="font-weight-bold">Salutation:</label>
-                            <select name="prefix" id="salutation" class="form-control">
-                        <%
-                          var prefix_lable = [ "Mr.", "Mrs.", "Ms." ];
-                          var options = ["mr", "mrs", "ms"]
-                          for ( var i = 0; i < options.length; i++ ) 
-                          { var selected=( data.prefix == options[i] )? "selected" : ""; %>
-                              <option value="<%=options[ i ] %>" <%=selected %>><%=prefix_lable[i] %></option><%
-                          }
-                        %>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="first" class="font-weight-bold">First Name:</label>
-                            <input type="text" name="first" id="first" class="form-control" value="<%= data.first ? data.first : '' %>">
-                          </div>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="last" class="font-weight-bold">Last Name:</label>
-                            <input type="text" name="last" id="last" class="form-control" value="<%= data.last ? data.last : '' %>">
-                          </div>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="position" class="font-weight-bold">Position Name:</label>
-                            <input type="text" name="position" id="position" class="form-control" value="<%= data.position ? data.position : '' %>">
-                          </div>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="personal_phone" class="font-weight-bold">Phone:</label>
-                            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="personal_phone" id="personal_phone" class="form-control"
-                              value="<%= data.personal_phone ? data.personal_phone : '' %>">
-                          </div>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-group">
-                            <label for="email" class="font-weight-bold">Email:</label>
-                            <input type="text" name="email" id="email" class="form-control" value="<%= data.email ? data.email : '' %>">
-                          </div>
-                        </div>
-                        <h2 class="mb-3">Project</h2>
-                        <label for="project_area" class="font-weight-bold">Project Area:</label>
-                        <div class="form-check mb-3">
-                          <%
-                            var project_list = data.project_area.split(',');
-                            var options = [ "DevOps", "Networking", "Web Development","Mobile Development","Scripting/IT","Games","AR/VR", "Machine Learning/Algorithms/Research","Other"];
-                            for ( var i = 0; i < options.length; i++ ) 
-                            { var checked=( project_list[i] == options[i] )? "checked" : ""; %>
-                            <input type="checkbox" name="project_area" id="project_area" class="form-check-input" value="<%=options[ i ] %>"
-                              <%=checked %>/> <%=options[i] %><br><%
-                            }
-                          %>
-                        </div>
-                        <div class="form-group mb-3">
-                          <label for="project_description" class="font-weight-bold">Project Description:</label>
-                          <textarea name="project_description" id="project_description" rows="10" class="form-control"
-                            style="width:50%"><%= data.project_description %></textarea>
-                        </div>
-                        <div class="form-group mb-3">
-                          <label for="project_duration" class="font-weight-bold">Project Duration/Timing:</label>
-                          <textarea name="project_duration" id="project_duration" rows="10" class="form-control"
-                            style="width:50%"><%= data.project_duration %></textarea>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-check">
-                            <label for="project_duration_no_preference" class="font-weight-bold">No preference on the duration or timing on the project:</label>
-                            <% var checked=( data.project_duration_no_preference == "on")? "checked" : "" %>
-                            <input type="checkbox" name="project_duration_no_preference" id="project_duration_no_preference" class="form-check-input ml-1" value="on" <%=checked %>>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <label for="current_arrangement" class="font-weight-bold">Description of the current arrangement:</label>
-                          <textarea name="current_arrangement" id="current_arrangement" rows="10" class="form-control"
-                            style="width:50%"><%= data.current_arrangement %></textarea>
-                        </div>
-                        <div class="form-group">
-                          <label for="programming_language" class="font-weight-bold">Programming language or languages would be used:</label>
-                          <textarea name="programming_language" id="programming_language" rows="10" class="form-control"
-                            style="width:50%"><%= data.programming_language %></textarea>
-                        </div>
-                        <div class="form-group">
-                          <label for="hardware_software_requirements" class="font-weight-bold">Hardware & Software Requirements:</label>
-                          <textarea name="hardware_software_requirements" id="hardware_software_requirements" rows="10" class="form-control"
-                            style="width:50%"><%= data.hardware_software_requirements %></textarea>
-                        </div>
-                        <div class="form-inline mb-3">
-                          <div class="form-check">
-                            <label for="continuation_project" class="font-weight-bold">Continuation of a previous student project:</label>
-                        <%
-                          var options = [ "yes", "no"];
-                          for ( var i = 0; i < options.length; i++ ) 
-                          { var checked=( data.continuation_project == options[i] )? "checked" : "" ; %>
-                            <input type="radio" name="continuation_project" id="continuation_project" class="form-check-input ml-1" value="<%=options[ i ] %>"
-                              <%=checked %>><label class="mr-1"><%=options[i] %></label>
+                          <hr class="style14" />
+                
+                          <h4>Company/Business profile <span style="color: red;">*</span></h4>
+                          <small>(include the nature of business and an introduction, less than 150 words)</small>
+                          <textarea rows="10" class="form-control" name="company_business_profile" required><%= data.company_business_profile %></textarea>
+                          <!-- END - Form Section - Company -->
+                
+                          <hr class="style14" />
+                
+                          <!-- Form Section - Contact Person -->
+                          <h2>Contact Person</h2>
+                
+                          <h5>Salutation</h5>
+                          <select class="form-control" name="prefix" >
                             <%
-                          }
-                        %>
+                              var prefix_lable = [ "Mr.", "Mrs.", "Ms.", "Miss", "Dr." ];
+                              var options = ["Mr.", "Mrs.", "Ms.", "Miss", "Dr." ]
+                              for ( var i = 0; i < options.length; i++ ) 
+                              { var selected=( data.prefix == options[i] )? "selected" : ""; %>
+                                  <option value="<%=options[ i ] %>" <%=selected %>><%=prefix_lable[i] %></option>
+                            <% } %>
+                          </select>
+
+                          <h5>Name <span style="color: red;">*</span></h5>
+                          <div class="form-row">
+                            <div class="col-md-6">
+                              <label for="first">First Name</label>
+                              <input type="text" id="first" name="first" class="form-control" value="<%= data.first ? data.first : '' %>" required>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="last">Last Name</label>
+                              <input type="text" id="last" name="last" class="form-control" value="<%= data.last ? data.last : '' %>" required>
+                            </div>
                           </div>
-                        </div>
-                        <label for="hear_about_ISSP" class="font-weight-bold">Hear about ISSP:</label>
-                        <div class="form-check">
-                        <%
-                          var options = [ "BCIT's website", "BCIT email message", "BCIT internal announcements", "Ad on LinkedIn", "Ad on T-Net", "Company I work for", "BC Technology Industry", "BC Innovation Council"];
-                          if (data.hear_about_ISSP == null || options.includes(data.hear_about_ISSP)) {
-                            options.push("Other")
-                          }
-                          else {
-                            options.push(data.hear_about_ISSP)
-                          }
+                
+                          <label for="position" class="h5">Position</label>
+                          <input type="text" name="position" id="position" class="form-control" value="<%= data.position ? data.position : '' %>">
+                
+                          <label for="personal_phone" class="h5">Phone</label>
+                          <input type="tel" class="form-control phone" name="personal_phone" id="personal_phone" value="<%= data.personal_phone ? data.personal_phone : '' %>">
+                
+                          <label for="email" class="h5">Email <span style="color: red;">*</span></label>
+                          <input type="text" name="email" id="email" class="form-control" value="<%= data.email ? data.email : '' %>" required>
+                          <!-- END Form Section - Contact Person -->
+                
+                          <hr class="style14" />
+                
+                          <!-- Form Section - Project -->
+                          <h2>Project</h2>
+                
+                          <h5>Project area (check whichever applicable)</h5>
+                          <%
+                          var project_list = data.project_area.split(',');
+                          var options = [ "DevOps", "Networking", "Web Development","Mobile Development","Scripting/IT","Games","AR/VR", "Machine Learning/Algorithms/Research","Other"];
+                          var for_label = ["pa-devops", "pa-net", "pa-web", "pa-mobile", "pa-script", "pa-game", "pa-arvr", "pa-ml", "pa-other"]
                           for ( var i = 0; i < options.length; i++ ) 
-                            { var checked=( data.hear_about_ISSP == options[i] )? "checked" : "" ; %>
-                            <input type="radio" name="hear_about_ISSP" id="hear_about_ISSP" class="form-check-input" value="<%=options[ i ] %>"
-                              <%=checked %>><label><%=options[i] %></label><br>
+                            { var checked=( project_list[i] == options[i] )? "checked" : ""; %>
+                            <div class="form-inline mb-1">
+                              <div class="form-check">
+                                <input class="form-check-input" id="<%=for_label[ i ] %>" type="checkbox" name="project_area" value="<%=options[ i ] %>" <%=checked %>/>
+                                <label class="form-check-label" for="<%=for_label[ i ] %>"><%=options[i] %></label>
+                              </div>
+                            </div>
                           <% } %>
-                        </div>
-                        <div class="form-inline mb-3">
+
+                          <hr class="style14" />
+
+                          <h5>Project Description</h5>
+
+                          <textarea rows="15" class="form-control" name="project_description"><%= data.project_description %></textarea>
+                
+                          <hr class="style14" />
+                
+                
+                          <h5>Project Duration/Timing</h5>
+                          <textarea rows="10" class="form-control mb-2" name="project_duration"><%= data.project_duration %></textarea>
+                
                           <div class="form-check">
-                            <label for="sponsor_commitments" class="font-weight-bold">Sponsor Commitments:</label>
-                            <% var checked=( data.sponsor_commitments == "on")? "checked" : "" %>
-                            <input type="checkbox" name="sponsor_commitments" id="sponsor_commitments" class="form-check-input ml-1" value="on" <%=checked %>>
+                            <% var checked=( data.project_duration_no_preference == "on")? "checked" : "" %>
+                            <input class="form-check-input" id="project_duration_no_preference" type="checkbox" value="on" <%=checked %> name="project_duration_no_preference">
+                            <label class="form-check-label" for="project_duration_no_preference" style="padding-top:5px; padding-left:3px;">I have no preference on the	duration or	timing on the project</label>
                           </div>
-                        </div>
-                        <div class="form-group">
-                          <input type="submit" class="btn btn-success mr-4" value="Submit" />
-                          <button type="button" class="btn btn-danger" onclick="location.href='/submissionList'">Cancel</button>
-                        </div>
-                      </form>
+                
+                          <hr class="style14" />
+                
+                          <h5>Description of the current arrangement</h5>
+                          <textarea rows="10" class="form-control" name="current_arrangement"><%= data.current_arrangement %></textarea>
+          
+                          <hr class="style14" />
+                
+                
+                          <h5>If coding is required, what programming language or languages would be used?</h5>
+                          <textarea rows="10" class="form-control" name="programming_language"><%= data.programming_language %></textarea>
+                
+                
+                          <hr class="style14" />
+                
+                
+                          <h5>Hardware & Software Requirements <span style="color: red;">*</span></h5>
+                          <textarea rows="10" class="form-control" name="hardware_software_requirements" required><%= data.hardware_software_requirements %></textarea>
+                
+                
+                          <hr class="style14" />
+                
+                
+                          <h4>Is this a continuation of a previous student project?</h4>
+                          <%
+                            var options = [ "Yes", "No"];
+                            var values = ["yes", "no"]
+                            var for_label = ["continuation_project1", "continuation_project2" ]
+                            for ( var i = 0; i < options.length; i++ )
+                              { var checked=( data.continuation_project == values[i] )? "checked" : "" ; %>
+                              <div class="form-check cus_form_group">
+                                <input class="form-check-input" type="radio" name="continuation_project" id="<%=for_label[ i ] %>" value="<%=values[ i ] %>" <%=checked %>>
+                                <label class="form-check-label" for="<%=for_label[ i ] %>"><%=options[i] %></label>
+                              </div>
+                            <% }%>
+                
+                          <!-- END Form Section - Project -->
+                          <hr class="style14" />
+                
+                
+                          <h4>How did you hear about ISSP?</h4>
+
+                          <%
+                            var options = [ "BCIT website", "BCIT email message", "BCIT internal announcements", "Ad on LinkedIn", "Ad on T-Net", "Company I work for", "BC Technology Industry", "BC Innovation Council"];
+                            var for_label = ["hear_bcit_web","hear_bcit_email","hear_bcit_internal","hear_linkedin","hear_tnet","hear_company","hear_BCtech","hear_inno","hear_other"]
+                            if (data.hear_about_ISSP == null || options.includes(data.hear_about_ISSP)) {
+                              options.push("Other")
+                            }
+                            else {
+                              options.push(data.hear_about_ISSP)
+                            }
+                            for ( var i = 0; i < options.length; i++ ) 
+                              { var checked=( data.hear_about_ISSP == options[i] )? "checked" : "" ; %>
+                              <div class="form-check cus_form_group">
+                              <input class="form-check-input" type="radio" name="hear_about_ISSP" value="<%=options[ i ] %>" id="<%=for_label[ i ] %>" <%=checked %> >
+                              <label class="form-check-label" for="<%=for_label[ i ] %>"><%=options[i] %></label>
+                              </div>
+                            <% } %>
+              
+                          <hr class="style14" />
+                
+                          <h4>Sponsor Commitments <span style="color: red;">*</span></h4>
+                
+                          <div class="form-check">
+                            <% var checked=( data.sponsor_commitments == "on")? "checked" : "" %>
+                            <input class="form-check-input" type="checkbox" value="on" name="sponsor_commitments" id="sponsor_commitments" <%=checked %> required>
+                            <label class="form-check-label" for="sponsor_commitments" style="margin-top:5px;">
+                              I've read and understood all commitments required div a sponsor, including the participation fee of $500.
+                            </label>
+                          </div>
+                
+                          <hr class="style14" />
+                
+                
+                          <h4>Consent</h4>
+                          <% var checked=( data.privacy_policy == "on")? "checked" : "" %>
+                          <div class="form-check cus_form_group">
+                            <input class="form-check-input" type="checkbox" value="on" name="privacy_policy" id="privacy_policy" <%=checked %>>
+                            <label class="form-check-label" for="privacy_policy" style="margin-top:5px;">I agree to the privacy policy.</label>
+                          </div>
+                
+                          <div class="form-group">
+                            <input type="submit" class="btn btn-success mr-3 mt-3" value="Submit" />
+                            <button type="button" class="btn btn-danger mt-3" onclick="location.href='/submissionList'">Cancel</button>
+                          </div>
+                        </form>
+                      </div>
                       
                     </div>
                     <!-- /.container-fluid -->
