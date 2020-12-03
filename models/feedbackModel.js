@@ -69,7 +69,7 @@ Feedback.category = async (id, submission, result) => {
 
 
 Feedback.getAll = result => {
-    sql.query("SELECT t1.id, t1.created_time, t1.category, t1.assigned_year, t1.assigned_term, t1.company_name, t1.project_description,t1.project_area, t1.current_arrangement, t1.programming_language, t1.hardware_software_requirements,t2.feedback_time, t2.feedback_user FROM issp t1 LEFT JOIN feedback t2 ON t2.project_id = t1.id AND t2.feedback_time = (SELECT MAX(feedback_time) FROM feedback WHERE feedback.project_id = t1.id) order by t2.feedback_time desc, t1.id asc;", (err, res) => {
+    sql.query("SELECT t1.*,t2.feedback_time, t2.feedback_user FROM issp t1 LEFT JOIN feedback t2 ON t2.project_id = t1.id AND t2.feedback_time = (SELECT MAX(feedback_time) FROM feedback WHERE feedback.project_id = t1.id) order by t2.feedback_time desc, t1.id asc;", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
