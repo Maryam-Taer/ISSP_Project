@@ -65,11 +65,7 @@ connection.connect(function (err) {
                                 FOREIGN KEY (project_id) REFERENCES issp(id) ON DELETE CASCADE
                         )`;
 
-    let createDefaultAccount = `INSERT INTO accounts
-                                SET username = 'admin',
-                                password = '$2b$10$TptWsX7yUAwYFRYoOtFiNu3ZMbaonXnxOenMn0z9C9/Ac4FbfyJcK',
-                                role = 'admin'
-                                WHERE NOT EXISTS (SELECT * FROM accounts);`
+    let createDefaultAccount = `INSERT INTO accounts(username, password, role) SELECT 'admin','$2b$10$TptWsX7yUAwYFRYoOtFiNu3ZMbaonXnxOenMn0z9C9/Ac4FbfyJcK','admin' WHERE NOT EXISTS (SELECT * FROM accounts);`
                                 // Create Default admin user with password Test1234 if the accounts table is empty
 
     connection.query(createIssp, function (err, results, fields) {
