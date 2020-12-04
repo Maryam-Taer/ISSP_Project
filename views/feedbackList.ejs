@@ -86,25 +86,7 @@
         var pre = ''
         var temp_html = 
     "<div class='form-row'>"+
-        "<div class='col-md-5'>"+
-                "<h5>Company </h5>" +
-                '<strong>Name: </strong>' + d.company_name + '<br>' +
-                '<strong>Profile: </strong>' + d.company_business_profile + '<br>' +
-                '<strong>Address: </strong>' + d.street_address + ' ' + d.address_line_2 + ', ' + d.city + ', ' + d.province + ', ' + d.postal_code + '<br>' +
-                '<strong>Phone: </strong>' + d.phone + '<br>' +
-                '<strong>Website: </strong>' + d.website + '<br>' +
-                '<strong>Non-profit: </strong>' + d.non_profit_organization + '<br>' +
-        "</div>"+
-        "<div class='col-md-5'>"+
-                "<h5>Contact </h5>" +
-                '<strong>Name: </strong>' + pre + d.first + ' ' + d.last + '<br>' +
-                '<strong>Phone: </strong>' + d.personal_phone + '<br>' +
-                '<strong>Email: </strong>' + d.email + '<br>' +
-                '<strong>Position: </strong>' + d.position + '<br>' +
-        "</div>"+
-    "</div>"+
-    "<div class='row'>"+
-        "<div class='col-md-5'>"+
+        "<div class='col-xl-6'>"+
                 "<h5>Project Details </h5>" +
                 '<strong>Project Area: </strong>' + d.project_area + '<br>' +
                 '<strong>Description: </strong>' + d.project_description + '<br>' +
@@ -114,7 +96,25 @@
                 '<strong>Programming Language: </strong>' + d.programming_language + '<br>' +
                 '<strong>Software & Hardware Requirements: </strong>' + d.hardware_software_requirements + '<br>' +
         "</div>"+
-        "<div class='col-md-5'>"+
+        "<div class='col-xl-6'>"+
+                "<h5>Company </h5>" +
+                '<strong>Name: </strong>' + d.company_name + '<br>' +
+                '<strong>Profile: </strong>' + d.company_business_profile + '<br>' +
+                '<strong>Address: </strong>' + d.street_address + ' ' + d.address_line_2 + ', ' + d.city + ', ' + d.province + ', ' + d.postal_code + '<br>' +
+                '<strong>Phone: </strong>' + d.phone + '<br>' +
+                '<strong>Website: </strong>' + d.website + '<br>' +
+                '<strong>Non-profit: </strong>' + d.non_profit_organization + '<br>' +
+        "</div>"+
+    "</div>"+
+    "<div class='row'>"+
+        "<div class='col-xl-6'>"+
+                "<h5>Contact Person</h5>" +
+                '<strong>Name: </strong>' + pre + d.first + ' ' + d.last + '<br>' +
+                '<strong>Phone: </strong>' + d.personal_phone + '<br>' +
+                '<strong>Email: </strong>' + d.email + '<br>' +
+                '<strong>Position: </strong>' + d.position + '<br>' +
+        "</div>"+
+        "<div class='col-xl-6'>"+
                 "<h5>Other Information </h5>" +
                 '<strong>How did you hear about ISSP? : </strong>' + d.hear_about_ISSP + '<br>' +
                 '<strong>Assigned Year: </strong>' + d.assigned_year + '<br>' +

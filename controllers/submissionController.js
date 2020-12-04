@@ -105,7 +105,7 @@ exports.delete = (req, res) => {
                     res.render('error', { message: `Could not delete Submission with id ${req.body.id}.`, role: req.user.role, username: req.user.username });
                 }
             } else {
-                res.redirect('/submissionList');
+                res.redirect('/feedbackList');
             }
         });
     }
@@ -154,7 +154,7 @@ exports.update = (req, res) => {
                         res.render( 'error', {message: `Error updating Submission with id ${req.body.id}.`, role:req.user.role, username:req.user.username});
                     }
                 } else {
-                    res.redirect('/submissionList');
+                    res.redirect('/feedbackList');
                 }
             }
         );
