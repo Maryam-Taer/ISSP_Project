@@ -26,6 +26,7 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 					<div class="detailBox">
+						<%- include('partials/messages.ejs') %>
 						<div class="titleBox">
 							<h2>Project Review (Id: <%= feedbackData.id %>)</h2>
 						</div>
@@ -57,12 +58,13 @@
 								<div class="form-group md-2">
 									<label for="category">Current Submissions assign to Program:</label>
 									<select class="form-control col-md-3" name="category" id="category">
-									<%
+									<%	
+										var disabled_tag =(role != "admin")? "disabled" : "";
 										var options = [ "CIT", "CST", "Full Stack Web Development", "Rejected", "Not Assigned"];
 										for ( var i = 0; i < options.length; i++ ){ 
 											var selected=( feedbackData.category == options[i] )? "selected" : ""
 										; %>
-										<option value="<%= options[i] %>" <%= selected %>><%=options[i] %><%
+										<option <%=disabled_tag%> value="<%= options[i] %>" <%= selected %>><%=options[i] %><%
 										}
 										%>
 									</select>
@@ -71,21 +73,23 @@
 										<label for="assigned_year">Year and Term:</label>
 										<select name="assigned_year" class="form-control col-md-2">
 											<% 
+												var disabled_tag =(role != "admin")? "disabled" : "";
 												var temp_year = new Date().getFullYear();
 												var year_list = [temp_year.toString(), (temp_year + 1).toString()]
 													for ( var i = 0; i < year_list.length; i++ ) 
 													{ var selected=( feedbackData.assigned_year == year_list[i] )? "selected" : "" ;%>
-													<option value="<%=year_list[ i ] %>" <%=selected %>><%=year_list[i] %></option><%
+													<option <%=disabled_tag%> value="<%=year_list[ i ] %>" <%=selected %>><%=year_list[i] %></option><%
 											} %>
 										</select>
 									</div>
 								<div class="form-group md-2">
 											<select name="assigned_term" class="form-control col-md-2">
 											<%
+											var disabled_tag =(role != "admin")? "disabled" : "";
 											var options = [ "winter", "summer", "fall", "Not Assigned" ];
 												for ( var i = 0; i < options.length; i++ ) 
 												{ var selected=( feedbackData.assigned_term == options[i] )? "selected" : "" ;%>
-												<option value="<%=options[ i ] %>" <%=selected %>><%=options[i] %></option><%
+												<option <%=disabled_tag%> value="<%=options[ i ] %>" <%=selected %>><%=options[i] %></option><%
 											} %>
 									  		</select>
 								</div>

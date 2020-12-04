@@ -27,12 +27,13 @@
 
                         <!-- DataTales -->
                         <div class="card shadow mb-4">
-                            <div class="card-header">
-                                <select id="table_year_term" class="form-control col-2">
+                            <div class="card-header row">
+                                <select id="table_year_term" class="form-control col-md-3">
                                 </select>
+                                <button id="btn-show-all-children" class="btn btn-primary col-md-3">Expand All Details</button>
+                                <button id="btn-hide-all-children" class="btn btn-primary col-md-3 display_none">Hide All Details</button>
                             </div>
                             <div class="card-body">
-
                                 <table id="example" class="table table-striped table-bordered dt-responsive" width="100%" cellspacing="0" data-page-length='10'>
                                     <thead>
                                         <tr>
@@ -154,18 +155,6 @@ $(document).ready(function() {
         "search": {
             "regex": true
         },
-        dom: 'Blfrtip',
-        buttons: [
-            {
-                extend: 'pdf',
-                orientation: 'landscape',
-                text: 'Export PDF',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5,],
-                }
-
-            }
-        ],
         "orderCellsTop": true,
         "ordering": true,
         "searching": true,
@@ -226,7 +215,7 @@ $(document).ready(function() {
         { 
             "width": "60px", "targets": 1 
         }],
-        "order": [[1, 'asc']],
+        "order": [[1, 'desc']],
         "createdRow": function( row, data, dataIndex){
             // add CSS class based on program assigned to the row
                 if( data['category'] ===  'CIT'){
@@ -312,6 +301,38 @@ $(document).ready(function() {
         .search( temp_year_term[1] )
         .draw();
     } );
+
+    // Handle click on "Expand All" button
+    $('#btn-show-all-children').on('click', function(){
+        // Enumerate all rows
+        dt.rows().every(function(){
+            // If row has details collapsed
+            if(!this.child.isShown()){
+                // Open this row
+                this.child(format(this.data())).show();
+                $(this.node()).addClass('shown');
+            }
+        });
+        document.getElementById("btn-show-all-children").classList.add("display_none")
+        document.getElementById("btn-hide-all-children").classList.remove("display_none")
+    });
+
+    // Handle click on "Collapse All" button
+    $('#btn-hide-all-children').on('click', function(){
+        // Enumerate all rows
+        dt.rows().every(function(){
+            // If row has details expanded
+            if(this.child.isShown()){
+                // Collapse row details
+                this.child.hide();
+                $(this.node()).removeClass('shown');
+            }
+        });
+        document.getElementById("btn-hide-all-children").classList.add("display_none")
+        document.getElementById("btn-show-all-children").classList.remove("display_none")
+    });
+
+
 } );
 
 

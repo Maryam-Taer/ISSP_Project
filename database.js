@@ -68,8 +68,9 @@ connection.connect(function (err) {
     let createDefaultAccount = `INSERT IGNORE INTO accounts
                                 SET username = 'admin',
                                 password = '$2b$10$TptWsX7yUAwYFRYoOtFiNu3ZMbaonXnxOenMn0z9C9/Ac4FbfyJcK',
-                                role = 'admin';`
-                                // Create Default admin user with password Test1234
+                                role = 'admin'
+                                WHERE NOT EXISTS (SELECT * FROM accounts);`
+                                // Create Default admin user with password Test1234 if the accounts table is empty
 
     connection.query(createIssp, function (err, results, fields) {
         if (err) {

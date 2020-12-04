@@ -40,7 +40,8 @@ exports.submitFeedback = (req, res) => {
         // Display in raw data
         // else res.send(data);
         else {
-            res.redirect('/feedbackList');
+            req.flash('success_msg', 'Comment has been posted successfully');
+            res.redirect('/submission/feedback?id='+req.body.project_id);
         }
     });
 };
@@ -95,10 +96,12 @@ exports.updateCategory = (req, res) => {
                     res.render('error', { message: `Error updating Submission with id ${req.body.id}.`, role: req.user.role, username: req.user.username });
                 }
             } else {
-                res.redirect('/feedbackList');
+                req.flash('success_msg', 'Project has been updated successfully');
+                res.redirect('/submission/feedback?id='+req.body.project_id);
             }
         }
     );
 };
 
 
+// http://localhost:3000/submission/feedback?id=1

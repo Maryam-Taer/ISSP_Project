@@ -1,21 +1,21 @@
 {
     "default_summer_deadline": {
-        "month": "MAR",
-        "day": "23"
+        "month": "APR",
+        "day": "15"
     },
     "default_fall_deadline": {
         "month": "AUG",
-        "day": "01"
+        "day": "31"
     },
     "default_winter_deadline": {
         "month": "DEC",
-        "day": "01"
+        "day": "31"
     },
     "submission_to_term": "winter",
     "submission_to_year": "2021",
     "next_deadline": {
         "year": "2020",
         "month": "DEC",
-        "day": "01"
+        "day": "31"
     }
 }

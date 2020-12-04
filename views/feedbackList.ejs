@@ -25,9 +25,11 @@
                         <%- include('partials/messages.ejs') %>
                         <!-- DataTales -->
                         <div class="card shadow mb-4">
-                            <div class="card-header">
-                                <select id="table_year_term" class="form-control col-2">
+                            <div class="card-header row">
+                                <select id="table_year_term" class="form-control col-lg-2">
                                 </select>
+                                <button id="btn-show-all-children" class="btn btn-primary col-lg-2">Expand All Details</button>
+                                <button id="btn-hide-all-children" class="btn btn-primary col-lg-2 display_none">Hide All Details</button>
                             </div>
                             <div class="card-body">
                                 <table id="table_id_feedbackList" class="table table-striped table-bordered dt-responsive" width="100%" data-page-length='10'>
@@ -38,6 +40,7 @@
                                             <th>Program</th>
                                             <th>Project Description</th>
                                             <th>Last Comment</th>
+                                            <th></th>
                                             <th></th>
                                             <th></th>
                                             <th></th>
@@ -82,17 +85,38 @@
     function format ( d ) {
         var pre = ''
         var temp_html = 
-    "<div class='row'>"+
-        "<div class='col-md-6'>"+
+    "<div class='form-row'>"+
+        "<div class='col-xl-6'>"+
                 "<h5>Project Details </h5>" +
                 '<strong>Project Area: </strong>' + d.project_area + '<br>' +
                 '<strong>Description: </strong>' + d.project_description + '<br>' +
+                '<strong>Duration: </strong>' + d.duration + '<br>' +
+                '<strong>No preference of project duration: </strong>' + d.project_duration_no_preference + '<br>' +
                 '<strong>Current Arrangement: </strong>' + d.current_arrangement + '<br>' +
                 '<strong>Programming Language: </strong>' + d.programming_language + '<br>' +
                 '<strong>Software & Hardware Requirements: </strong>' + d.hardware_software_requirements + '<br>' +
         "</div>"+
-        "<div class='col-md-6'>"+
+        "<div class='col-xl-6'>"+
+                "<h5>Company </h5>" +
+                '<strong>Name: </strong>' + d.company_name + '<br>' +
+                '<strong>Profile: </strong>' + d.company_business_profile + '<br>' +
+                '<strong>Address: </strong>' + d.street_address + ' ' + d.address_line_2 + ', ' + d.city + ', ' + d.province + ', ' + d.postal_code + '<br>' +
+                '<strong>Phone: </strong>' + d.phone + '<br>' +
+                '<strong>Website: </strong>' + d.website + '<br>' +
+                '<strong>Non-profit: </strong>' + d.non_profit_organization + '<br>' +
+        "</div>"+
+    "</div>"+
+    "<div class='row'>"+
+        "<div class='col-xl-6'>"+
+                "<h5>Contact Person</h5>" +
+                '<strong>Name: </strong>' + pre + d.first + ' ' + d.last + '<br>' +
+                '<strong>Phone: </strong>' + d.personal_phone + '<br>' +
+                '<strong>Email: </strong>' + d.email + '<br>' +
+                '<strong>Position: </strong>' + d.position + '<br>' +
+        "</div>"+
+        "<div class='col-xl-6'>"+
                 "<h5>Other Information </h5>" +
+                '<strong>How did you hear about ISSP? : </strong>' + d.hear_about_ISSP + '<br>' +
                 '<strong>Assigned Year: </strong>' + d.assigned_year + '<br>' +
                 '<strong>Assigned Term: </strong>' + d.assigned_term + '<br>' +
                 '<strong>Assigned Program: </strong>' + d.category + '<br>' +
@@ -145,15 +169,34 @@
                 }},// index 5
                 {"orderable":      false,
                 "render": function ( data, type, row, meta ) {
-                    return JSON.stringify(row)
+                    temp_button_group = '<div class="btn-group">' +
+                        '<button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                        'Actions' +
+                        '</button>' +
+                        '<div class="dropdown-menu">' +
+                        '<a href="/submission/edit?id=' + row.id + '" class="dropdown-item">Edit</a>' +
+                        '<a href="/submission/feedback?id=' + row.id + '"class="dropdown-item" type="submit">Feedback</a>' +
+                        '<div class="dropdown-divider">' +
+                        '</div>' +
+                        '<form class="del" action="/submission/delete" method="POST" >' +
+                        '<input name="id" type="hidden" value="' + row.id + '" />' +
+                        '<button class="dropdown-item" type="submit">Delete</button>' +
+                        '</form>' +
+                        '</div>' +
+                        '</div>';
+                    return temp_button_group
                 }},// index 6
-                { "data": "assigned_year" },// index 7
-                { "data": "assigned_term" }// index 8
+                {"orderable":      false,
+                "render": function ( data, type, row, meta ) {
+                    return JSON.stringify(row)
+                }},// index 7
+                { "data": "assigned_year" },// index 8
+                { "data": "assigned_term" }// index 9
             
             ],
             "columnDefs": [
             {
-                "targets": [6,7,8], 
+                "targets": [<%- role == 'admin' ? '5,7,8,9' : '6,7,8,9' %>], 
                 "visible": false,
                 "searchable": true
             },
@@ -170,8 +213,8 @@
             { 
                 "width": "60px", "targets": 1 
             }],
+            "order": [[1, 'desc']],
             "createdRow": function( row, data, dataIndex){
-                console.log(data);
                     if( data['category'] ===  'CIT'){
                         $(row).addClass('cit_bg');
                     } else if( data['category'] ===  'CST'){
@@ -228,11 +271,11 @@
             document.getElementById("table_year_term").value = year_term_list[i].year_term
             var temp_year_term = year_term_list[i].year_term.split(" ")
             dt
-            .columns( 7 )
+            .columns( 8 )
             .search( temp_year_term[0] )
             .draw();
             dt
-            .columns( 8 )
+            .columns( 9 )
             .search( temp_year_term[1] )
             .draw();
         }
@@ -243,15 +286,51 @@
     $("#table_year_term").change(function () {
         var temp_year_term = this.value.split(" ")
         dt
-        .columns( 7 )
+        .columns( 8 )
         .search( temp_year_term[0] )
         .draw();
         dt
-        .columns( 8 )
+        .columns( 9 )
         .search( temp_year_term[1] )
         .draw();
     } );
-        
+
+
+    // Handle click on "Expand All" button
+    $('#btn-show-all-children').on('click', function(){
+        // Enumerate all rows
+        dt.rows().every(function(){
+            // If row has details collapsed
+            if(!this.child.isShown()){
+                // Open this row
+                this.child(format(this.data())).show();
+                $(this.node()).addClass('shown');
+            }
+        });
+        document.getElementById("btn-show-all-children").classList.add("display_none")
+        document.getElementById("btn-hide-all-children").classList.remove("display_none")
+    });
+
+    // Handle click on "Collapse All" button
+    $('#btn-hide-all-children').on('click', function(){
+        // Enumerate all rows
+        dt.rows().every(function(){
+            // If row has details expanded
+            if(this.child.isShown()){
+                // Collapse row details
+                this.child.hide();
+                $(this.node()).removeClass('shown');
+            }
+        });
+        document.getElementById("btn-hide-all-children").classList.add("display_none")
+        document.getElementById("btn-show-all-children").classList.remove("display_none")
+    });
+
+    // Handle confirm delete
+    $('form.del').on('submit', '', function () {
+        return confirm('Are you sure you want to delete?')
+    } );
+
 
     })
 
