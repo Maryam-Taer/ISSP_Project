@@ -26,6 +26,10 @@ body{
 	padding-bottom: 20px;
 }
 
+.cus_nav{
+	padding: 5px;
+}
+
 .underline{
 	text-decoration: none;
 	border-bottom: 3px solid #fff400;
