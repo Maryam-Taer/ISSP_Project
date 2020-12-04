@@ -64,48 +64,28 @@
 
 		<h1 id="ISSPheader">ISSP project submission</h1>
 
-			<div class="col-md-10">
+		<div class="col-md-10">
 
-				<form action="/submission/create" method="POST">
-					<!-- Form Section - Company -->
-					<h2>Company</h2>
-					<label for="company_name" class="h4">Company Name <span style="color: red;">*</span></label>
-					<input type="text" class="form-control" name="company_name" id="company_name"
-						placeholder="Company Name" required>
+			<form action="/submission/create" method="POST">
+				<!-- Form Section - Company -->
+				<h2>Company</h2>
+				<label for="company_name" class="h4">Company Name <span style="color: red;">*</span></label>
+				<input type="text" class="form-control" name="company_name" id="company_name" placeholder="Company Name"
+					required>
 
 
-					<p class="h4">Address <span style="color: red;">*</span></p>
-					<label for="street_address">Street</label>
-					<input type="text" class="form-control" name="street_address" id="street_address"
-						placeholder="Street" required>
-					<label for="address_line_2">Address Line 2</label>
-					<input type="text" class="form-control" name="address_line_2" id="address_line_2"
-						placeholder="Address Line 2">
+				<p class="h4">Address <span style="color: red;">*</span></p>
+				<label for="street_address">Street</label>
+				<input type="text" class="form-control" name="street_address" id="street_address" placeholder="Street"
+					required>
+				<label for="address_line_2">Address Line 2</label>
+				<input type="text" class="form-control" name="address_line_2" id="address_line_2"
+					placeholder="Address Line 2">
 
-					<div class="form-row">
-						<div class="col-md-6">
-							<label for="city">City</label>
-							<input type="text" class="form-control" name="city" id="city" placeholder="City" required>
-						</div>
-						<div class="col-md-6">
-							<label for="province">Province</label>
-							<select name="province" id="province" class="form-control" required>
-								<option value=""></option>
-								<option value="BC">British Columbia</option>
-								<option value="AB">Alberta</option>
-								<option value="MA">Manitoba</option>
-								<option value="NB">New Brunswick</option>
-								<option value="NL">Newfoundland and Labrador</option>
-								<option value="NT">Northwest Territories</option>
-								<option value="NS">Nova Scotia</option>
-								<option value="NU">Nunavut</option>
-								<option value="ON">Ontario</option>
-								<option value="PE">Prince Edward Island</option>
-								<option value="QC">Quebec</option>
-								<option value="SK">Saskatchewan</option>
-								<option value="YT">Yukon</option>
-							</select>
-						</div>
+				<div class="form-row">
+					<div class="col-md-6">
+						<label for="city">City</label>
+						<input type="text" class="form-control" name="city" id="city" placeholder="City" required>
 					</div>
 					<div class="col-md-6">
 						<label for="province">Province</label>
@@ -127,6 +107,7 @@
 						</select>
 					</div>
 				</div>
+
 				<div class="form-row">
 					<div class="col-md-6">
 						<label for="postal_code">Postal Code</label>
@@ -288,8 +269,7 @@
 						</label>
 
 						<button type="button" class="btn-outline-info toggle-tooltip m-2 custom-tooltip"
-							data-toggle="tooltip" data-placement="right"
-							title="Development of Games.">
+							data-toggle="tooltip" data-placement="right" title="Development of Games.">
 							i
 						</button>
 					</div>
@@ -498,7 +478,7 @@
 				<button class="btn btn-primary" type="submit" style="background-color: rgb(0, 60, 113);">SEND</button>
 			</form>
 		</div>
-
+	</div>
 	</div>
 
 	<script src="/vendor/jquery/jquery.js"></script>

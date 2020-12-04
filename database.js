@@ -65,7 +65,7 @@ connection.connect(function (err) {
                                 FOREIGN KEY (project_id) REFERENCES issp(id) ON DELETE CASCADE
                         )`;
 
-    let createDefaultAccount = `INSERT IGNORE INTO accounts
+    let createDefaultAccount = `INSERT INTO accounts
                                 SET username = 'admin',
                                 password = '$2b$10$TptWsX7yUAwYFRYoOtFiNu3ZMbaonXnxOenMn0z9C9/Ac4FbfyJcK',
                                 role = 'admin'
