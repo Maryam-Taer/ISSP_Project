@@ -1,3 +1,4 @@
+/* Icons for opened and closed details */
 td.details-control {
     background: url('/details_open.png') center center;
     background-repeat: no-repeat;
@@ -18,6 +19,7 @@ table{
     color: black !important;
 }
 
+/* The following colors are background for projects assigned to different programs */
 .cst_bg{
     background-image:linear-gradient(to right, rgb(141, 133, 253),rgb(32, 78, 138));
 }

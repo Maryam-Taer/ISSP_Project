@@ -35,9 +35,9 @@ module.exports = app => {
   app.post("/login", authController.loginuser);
   // Logout User
   app.get("/logout", authController.logoutuser);
-  // Register Page
-  app.get("/register_backup", forwardAuthenticated, authController.register);
-  // Register User
+  // Back up of User Register Page, Remove in production
+  app.get("/register_backup", authController.register);
+  // Back up of User Register Page, Remove in production
   app.post("/register_backup", authController.registeruser);
 
   // User Profile Page
