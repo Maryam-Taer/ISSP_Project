@@ -62,11 +62,11 @@ exports.create = (req, res) => {
     Submission.create(submission, (err, data) => {
         // console.log(submission.created_time)
         if (err)
-            res.render('error', { message: "Some error occurred while creating the Submission.", role: req.user.role, username: req.user.username });
+            res.render('error', { message: "Some error occurred while creating the Submission." });
         // Display in raw data
         // else res.send(data);
         else {
-            res.redirect('/submission');
+            res.render('submission_success', { submission: JSON.stringify(req.body) });
         }
     });
 };
