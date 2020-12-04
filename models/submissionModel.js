@@ -135,7 +135,7 @@ Submission.updateById = (id, submission, result) => {
                 return;
             }
 
-            console.log("updated submission: ", { id: id, ...submission });
+            // console.log("updated submission: ", { id: id, ...submission });
             result(null, { id: id, ...submission });
         }
     );
