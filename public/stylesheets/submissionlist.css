@@ -46,3 +46,8 @@ table{
 .display_none{
     display:none;
 }
+
+.cus_top{
+    margin-left: 5px;
+    margin-right: 5px;
+}
