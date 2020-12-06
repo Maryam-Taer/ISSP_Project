@@ -1,6 +1,20 @@
 var async = require("async")
 const Submission = require("../models/submissionModel");
 var issp = require("../config/issp_system");
+var nodemailer = require('nodemailer');
+var mailer = require("../config/nodemailer");
+var transport = nodemailer.createTransport(mailer);
+var temp_email = require("../config/email_response")
+
+// confirm mailing server is up and running
+transport.verify(function(error, success) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Mailing Server is up");
+    }
+});
+
 
 exports.index = (req, res) => {
     res.render('submission');
@@ -66,7 +80,15 @@ exports.create = (req, res) => {
         // Display in raw data
         // else res.send(data);
         else {
-            res.render('submission_success', { submission: JSON.stringify(req.body) });
+            var temp_content = temp_email
+            temp_content.to = req.body.email
+            transport.sendMail(temp_content, (error, info) => {
+                if (error) {
+                  return console.log(error);
+                }
+                res.render('submission_success', { submission: JSON.stringify(req.body) });
+              });
+            
         }
     });
 };
