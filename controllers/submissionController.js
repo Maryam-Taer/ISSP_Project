@@ -80,6 +80,7 @@ exports.create = (req, res) => {
         // Display in raw data
         // else res.send(data);
         else {
+            /* TODO - Automatic email response, need to update the message based on submission content
             var temp_content = temp_email
             temp_content.to = req.body.email
             transport.sendMail(temp_content, (error, info) => {
@@ -88,7 +89,8 @@ exports.create = (req, res) => {
                 }
                 res.render('submission_success', { submission: JSON.stringify(req.body) });
               });
-            
+            */
+            res.render('submission_success', { submission: JSON.stringify(req.body) });
         }
     });
 };
