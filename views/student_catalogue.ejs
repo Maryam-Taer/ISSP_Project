@@ -2,28 +2,12 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/student_catalogue.css">
     <link rel="icon" type="image/png" sizes="32x32" href="/android-chrome-192x192.png">
     <title>ISSP <%= program %> Student Catalogue (<%= year %> <%= term %>)</title>
 	<meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <style>
-        div.col-md-12 {
-            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-        }
-        @media print {
-            .data {
-                page-break-after: always;
-            }
-
-            .non-print{
-                display: none;
-            }
-
-        }
-    </style>
 </head>
 <body>
 	<div class="container">
@@ -58,15 +42,15 @@ for (i=0; i < allData.length; i++){
     "<div class='data'>"+
         "<div class='form-row'>"+
             "<div class='col-md-12'>"+
-                '<strong>Project ID: </strong><br>' + d.id + '<br>' +
-                '<br><strong>Company: </strong><br>' + d.company_name + '<br>' +
-                '<br><strong>Project Areas: </strong><br>' + d.project_area + '<br>' +
-                '<br><strong>Company Profile: </strong><br>' + d.company_business_profile + '<br>' +
-                '<br><strong>Project Description: </strong><br>' + d.project_description + '<br>' +
-                '<br><strong>Programming Language(s): </strong><br>' + d.programming_language + '<br>' +
-                '<br><strong>Hardware/Software Requirements: </strong><br>' + d.hardware_software_requirements + '<br>' +
-                '<br><strong>Current Work/Arrangement: </strong><br>' + d.current_arrangement + '<br>' +
-                '<br><strong>Previous Project?: </strong><br>' + d.continuation_project + '<br>' +
+                '<span>Project ID: </span><br>' + d.id + '<br>' +
+                '<br><span>Company: </span><br>' + d.company_name + '<br>' +
+                '<br><span>Project Areas: </span><br>' + d.project_area + '<br>' +
+                '<br><span>Company Profile: </span><br>' + d.company_business_profile + '<br>' +
+                '<br><span>Project Description: </span><br>' + d.project_description + '<br>' +
+                '<br><span>Programming Language(s): </span><br>' + d.programming_language + '<br>' +
+                '<br><span>Hardware/Software Requirements: </span><br>' + d.hardware_software_requirements + '<br>' +
+                '<br><span>Current Work/Arrangement: </span><br>' + d.current_arrangement + '<br>' +
+                '<br><span>Previous Project?: </span><br>' + d.continuation_project + '<br>' +
             "</div>"
         "</div>" 
     "</div>" 
