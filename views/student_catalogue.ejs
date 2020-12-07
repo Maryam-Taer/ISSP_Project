@@ -8,6 +8,11 @@
 	<meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <style>
+        div.col-md-12 {
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+        }
         @media print {
             .data {
                 page-break-after: always;
@@ -34,7 +39,19 @@ function print_current_page(){
 }
 
 var allData = <%- submissionData %>
-
+if (allData[0] == undefined){
+    data_div = document.getElementById("data")
+    data_data = data_div.innerHTML
+    var temp_html = 
+    "<div class='data'>"+
+        "<div class='form-row'>"+
+            "<div class='col-md-12' style='color:red;'>"+
+                '<strong>NO PROJECT ASSIGNED </strong>' +
+            "</div>"
+        "</div>" 
+    "</div>" 
+    data_div.innerHTML = data_data + temp_html
+}
 for (i=0; i < allData.length; i++){
     d = allData[i];
     var temp_html = 
