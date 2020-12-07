@@ -95,26 +95,27 @@ exports.create = (req, res) => {
     });
 };
 
-exports.getAll = async (req, res) => {
-    if (req.user.role != 'admin') {
-        res.render( 'error', {message: `Your role cannot visit this page!`, role:req.user.role, username:req.user.username}
-        );
-    } else {
-        async.parallel(
-            [
-                Submission.getAll,
-                Submission.get_year_term
-            ],
-            function (err, results) {
-                if (err){
-                    res.render('error', { message: "Some error occurred while retrieving the Submissions.", role: req.user.role, username: req.user.username });
-                }else {
-                    res.render('submissionList', { title: 'submission List', submissionData: JSON.stringify(results[0]), year_term: JSON.stringify(results[1]), username: req.user.username, role: req.user.role });
-                }
-            }
-        );
-    }
-};
+// Fetch all the data, for old page, not in use
+// exports.getAll = async (req, res) => {
+//     if (req.user.role != 'admin') {
+//         res.render( 'error', {message: `Your role cannot visit this page!`, role:req.user.role, username:req.user.username}
+//         );
+//     } else {
+//         async.parallel(
+//             [
+//                 Submission.getAll,
+//                 Submission.get_year_term
+//             ],
+//             function (err, results) {
+//                 if (err){
+//                     res.render('error', { message: "Some error occurred while retrieving the Submissions.", role: req.user.role, username: req.user.username });
+//                 }else {
+//                     res.render('submissionList', { title: 'submission List', submissionData: JSON.stringify(results[0]), year_term: JSON.stringify(results[1]), username: req.user.username, role: req.user.role });
+//                 }
+//             }
+//         );
+//     }
+// };
 
 exports.delete = (req, res) => {
     if (req.user.role != 'admin') {

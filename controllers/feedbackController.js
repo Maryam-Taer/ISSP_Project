@@ -106,6 +106,3 @@ exports.updateCategory = (req, res) => {
         );
     };
 };
-
-
-// http://localhost:3000/submission/feedback?id=1
