@@ -1,3 +1,4 @@
+// Ensure a user is authenticated for all the management pages   
 module.exports = {
     ensureAuthenticated: function(req, res, next) {
       if (req.isAuthenticated()) {
