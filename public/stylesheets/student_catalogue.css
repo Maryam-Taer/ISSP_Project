@@ -1,0 +1,30 @@
+@font-face {
+    font-family: ArialCE;
+    src: url("/font/ArialCE.woff");
+}
+body{
+    font-family: 'ArialCE';
+}
+
+div.col-md-12 {
+    color: rgb(78, 78, 78);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+span {
+    color: black;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+@media print {
+    .data {
+        page-break-after: always;
+    }
+
+    .non-print{
+        display: none;
+    }
+
+}
