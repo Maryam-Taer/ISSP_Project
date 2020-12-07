@@ -39,10 +39,10 @@ module.exports = app => {
   app.get("/pdfSubmissionPage", ensureAuthenticated, pdfController.get_year_term_category);
   // Fetch required data for the PDF page
   app.get("/student_catalogue", ensureAuthenticated, pdfController.getAllForPDFPage);
-  // Back up of User Register Page, Remove in production
-  app.get("/register_backup", authController.register);
-  // Back up of User Register Page, Remove in production
-  app.post("/register_backup", authController.registeruser);
+  // // Back up of User Register Page, Remove in production
+  // app.get("/register_backup", authController.register);
+  // // Back up of User Register Page, Remove in production
+  // app.post("/register_backup", authController.registeruser);
 
   // User Profile Page
   app.get("/profile",ensureAuthenticated, userController.selfprofile);
