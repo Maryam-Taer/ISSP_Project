@@ -166,7 +166,7 @@ Submission.getAllBy_year_term_program = (term, year, category, result) =>{
 
         result(null, res);
     });
-}
+};
 
 module.exports = Submission;
 

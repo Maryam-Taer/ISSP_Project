@@ -3,6 +3,7 @@ const Feedback = require("../models/feedbackModel");
 var async = require('async');
 
 
+// Get all the submissions and feedback by year and term
 exports.feedbackList = (req, res) => {
     async.parallel([
         Feedback.getAll,
@@ -25,7 +26,7 @@ exports.submitFeedback = (req, res) => {
             message: "Content can not be empty!"
         });
     }
-    // Create a submission
+    // Create a feedback
     const feedback = new Feedback({
         feedback: req.body.feedback,
         feedback_time: new Date(),
@@ -33,12 +34,10 @@ exports.submitFeedback = (req, res) => {
         project_id: req.body.project_id
     });
 
-    // Save Submission in the database
+    // Save Feedback in the database
     Feedback.create(feedback, (err, data) => {
         if (err)
             res.render('error', { message: "Some error occurred while creating the Submission.", role: req.user.role, username: req.user.username });
-        // Display in raw data
-        // else res.send(data);
         else {
             req.flash('success_msg', 'Comment has been posted successfully');
             res.redirect('/submission/feedback?id='+req.body.project_id);
@@ -46,9 +45,11 @@ exports.submitFeedback = (req, res) => {
     });
 };
 
+// Retrieve all feedback based on submission id
 exports.feedback = (req, res) => {
     async.series({
         find_submission: function (callback) {
+            // Find submission by id
             Submission.findById(req.query.id, (err, submissionData) => {
                 if (err) {
                     if (err.kind === "not_found") {
@@ -62,6 +63,7 @@ exports.feedback = (req, res) => {
             });
         },
         find_feedback: function (callback) {
+            // Find feedback by submission id
             Feedback.findAllById(req.query.id, (err, data) => {
                 if (err) {
                     res.render('error', { message: "Some error occurred while retrieving the Submissions.", role: req.user.role, username: req.user.username });
@@ -77,6 +79,7 @@ exports.feedback = (req, res) => {
 };
 
 
+// Update category: year, term, program
 exports.updateCategory = (req, res) => {
     // Validate Request
     if (!req.body) {
@@ -104,5 +107,5 @@ exports.updateCategory = (req, res) => {
                 }
             }
         );
-    };
+    }
 };

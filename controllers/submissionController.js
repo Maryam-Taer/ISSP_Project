@@ -1,10 +1,10 @@
-var async = require("async")
+var async = require("async");
 const Submission = require("../models/submissionModel");
 var issp = require("../config/issp_system");
 var nodemailer = require('nodemailer');
 var mailer = require("../config/nodemailer");
 var transport = nodemailer.createTransport(mailer);
-var temp_email = require("../config/email_response")
+var temp_email = require("../config/email_response");
 
 // confirm mailing server is up and running
 transport.verify(function(error, success) {
