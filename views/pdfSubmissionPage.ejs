@@ -15,62 +15,67 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <%- include('./partials/dashboard_side_nav.ejs') %>
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
-                <!-- Main Content -->
-                <div id="content">
-                    <%- include('./partials/dashboard_top_nav.ejs') %> 
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
-                        <form action="/student_catalogue" method="GET" target="_blank">
-                            <div id="data">
-                                <h1>ISSP Student Catalog</h1>
-                            </div>
-                            <div class="form-group">
-                                <label for="category">Program:</label>
-                                <select name="category" id="category" class="form-control">
-                                <%
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <%- include('./partials/dashboard_top_nav.ejs') %>
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="card mx-auto cus-login">
+                        <div class="card-body align-middle">
+                            <form action="/student_catalogue" method="GET" target="_blank">
+                                <div id="data">
+                                    <h3>Generate Student Catalogue</h3>
+                                </div>
+                                <div class="form-group">
+                                    <label for="category">Program:</label>
+                                    <select name="category" id="category" class="form-control">
+                                        <%
                                     var options = [ "CIT", "CST", "Full Stack Web Development"];
                                     for ( var i = 0; i < options.length; i++ ){ %>
                                         <option value="<%= options[i] %>"><%= options[i] %></option><%
                                     }
                                 %>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="year">Year:</label>
-                                <select name="year" id="year" class="form-control">
-                                    <% 
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="year">Year:</label>
+                                    <select name="year" id="year" class="form-control">
+                                        <% 
                                         var temp_year = new Date().getFullYear();
                                         var year_list = [temp_year.toString(), (temp_year + 1).toString()]
                                         for ( var i = 0; i < year_list.length; i++ ){ %>
-                                            <option value="<%=year_list[i] %>"><%=year_list[i] %></option><%
+                                        <option value="<%=year_list[i] %>"><%=year_list[i] %></option><%
                                         } 
                                     %>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="term">Term:</label>
-                                <select name="term" id="term" class="form-control">
-                                <%
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="term">Term:</label>
+                                    <select name="term" id="term" class="form-control">
+                                        <%
                                     var options = [ "winter", "summer", "fall"];
                                     for ( var i = 0; i < options.length; i++ ){ %>
                                         <option value="<%=options[ i ] %>"><%=options[i] %></option><%
                                     } 
                                 %>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-success mr-4" value="Generate Student Catalogue" />
-                            </div>
-                        </form>
+                                    </select>
+                                </div>
+                                <div class="form-group ">
+                                    <input type="submit" class="btn bcit-login" style="width: 100%"
+                                        value="Generate Student Catalogue" />
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <!-- END container-fluid -->
-    
                 </div>
-                <!-- End of Main Content -->
+                <!-- END container-fluid -->
+
             </div>
-            <!-- End of Content Wrapper -->
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
 
