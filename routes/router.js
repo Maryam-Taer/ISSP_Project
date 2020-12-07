@@ -13,8 +13,8 @@ module.exports = app => {
   app.get("/submission", submissionController.index);
   // Create a new Submission
   app.post("/submission/create", submissionController.create);
-  // Fetch all the data
-  app.get("/submissionList", ensureAuthenticated, submissionController.getAll);
+  // Fetch all the data, for old page, not in use
+  // app.get("/submissionList", ensureAuthenticated, submissionController.getAll);
   // Delete a project
   app.post("/submission/delete", ensureAuthenticated, submissionController.delete);
   // Eidt Page
