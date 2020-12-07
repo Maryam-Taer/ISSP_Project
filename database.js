@@ -7,6 +7,7 @@ var connection = mysql.createConnection({
     database: dbConfig.database
 });
 
+// Establish the connection with MySQL using above credentials
 connection.connect(function (err) {
     if (err) {
         return console.error('error: ' + err.message);
@@ -14,7 +15,7 @@ connection.connect(function (err) {
     else {
         console.log('Database is connected successfully !');
     }
-
+    // Create a table called issp if not exists
     let createIssp = `create table if not exists issp(
                             id int primary key auto_increment,
                             category varchar(255),
@@ -50,12 +51,15 @@ connection.connect(function (err) {
                             assigned_term varchar(25)
                         )`;
 
+    // Create a table called accounts if not exists
     let createAccount = `create table if not exists accounts(
                                 id int primary key auto_increment,
                                 username varchar(255) UNIQUE,
                                 password varchar(255),
                                 role varchar(25)
                         )`;
+    
+    // Create a table called feedback if not exists
     let createFeedback = `create table if not exists feedback(
                                 id int primary key auto_increment,
                                 project_id int,
@@ -65,9 +69,10 @@ connection.connect(function (err) {
                                 FOREIGN KEY (project_id) REFERENCES issp(id) ON DELETE CASCADE
                         )`;
 
+    // Create Default admin user with password Test1234 if the accounts table is empty
     let createDefaultAccount = `INSERT INTO accounts(username, password, role) SELECT 'admin','$2b$10$TptWsX7yUAwYFRYoOtFiNu3ZMbaonXnxOenMn0z9C9/Ac4FbfyJcK','admin' WHERE NOT EXISTS (SELECT * FROM accounts);`
-                                // Create Default admin user with password Test1234 if the accounts table is empty
-
+                                
+    // Call and perform the functions defined above
     connection.query(createIssp, function (err, results, fields) {
         if (err) {
             console.log(err.message);

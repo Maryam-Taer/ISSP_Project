@@ -15,7 +15,7 @@ transport.verify(function(error, success) {
     }
 });
 
-
+// Render an index pagem submission
 exports.index = (req, res) => {
     res.render('submission');
 };
@@ -28,6 +28,8 @@ exports.create = (req, res) => {
             message: "Content can not be empty!"
         });
     }
+
+    // Check inputs received from the submission form, Convert to the default value if necessary
     var project_area_trans = (req.body.project_area) ? req.body.project_area.toString() : "empty";
     var hear_about_ISSP = (req.body.hear_about_ISSP == "Other") ? req.body.hear_about_ISSP_other : req.body.hear_about_ISSP;
     var submission_time = new Date();
@@ -74,7 +76,6 @@ exports.create = (req, res) => {
 
     // Save Submission in the database
     Submission.create(submission, (err, data) => {
-        // console.log(submission.created_time)
         if (err)
             res.render('error', { message: "Some error occurred while creating the Submission." });
         // Display in raw data
@@ -117,6 +118,7 @@ exports.create = (req, res) => {
 //     }
 // };
 
+//  Delete a submission by id
 exports.delete = (req, res) => {
     if (req.user.role != 'admin') {
         res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
@@ -136,7 +138,7 @@ exports.delete = (req, res) => {
     }
 };
 
-
+// Edit a submission by id
 exports.edit = async (req, res) => {
     if (req.user.role != 'admin') {
         res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
@@ -156,7 +158,7 @@ exports.edit = async (req, res) => {
     }
 };
 
-
+//  Update a submssion by id
 exports.update = (req, res) => {
     // Validate Request
     if (!req.body) {

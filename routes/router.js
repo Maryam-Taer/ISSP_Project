@@ -8,7 +8,6 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 module.exports = app => {
   app.get("/", (req, res) => {
-    //res.json({ message: "Available path /submission , /submissionList, /login, /register" });
     res.render('submission');
   });
   app.get("/submission", submissionController.index);
