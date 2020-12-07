@@ -3,6 +3,7 @@ var authController = require("../controllers/authController");
 var feedbackController = require("../controllers/feedbackController");
 var userController = require("../controllers/userController");
 var systemController = require("../controllers/systemController");
+var pdfController = require("../controllers/pdfController");
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 module.exports = app => {
@@ -35,6 +36,10 @@ module.exports = app => {
   app.post("/login", authController.loginuser);
   // Logout User
   app.get("/logout", authController.logoutuser);
+  // Fetch required data for the PDF page
+  app.get("/pdfSubmissionPage", ensureAuthenticated, pdfController.get_year_term_category);
+  // Fetch required data for the PDF page
+  app.get("/student_catalogue", ensureAuthenticated, pdfController.getAllForPDFPage);
   // Back up of User Register Page, Remove in production
   app.get("/register_backup", authController.register);
   // Back up of User Register Page, Remove in production
