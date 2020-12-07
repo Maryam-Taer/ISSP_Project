@@ -203,18 +203,15 @@
         var deadline_value = document.getElementById("deadline").value
         var months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
         let deadline_date = deadline_value.split("-");
-        deadline_date[1] = months[deadline_date[1]-1]
-        console.log(deadline_date)
-        
+        deadline_date[1] = months[deadline_date[1]-1]      
         var deadline_compare = (deadline_date[0]==deadline_parsed.year)&&(deadline_date[1]==deadline_parsed.month)&&(deadline_date[2]==deadline_parsed.day)
-        console.log(deadline_compare)
+        // Show different message based on changes in the form
         if (!((submission_tag[0]==year_value)&&(submission_tag[1]==term_value)&&deadline_compare)){
-            if ((new Date(deadline_date.join(' ')) < (new Date()))){
+            if (new Date(deadline_date.join(' ')) < (new Date())){
                 var modal_message2 = 'Update the new deadline to a time in the past will automatically end the submission for the current term.'
-                document.getElementById("modal_msg_2").innerHTML = modal_message;
+                document.getElementById("modal_msg_2").innerHTML = modal_message2;
             }
             var modal_message1 = "Are you sure you want to update the next deadline to "+ deadline_value + " for the term: "+ year_value + " "+ term_value + "?"
-            //return confirm("Are you sure you want to update the next deadline to "+ deadline_value + " for the term: "+ year_value + " "+ term_value + "?")
         }else{
             var modal_message1 = "You have not made any changes"
         }

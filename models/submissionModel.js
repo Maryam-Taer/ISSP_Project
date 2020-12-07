@@ -135,7 +135,7 @@ Submission.updateById = (id, submission, result) => {
                 return;
             }
 
-            console.log("updated submission: ", { id: id, ...submission });
+            // console.log("updated submission: ", { id: id, ...submission });
             result(null, { id: id, ...submission });
         }
     );
@@ -152,6 +152,18 @@ Submission.get_year_term = result => {
         result(null, res);
     });
 };
+
+Submission.getAllBy_year_term_program = (term, year, category, result) =>{
+    sql.query(`SELECT * from issp WHERE assigned_term = ? AND assigned_year = ? AND category = ?`,[term, year, category], (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+
+        result(null, res);
+    });
+}
 
 module.exports = Submission;
 

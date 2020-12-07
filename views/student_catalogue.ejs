@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/android-chrome-192x192.png">
+    <title>ISSP <%= program %> Student Catalogue (<%= year %> <%= term %>)</title>
+	<meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        @media print {
+            .data {
+                page-break-after: always;
+            }
+
+            .non-print{
+                display: none;
+            }
+
+        }
+    </style>
+</head>
+<body>
+	<div class="container">
+        <div id="data">
+            <h1>ISSP <%= program %> Student Catalogue (<%= year %> <%= term %>)</h1>
+            <button onclick="print_current_page()" class="btn btn-primary col-md-3 non-print">Print This file</button>
+        </div>
+    </div>
+</body>
+<script>
+function print_current_page(){
+    window.print();
+}
+
+var allData = <%- submissionData %>
+
+for (i=0; i < allData.length; i++){
+    d = allData[i];
+    var temp_html = 
+    "<div class='data'>"+
+        "<div class='form-row'>"+
+            "<div class='col-md-12'>"+
+                '<strong>Project ID: </strong><br>' + d.id + '<br>' +
+                '<br><strong>Company: </strong><br>' + d.company_name + '<br>' +
+                '<br><strong>Project Areas: </strong><br>' + d.project_area + '<br>' +
+                '<br><strong>Company Profile: </strong><br>' + d.company_business_profile + '<br>' +
+                '<br><strong>Project Description: </strong><br>' + d.project_description + '<br>' +
+                '<br><strong>Programming Language(s): </strong><br>' + d.programming_language + '<br>' +
+                '<br><strong>Hardware/Software Requirements: </strong><br>' + d.hardware_software_requirements + '<br>' +
+                '<br><strong>Current Work/Arrangement: </strong><br>' + d.current_arrangement + '<br>' +
+                '<br><strong>Previous Project?: </strong><br>' + d.continuation_project + '<br>' +
+            "</div>"
+        "</div>" 
+    "</div>" 
+    
+    data_div = document.getElementById("data")
+    data_data = data_div.innerHTML
+    data_div.innerHTML = data_data + temp_html
+
+}
+</script>
+</html>

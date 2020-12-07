@@ -55,9 +55,9 @@
 						<div class="container-fluid">
 							<form action="/submission/updateCategory" method="POST">
 								<input type="hidden" name="project_id" value="<%= feedbackData.id %>">
-								<div class="form-group md-2">
+								<div class="form-group">
 									<label for="category">Current Submissions assign to Program:</label>
-									<select class="form-control col-md-3" name="category" id="category">
+									<select class="form-control col-lg-4" name="category" id="category">
 									<%	
 										var disabled_tag =(role != "admin")? "disabled" : "";
 										var options = [ "CIT", "CST", "Full Stack Web Development", "Rejected", "Not Assigned"];
@@ -69,9 +69,9 @@
 										%>
 									</select>
 								</div>
-									<div class="form-group md-2">
+								<div class="form-group">
 										<label for="assigned_year">Year and Term:</label>
-										<select name="assigned_year" class="form-control col-md-2">
+										<select name="assigned_year" class="form-control col-lg-3">
 											<% 
 												var disabled_tag =(role != "admin")? "disabled" : "";
 												var temp_year = new Date().getFullYear();
@@ -81,9 +81,9 @@
 													<option <%=disabled_tag%> value="<%=year_list[ i ] %>" <%=selected %>><%=year_list[i] %></option><%
 											} %>
 										</select>
-									</div>
-								<div class="form-group md-2">
-											<select name="assigned_term" class="form-control col-md-2">
+								</div>
+								<div class="form-group">
+										<select name="assigned_term" class="form-control col-lg-3">
 											<%
 											var disabled_tag =(role != "admin")? "disabled" : "";
 											var options = [ "winter", "summer", "fall", "Not Assigned" ];
@@ -91,11 +91,13 @@
 												{ var selected=( feedbackData.assigned_term == options[i] )? "selected" : "" ;%>
 												<option <%=disabled_tag%> value="<%=options[ i ] %>" <%=selected %>><%=options[i] %></option><%
 											} %>
-									  		</select>
+									  	</select>
 								</div>
-								<div class="form-group mt-4">
-									<input type="submit" class="btn btn-success mr-4" value="Assign" />
-								</div>
+								<% if (role == "admin") { %>
+									<div class="form-group mt-4">
+										<input type="submit" class="btn btn-success mr-4" value="Assign" />
+									</div>
+								<% } %>
 							</form>
 						</div>
 						<form class="form" action="/submission/submitFeedback" method="POST">
@@ -106,7 +108,7 @@
 									<% for(var i=0; i < returnData.length ; i++) { %>
 									<li>
 										<div class="commenterImage">
-											<img src="http://placekitten.com/50/50" />
+											<img src="/user.png" alt="user_image"/>
 										</div>
 										<div class="commentText">
 											<p><%= returnData[i].feedback_user%></p>
@@ -128,7 +130,7 @@
 								<textarea name="feedback" rows="8" class="form-control" required
 									placeholder="Your comments......"></textarea>
 							</div>
-							<div class="form-group">
+							<div class="form-group container-fluid">
 								<input type="submit" class="btn btn-success mr-4" value="Post" />
 								<button type="button" class="btn btn-danger"
 									onclick="location.href='/feedbackList'">Cancel</button>

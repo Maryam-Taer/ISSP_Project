@@ -84,23 +84,27 @@ exports.updateCategory = (req, res) => {
             message: "Content can not be empty!"
         });
     }
-
-    Feedback.category(
-        req.body.project_id,
-        new Submission(req.body),
-        (err, data) => {
-            if (err) {
-                if (err.kind === "not_found") {
-                    res.render('error', { message: `Not found Submission with id ${req.body.id}.`, role: req.user.role, username: req.user.username });
+    if (req.user.role != 'admin') {
+        req.flash('error_msg', 'Your role cannot perform this action!');
+        res.redirect('/submission/feedback?id='+req.body.project_id);
+    } else {
+        Feedback.category(
+            req.body.project_id,
+            new Submission(req.body),
+            (err, data) => {
+                if (err) {
+                    if (err.kind === "not_found") {
+                        res.render('error', { message: `Not found Submission with id ${req.body.id}.`, role: req.user.role, username: req.user.username });
+                    } else {
+                        res.render('error', { message: `Error updating Submission with id ${req.body.id}.`, role: req.user.role, username: req.user.username });
+                    }
                 } else {
-                    res.render('error', { message: `Error updating Submission with id ${req.body.id}.`, role: req.user.role, username: req.user.username });
+                    req.flash('success_msg', 'Project has been updated successfully');
+                    res.redirect('/submission/feedback?id='+req.body.project_id);
                 }
-            } else {
-                req.flash('success_msg', 'Project has been updated successfully');
-                res.redirect('/submission/feedback?id='+req.body.project_id);
             }
-        }
-    );
+        );
+    };
 };
 
 
