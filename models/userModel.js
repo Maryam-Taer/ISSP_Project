@@ -1,12 +1,13 @@
 var sql = require("../database");
 
-
+// Constructor
 const User = function (user) {
     this.username = user.username;
     this.password = user.password;
     this.role = user.role;
 };
 
+// Receive data from the controller and Insert it into the database
 User.create = (newUser, result) => {
     sql.query("select * from accounts where username = ?", newUser.username.toLowerCase(), (err,rows) => {
         if (err)
@@ -30,7 +31,7 @@ User.create = (newUser, result) => {
 };
 
 
-
+// Get a user by username from the database
 User.findByUsername = (username, result) => {
     sql.query(`SELECT * FROM accounts WHERE username = ${username}`, (err, res) => {
         if (err) {
@@ -49,7 +50,7 @@ User.findByUsername = (username, result) => {
     });
 };
 
-
+// Update a user by username in the database
 User.updateByUsername = (username, hash, role, result) => {
     sql.query(
         "UPDATE accounts SET username = ?, password = ?, role = ? WHERE username = ?",
@@ -71,7 +72,7 @@ User.updateByUsername = (username, hash, role, result) => {
     );
 };
 
-
+// Get all users from the database
 User.getAll = result => {
     sql.query("SELECT * FROM accounts", (err, res) => {
         if (err) {
@@ -85,7 +86,7 @@ User.getAll = result => {
 };
 
 
-
+// Delete a user by id in the database
 User.delete = (id, result) => {
     sql.query("DELETE FROM accounts WHERE id = ?", id, (err, res) => {
         if (err) {
