@@ -91,11 +91,16 @@ exports.create = (req, res) => {
                 res.render('submission_success', { submission: JSON.stringify(req.body) });
               });
             */
-            res.render('submission_success', { submission: JSON.stringify(req.body) });
+           req.flash('info', req.body)
+           res.redirect('/submission/success')
         }
     });
 };
 
+exports.success = (req, res) =>{
+    var temp_info = JSON.stringify(req.flash('info'))
+    res.render('submission_success', {submission: temp_info })
+}
 // Fetch all the data, for old page, not in use
 // exports.getAll = async (req, res) => {
 //     if (req.user.role != 'admin') {

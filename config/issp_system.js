@@ -14,9 +14,9 @@ module.exports = {
         // Update the deadline and submission tag in JSON file when the old deadline has passed. 
         // A while loop is used to ensure new deadline is updated correctly
         while (temp_date > deadline) {
-            // when the expired submission deadline is for winter term (Default deadline Dec 01 passed)
+            // when the expired submission deadline is for winter term
             if (issp_system.submission_to_term == "winter") {
-                // If submission is in same year as the winter term submission deadline (Between Dec 02 and Dec 31)
+                // If submission is in same year as the winter term submission deadline 
                 if (temp_year == issp_system.next_deadline.year) {
                     // Update new deadline to be Next Year's summer term default deadline
                     issp_system.next_deadline = {
@@ -28,7 +28,7 @@ module.exports = {
                     issp_system.submission_to_term = "summer";
                     issp_system.submission_to_year = (temp_year + 1).toString();
                 } else {
-                    // When deadline is not the same year as submission (eg. A Submission from 2021, Last deadline is 2020 Dec 01)
+                    // When deadline is not the same year as submission 
                     // Update new deadline to be Next Year's summer term default deadline
                     issp_system.next_deadline = {
                         "year": (parseInt(issp_system.next_deadline.year) + 1).toString(),
@@ -39,7 +39,7 @@ module.exports = {
                     issp_system.submission_to_term = "summer";
                     issp_system.submission_to_year = temp_year.toString();
                 }
-                // when the expired submission deadline is for summer term (Default deadline Mar 23 passed)
+                // when the expired submission deadline is for summer term
             } else if (issp_system.submission_to_term == "summer") {
                 // Update new deadline to be This Year's fall term default deadline
                 issp_system.next_deadline = {
@@ -50,7 +50,7 @@ module.exports = {
                 // Update Tags to assign future submissions to This Year's fall
                 issp_system.submission_to_term = "fall";
                 issp_system.submission_to_year = temp_year.toString();
-                // when the expired submission deadline is for fall term (Default deadline Aug 01 passed)
+                // when the expired submission deadline is for fall term
             } else if (issp_system.submission_to_term == "fall") {
                 // Update new deadline to be This Year's winter term default deadline
                 issp_system.next_deadline = {
