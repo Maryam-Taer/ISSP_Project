@@ -1,1 +1,67 @@
-<%- submission.company_name %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BCIT ISSP Success Submit</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/android-chrome-192x192.png">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container justify-content-center text-center">
+        <div class="card col-lg-8 mx-auto">
+            <div class="card-header">
+                <img src="/BCIT_logo.png" class="mx-auto d-block img-fluid logo" alt="BCIT Logo">
+              </div>
+            <div class="card-body align-middle" id="data">
+                <h2>Submission Success</h2>
+                
+
+            </div>
+            <a class='btn btn-primary'  href='/'>Back to submission page</a>
+        </div>
+    </div>
+</body>
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+    var x = <%- submission %>
+    if (x == undefined){
+        data_div = document.getElementById("data")
+        data_data = data_div.innerHTML
+        var temp_html = 
+        "<div class='data'>"+
+            "<div class='form-row'>"+
+                "<div class='col-md-12' style='color:red;'>"+
+                    '<strong>NO PROJECT ASSIGNED </strong>' +
+                "</div>"
+            "</div>" 
+        "</div>" 
+        data_div.innerHTML = data_data + temp_html
+    }else{
+    d = x[0];
+    var temp_html = 
+    "<div class='data'>"+
+        "<div class='form-row'>"+
+            "<div class='col-md-12'>"+
+                '<br><span>Company: </span><br>' + d.company_name + '<br>' +
+                '<br><span>Project Areas: </span><br>' + d.project_area + '<br>' +
+                '<br><span>Company Profile: </span><br>' + d.company_business_profile + '<br>' +
+                '<br><span>Project Description: </span><br>' + d.project_description + '<br>' +
+                '<br><span>Programming Language(s): </span><br>' + d.programming_language + '<br>' +
+                '<br><span>Hardware/Software Requirements: </span><br>' + d.hardware_software_requirements + '<br>' +
+                '<br><span>Current Work/Arrangement: </span><br>' + d.current_arrangement + '<br>' +
+                '<br><span>Previous Project?: </span><br>' + d.continuation_project + '<br>' +
+            "</div>"
+        "</div>" 
+    "</div>" 
+    
+    data_div = document.getElementById("data")
+    data_data = data_div.innerHTML
+    data_div.innerHTML = data_data + temp_html
+    }
+
+</script>
+</html>

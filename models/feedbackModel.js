@@ -43,7 +43,7 @@ Feedback.findAllById = async (id, result) => {
 };
 
 
-// Update category
+// Update category: year, term, program
 Feedback.category = async (id, submission, result) => {
     await sql.query(
         "UPDATE issp SET category = ?, assigned_year = ?, assigned_term = ? WHERE id = ?",
@@ -67,7 +67,7 @@ Feedback.category = async (id, submission, result) => {
     );
 };
 
-
+// Get all the submissions and feedback by year and term 
 Feedback.getAll = result => {
     sql.query("SELECT t1.*,t2.feedback_time, t2.feedback_user FROM issp t1 LEFT JOIN feedback t2 ON t2.project_id = t1.id AND t2.feedback_time = (SELECT MAX(feedback_time) FROM feedback WHERE feedback.project_id = t1.id) order by t2.feedback_time desc, t1.id asc;", (err, res) => {
         if (err) {

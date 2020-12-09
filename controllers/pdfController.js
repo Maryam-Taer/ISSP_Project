@@ -1,6 +1,7 @@
-var async = require("async")
+var async = require("async");
 const submission = require("../models/submissionModel");
 
+// Get all proejcts by term, year, and category
 exports.getAllForPDFPage = async (req, res) => {
     await submission.getAllBy_year_term_program(req.query.term, req.query.year, req.query.category, (err, data) => {
         if (err){
@@ -11,6 +12,7 @@ exports.getAllForPDFPage = async (req, res) => {
     });
 };
 
+// Render a page to generate a pdf
 exports.get_year_term_category = async (req, res) => {
     async.parallel(
         [

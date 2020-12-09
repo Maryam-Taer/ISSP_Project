@@ -8,12 +8,13 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 module.exports = app => {
   app.get("/", (req, res) => {
-    //res.json({ message: "Available path /submission , /submissionList, /login, /register" });
     res.render('submission');
   });
   app.get("/submission", submissionController.index);
   // Create a new Submission
   app.post("/submission/create", submissionController.create);
+  // Submission Success
+  app.get("/submission/success", submissionController.success);
   // Fetch all the data, for old page, not in use
   // app.get("/submissionList", ensureAuthenticated, submissionController.getAll);
   // Delete a project
@@ -40,10 +41,10 @@ module.exports = app => {
   app.get("/pdfSubmissionPage", ensureAuthenticated, pdfController.get_year_term_category);
   // Fetch required data for the PDF page
   app.get("/student_catalogue", ensureAuthenticated, pdfController.getAllForPDFPage);
-  // Back up of User Register Page, Remove in production
-  app.get("/register_backup", authController.register);
-  // Back up of User Register Page, Remove in production
-  app.post("/register_backup", authController.registeruser);
+  // // Back up of User Register Page, Remove in production
+  // app.get("/register_backup", authController.register);
+  // // Back up of User Register Page, Remove in production
+  // app.post("/register_backup", authController.registeruser);
 
   // User Profile Page
   app.get("/profile",ensureAuthenticated, userController.selfprofile);

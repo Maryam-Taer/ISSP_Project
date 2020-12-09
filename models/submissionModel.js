@@ -40,7 +40,7 @@ const Submission = function (submission) {
 
 
 
-
+// Receive data from the controller and Insert it into the database
 Submission.create = (newSubmission, result) => {
     sql.query("INSERT INTO issp SET ?", newSubmission, (err, res) => {
         if (err) {
@@ -54,6 +54,7 @@ Submission.create = (newSubmission, result) => {
     });
 };
 
+// Get all submissions from the database
 Submission.getAll = result => {
     sql.query("SELECT * FROM issp", (err, res) => {
         if (err) {
@@ -70,7 +71,7 @@ Submission.getAll = result => {
     });
 };
 
-
+// Delete a submission by id from the database 
 Submission.delete = (id, result) => {
     sql.query("DELETE FROM issp WHERE id = ?", id, (err, res) => {
         if (err) {
@@ -90,7 +91,7 @@ Submission.delete = (id, result) => {
     });
 };
 
-
+// Get a submission by id from the database
 Submission.findById = (id, result) => {
     sql.query(`SELECT * FROM issp WHERE id = ${id}`, (err, res) => {
         if (err) {
@@ -113,7 +114,7 @@ Submission.findById = (id, result) => {
     });
 };
 
-
+// Update a submission by id in the database
 Submission.updateById = (id, submission, result) => {
     var project_area_trans = (submission.project_area) ? submission.project_area.toString() : "empty";
     var non_profit_organization_trans = (submission.non_profit_organization) ? submission.non_profit_organization : "unchecked";
@@ -141,6 +142,7 @@ Submission.updateById = (id, submission, result) => {
     );
 };
 
+// Get all submission with specified year and term
 Submission.get_year_term = result => {
     sql.query(`SELECT concat(issp.assigned_year," ", issp.assigned_term) AS "year_term", count(*) AS "num_project" FROM issp GROUP BY issp.assigned_year, issp.assigned_term ORDER BY assigned_year desc, assigned_term asc`, (err, res) => {
         if (err) {
@@ -153,6 +155,7 @@ Submission.get_year_term = result => {
     });
 };
 
+// Get submission with specified year, term, program
 Submission.getAllBy_year_term_program = (term, year, category, result) =>{
     sql.query(`SELECT * from issp WHERE assigned_term = ? AND assigned_year = ? AND category = ?`,[term, year, category], (err, res) => {
         if (err) {
@@ -163,7 +166,7 @@ Submission.getAllBy_year_term_program = (term, year, category, result) =>{
 
         result(null, res);
     });
-}
+};
 
 module.exports = Submission;
 

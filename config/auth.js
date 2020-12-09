@@ -1,3 +1,4 @@
+// Ensure a user is authenticated for all the management pages   
 module.exports = {
     ensureAuthenticated: function(req, res, next) {
       if (req.isAuthenticated()) {
@@ -10,6 +11,6 @@ module.exports = {
       if (!req.isAuthenticated()) {
         return next();
       }
-      res.redirect('/submissionList');      
+      res.redirect('/feedbackList');      
     }
   };

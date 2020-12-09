@@ -3,6 +3,7 @@ var bcrypt = require('bcrypt');
 var async = require('async');
 const saltRounds = 10;
 
+// Render/Display a add user page
 exports.register = (req, res) => {
     if (req.user.role != 'admin') {
         res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
@@ -52,6 +53,7 @@ exports.create = async (req, res) => {
 };
 
 
+// Render a user edit page
 exports.profile = async (req,res) => {
     if (req.user.role != 'admin') {
         res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
@@ -75,14 +77,14 @@ exports.profile = async (req,res) => {
     }
 };
 
-
+// Render a user profile page
 exports.selfprofile = (req,res) => {
     res.render('profile', { role: req.user.role, username: req.user.username  });
 };
 
 
 
-
+// Edit a user by username 
 exports.edituser = async (req, res) => {
     // Validate request
     if (req.body.username) {
@@ -165,7 +167,7 @@ exports.edituser = async (req, res) => {
     }
 };
 
-
+// Display all the users
 exports.getAllUsers = async (req, res) => {
     if (req.user.role != 'admin') {
         res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}
@@ -182,7 +184,7 @@ exports.getAllUsers = async (req, res) => {
     }
 };
 
-
+// Delete a user by id
 exports.delete = (req, res) => {
     if (req.user.role != 'admin') {
         res.render( 'error', {message: `Your role cannot perform this action!`, role:req.user.role, username:req.user.username}

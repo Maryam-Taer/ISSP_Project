@@ -1,3 +1,4 @@
+// Database Configuration (MySQL)
 module.exports = {
     host: 'localhost', // Replace with your host name
     user: 'cp_cs_submission',      // Replace with your database username
