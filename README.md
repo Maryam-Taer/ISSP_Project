@@ -24,7 +24,7 @@ post-secondary education or you're a seasoned professional looking for the best 
 Vancouver or Burnaby campuses. With 700 courses every year start with just one course or work toward a certificate diploma or degree either full or parttime. <br/><br/>
 
 ### **Project Description:** <br/>
-Through this project, we aim to upgrade the current [website](https://www.bcit.ca/computing-academic-studies/industry-sponsored-student-projects/issp-project-submission-form/) that enables us every year to organize the Industry Sponsor Student Projects (ISSP). <br/><br/>
+Through this project, we aim to upgrade the current [website](https://issp.bcit.ca/) that enables us every year to organize the Industry Sponsor Student Projects (ISSP). <br/><br/>
 
 
 ### **Project Problem Statement:**<br/>
